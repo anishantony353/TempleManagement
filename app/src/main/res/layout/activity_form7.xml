@@ -1,0 +1,1008 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="5dp"
+            android:background="@color/saffron"
+            >
+            <LinearLayout
+                android:id="@+id/LL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <LinearLayout
+                    android:id="@+id/LL_form_type"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginRight="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/TV_form_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+
+                        android:textSize="15sp"
+                        android:text="Form Type"
+                        />
+
+                    <TextView
+                        android:id="@+id/TV_form_type_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:background="@drawable/background_green_rectangle"
+                        android:padding="5dp"
+
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:textSize="20sp"
+                        android:text="7"
+                        />
+
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/LL_form_no"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="right"
+                    >
+
+                    <TextView
+                        android:id="@+id/TV_form"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+
+                        android:textSize="15sp"
+                        android:text="Form No"
+                        />
+
+                    <TextView
+                        android:id="@+id/TV_form_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:background="@drawable/background_green_rectangle"
+                        android:padding="5dp"
+
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:textSize="20sp"
+                        android:text="A47851"
+                        />
+
+
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+
+                <ScrollView
+                    android:id="@+id/SV"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="5dp"
+                    android:layout_above="@+id/actions"
+                    android:layout_below="@+id/LL"
+                    android:layout_marginTop="10dp"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="6"
+                            android:layout_marginBottom="10dp"
+                            >
+
+                            <TextView
+                                android:text="Village Name"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:layout_marginRight="20dp"
+                                android:layout_gravity="bottom"
+                                android:textColor="@color/white"
+                                />
+
+                            <EditText
+
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:text=""
+                                android:hint="Village Name"
+                                style="@style/MyEditTextStyle"
+                                />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="6"
+                            android:layout_marginBottom="10dp">
+
+                            <TextView
+                                android:text="Taluka"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:layout_marginRight="20dp"
+                                android:layout_gravity="bottom"
+                                android:textColor="@color/white"/>
+
+                            <EditText
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:text=""
+                                android:hint="Taluka"
+                                style="@style/MyEditTextStyle"
+                                />
+
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="6"
+                            android:layout_marginBottom="10dp">
+
+                            <TextView
+                                android:text="District"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:layout_marginRight="20dp"
+                                android:layout_gravity="bottom"
+                                android:textColor="@color/white"/>
+
+                            <EditText
+
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:text=""
+                                android:hint="District"
+                                style="@style/MyEditTextStyle"
+
+                                />
+
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="6"
+                            android:layout_marginBottom="10dp">
+
+                            <TextView
+                                android:text="Notification number"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:layout_marginRight="20dp"
+                                android:layout_gravity="bottom"
+                                android:textColor="@color/white"/>
+
+                            <EditText
+
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:text=""
+                                android:hint="Notification number"
+                                style="@style/MyEditTextStyle"
+
+                                />
+
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="6"
+                            android:layout_marginBottom="10dp">
+
+                            <TextView
+                                android:text="Total area"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:layout_marginRight="20dp"
+                                android:layout_gravity="bottom"
+                                android:textColor="@color/white"/>
+
+                            <EditText
+
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:text=""
+                                android:hint="Total area"
+                                style="@style/MyEditTextStyle"
+
+                                />
+
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="6"
+                            android:layout_marginBottom="10dp">
+
+                            <TextView
+                                android:text="PTR No-K.A."
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:layout_marginRight="20dp"
+                                android:layout_gravity="bottom"
+                                android:textColor="@color/white"/>
+
+                            <EditText
+
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:text=""
+                                android:hint="PTR No-K.A."
+                                style="@style/MyEditTextStyle"
+
+                                />
+
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="6"
+                            android:layout_marginBottom="10dp">
+
+                            <TextView
+                                android:text="Shape"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:layout_marginRight="20dp"
+                                android:layout_gravity="bottom"
+                                android:textColor="@color/white"/>
+
+                            <EditText
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:text=""
+                                android:hint="Shape"
+                                style="@style/MyEditTextStyle"
+
+                                />
+
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="6"
+                            android:layout_marginBottom="10dp">
+
+                            <TextView
+                                android:text="Name of Devasthan"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:layout_marginRight="20dp"
+                                android:layout_gravity="bottom"
+                                android:textColor="@color/white"/>
+
+                            <EditText
+
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:text=""
+                                android:hint="Name of Devasthan"
+                                style="@style/MyEditTextStyle"
+
+                                />
+
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="6"
+                            android:layout_marginBottom="10dp">
+
+                            <TextView
+                                android:text="GATH No"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:layout_marginRight="20dp"
+                                android:layout_gravity="bottom"
+                                android:textColor="@color/white"/>
+
+                            <EditText
+
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:text=""
+                                android:hint="GATH No"
+                                style="@style/MyEditTextStyle"
+
+                                />
+
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="6"
+                            android:layout_marginBottom="10dp">
+
+                            <TextView
+                                android:text="S.N."
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:layout_marginRight="20dp"
+                                android:layout_gravity="bottom"
+                                android:textColor="@color/white"/>
+
+                            <EditText
+
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:text=""
+                                android:hint="S.N."
+                                style="@style/MyEditTextStyle"
+
+                                />
+
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="6"
+                            android:layout_marginBottom="10dp">
+
+                            <TextView
+                                android:text="C. S. N."
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:layout_marginRight="20dp"
+                                android:layout_gravity="bottom"
+                                android:textColor="@color/white"/>
+
+                            <EditText
+
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:text=""
+                                android:hint="C. S. N."
+                                style="@style/MyEditTextStyle"
+
+                                />
+
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="6"
+                            android:layout_marginBottom="10dp">
+
+                            <TextView
+                                android:text="Name of Land Tenants"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:layout_marginRight="20dp"
+                                android:layout_gravity="bottom"
+                                android:textColor="@color/white"/>
+
+                            <EditText
+
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:text=""
+                                android:hint="Name of Land Tenants"
+                                style="@style/MyEditTextStyle"
+
+                                />
+
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="6"
+                            android:layout_marginBottom="10dp">
+
+                            <TextView
+                                android:text="Address"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:layout_marginRight="20dp"
+                                android:layout_gravity="bottom"
+                                android:textColor="@color/white"/>
+
+                            <EditText
+
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:text=""
+                                android:hint="Address"
+                                style="@style/MyEditTextStyle"
+
+                                />
+
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="6"
+                            android:layout_marginBottom="10dp">
+
+                            <TextView
+                                android:text="Measurements of sanctioned Land"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:layout_marginRight="20dp"
+                                android:layout_gravity="bottom"
+                                android:textColor="@color/white"/>
+
+                            <EditText
+
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:text=""
+                                android:hint="Measurements of sanctioned Land"
+                                style="@style/MyEditTextStyle"
+
+                                />
+
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="6"
+                            android:layout_marginBottom="10dp">
+
+                            <TextView
+                                android:text="Area of sanctioned Land"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:layout_marginRight="20dp"
+                                android:layout_gravity="bottom"
+                                android:textColor="@color/white"/>
+
+                            <EditText
+
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:text=""
+                                android:hint="Area of sanctioned Land"
+                                style="@style/MyEditTextStyle"
+
+                                />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:orientation="horizontal"
+                            android:weightSum="6">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="bottom"
+                                android:layout_marginRight="20dp"
+                                android:layout_weight="2"
+                                android:text="Is occupant has done encroachment in given plot"
+                                android:textColor="@color/white" />
+
+                            <EditText
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:text=""
+                                android:hint="Is occupant has done encroachment in given plot"
+                                style="@style/MyEditTextStyle" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="6"
+                            android:layout_marginBottom="10dp"
+                            >
+
+                            <TextView
+                                android:text="Area of Encroachment"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:layout_marginRight="20dp"
+                                android:layout_gravity="bottom"
+                                android:textColor="@color/white"
+                                />
+
+                            <EditText
+
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:text=""
+                                android:hint="Area of Encroachment"
+                                style="@style/MyEditTextStyle"
+                                />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="6"
+                            android:layout_marginBottom="10dp">
+
+                            <TextView
+                                android:text="Shape of given Land"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:layout_marginRight="20dp"
+                                android:layout_gravity="bottom"
+                                android:textColor="@color/white"/>
+
+                            <EditText
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:text=""
+                                android:hint="Shape of given Land"
+                                style="@style/MyEditTextStyle"
+                                />
+
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="6"
+                            android:layout_marginBottom="10dp">
+
+                            <TextView
+                                android:text="Shape of Open spaces "
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:layout_marginRight="20dp"
+                                android:layout_gravity="bottom"
+                                android:textColor="@color/white"/>
+
+                            <EditText
+
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:text=""
+                                android:hint="Shape of Open spaces "
+                                style="@style/MyEditTextStyle"
+
+                                />
+
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="6"
+                            android:layout_marginBottom="10dp">
+
+                            <TextView
+                                android:text="Shape of Temples"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:layout_marginRight="20dp"
+                                android:layout_gravity="bottom"
+                                android:textColor="@color/white"/>
+
+                            <EditText
+
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:text=""
+                                android:hint="Shape of Temples"
+                                style="@style/MyEditTextStyle"
+
+                                />
+
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="6"
+                            android:layout_marginBottom="10dp">
+
+                            <TextView
+                                android:text="Shape of Dharmashala"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:layout_marginRight="20dp"
+                                android:layout_gravity="bottom"
+                                android:textColor="@color/white"/>
+
+                            <EditText
+
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:text=""
+                                android:hint="Shape of Dharmashala"
+                                style="@style/MyEditTextStyle"
+
+                                />
+
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="6"
+                            android:layout_marginBottom="10dp">
+
+                            <TextView
+                                android:text="Purpose of given land"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:layout_marginRight="20dp"
+                                android:layout_gravity="bottom"
+                                android:textColor="@color/white"/>
+
+                            <EditText
+
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:text=""
+                                android:hint="Purpose of given land"
+                                style="@style/MyEditTextStyle"
+
+                                />
+
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="6"
+                            android:layout_marginBottom="10dp">
+
+                            <TextView
+                                android:text="What is the purpose of the use"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:layout_marginRight="20dp"
+                                android:layout_gravity="bottom"
+                                android:textColor="@color/white"/>
+
+                            <EditText
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:text=""
+                                android:hint="What is the purpose of the use"
+                                style="@style/MyEditTextStyle"
+
+                                />
+
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="6"
+                            android:layout_marginBottom="10dp">
+
+                            <TextView
+                                android:text="Reason"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:layout_marginRight="20dp"
+                                android:layout_gravity="bottom"
+                                android:textColor="@color/white"/>
+
+                            <EditText
+
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:text=""
+                                android:hint="Reason"
+                                style="@style/MyEditTextStyle"
+
+                                />
+
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="6"
+                            android:layout_marginBottom="10dp">
+
+                            <TextView
+                                android:text="Is there a Sub-tenant in an approved place"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:layout_marginRight="20dp"
+                                android:layout_gravity="bottom"
+                                android:textColor="@color/white"/>
+
+                            <EditText
+
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:text=""
+                                android:hint="Is there a Sub-tenant in an approved place"
+                                style="@style/MyEditTextStyle"
+
+                                />
+
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="6"
+                            android:layout_marginBottom="10dp">
+
+                            <TextView
+                                android:text="Area of Unused Plot"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:layout_marginRight="20dp"
+                                android:layout_gravity="bottom"
+                                android:textColor="@color/white"/>
+
+                            <EditText
+
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:text=""
+                                android:hint="Area of Unused Plot"
+                                style="@style/MyEditTextStyle"
+
+                                />
+
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="6"
+                            android:layout_marginBottom="10dp">
+
+                            <TextView
+                                android:text="Utilisation of land"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:layout_marginRight="20dp"
+                                android:layout_gravity="bottom"
+                                android:textColor="@color/white"/>
+
+                            <EditText
+
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:text=""
+                                android:hint="Utilisation of land"
+                                style="@style/MyEditTextStyle"
+
+                                />
+
+
+                        </LinearLayout>
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="60dp"
+                            android:layout_marginTop="20dp"
+                            android:src="@drawable/location_marker"
+                            android:layout_gravity="right"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="6"
+                            android:layout_marginBottom="10dp">
+
+                            <TextView
+                                android:text="Latitude"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:layout_marginRight="20dp"
+                                android:layout_gravity="bottom"
+                                android:textColor="@color/white"/>
+
+                            <EditText
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:text=""
+                                android:hint="Latitude"
+                                style="@style/MyEditTextStyle"
+
+                                />
+
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="6"
+                            android:layout_marginBottom="10dp">
+
+                            <TextView
+                                android:text="Longitude"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:layout_marginRight="20dp"
+                                android:layout_gravity="bottom"
+                                android:textColor="@color/white"/>
+
+                            <EditText
+
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:text=""
+                                android:hint="Longitude"
+                                style="@style/MyEditTextStyle"
+
+                                />
+
+
+                        </LinearLayout>
+
+
+
+                    </LinearLayout>
+
+
+                </ScrollView>
+
+                <LinearLayout
+                    android:id="@+id/actions"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:gravity="right">
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:text="Save"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/background_black_rectangle"/>
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:text="Submit"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/background_black_rectangle"/>
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:text="Update"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/background_black_rectangle"/>
+
+                </LinearLayout>
+
+
+
+
+        </RelativeLayout>
+
+
+</layout>

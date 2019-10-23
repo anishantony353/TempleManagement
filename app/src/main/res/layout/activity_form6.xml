@@ -1,0 +1,977 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="5dp"
+            android:background="@color/saffron"
+            >
+            <LinearLayout
+                android:id="@+id/LL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <LinearLayout
+                    android:id="@+id/LL_form_type"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginRight="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/TV_form_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+
+                        android:textSize="15sp"
+                        android:text="Form Type"
+                        />
+
+                    <TextView
+                        android:id="@+id/TV_form_type_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:background="@drawable/background_green_rectangle"
+                        android:padding="5dp"
+
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:textSize="20sp"
+                        android:text="6"
+                        />
+
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/LL_form_no"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="right"
+                    >
+
+                    <TextView
+                        android:id="@+id/TV_form"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+
+                        android:textSize="15sp"
+                        android:text="Form No"
+                        />
+
+                    <TextView
+                        android:id="@+id/TV_form_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:background="@drawable/background_green_rectangle"
+                        android:padding="5dp"
+
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:textSize="20sp"
+                        android:text="A47851"
+                        />
+
+
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+
+                <ScrollView
+                    android:id="@+id/SV"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="5dp"
+                    android:layout_above="@+id/actions"
+                    android:layout_below="@+id/LL"
+                    android:layout_marginTop="10dp"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="6"
+                            android:layout_marginBottom="10dp"
+                            >
+
+                            <TextView
+                                android:text="Village"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:layout_marginRight="20dp"
+                                android:layout_gravity="bottom"
+                                android:textColor="@color/white"
+                                />
+
+                            <EditText
+
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:text=""
+                                android:hint="Village"
+                                style="@style/MyEditTextStyle"
+                                />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="6"
+                            android:layout_marginBottom="10dp">
+
+                            <TextView
+                                android:text="Taluka"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:layout_marginRight="20dp"
+                                android:layout_gravity="bottom"
+                                android:textColor="@color/white"/>
+
+                            <EditText
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:text=""
+                                android:hint="Taluka"
+                                style="@style/MyEditTextStyle"
+                                />
+
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="6"
+                            android:layout_marginBottom="10dp">
+
+                            <TextView
+                                android:text="God Name"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:layout_marginRight="20dp"
+                                android:layout_gravity="bottom"
+                                android:textColor="@color/white"/>
+
+                            <EditText
+
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:text=""
+                                android:hint="God Name"
+                                style="@style/MyEditTextStyle"
+
+                                />
+
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="6"
+                            android:layout_marginBottom="10dp">
+
+                            <TextView
+                                android:text="Reg. No"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:layout_marginRight="20dp"
+                                android:layout_gravity="bottom"
+                                android:textColor="@color/white"/>
+
+                            <EditText
+
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:text=""
+                                android:hint="Reg. No"
+                                style="@style/MyEditTextStyle"
+
+                                />
+
+
+                        </LinearLayout>
+
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="6"
+                            android:layout_marginBottom="10dp">
+
+                            <TextView
+                                android:text="Gold"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:layout_marginRight="20dp"
+                                android:layout_gravity="bottom"
+                                android:textColor="@color/white"/>
+
+                            <EditText
+
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:text=""
+                                android:hint="Gold"
+                                style="@style/MyEditTextStyle"
+
+                                />
+
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="6"
+                            android:layout_marginBottom="10dp">
+
+                            <TextView
+                                android:text="Silver"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:layout_marginRight="20dp"
+                                android:layout_gravity="bottom"
+                                android:textColor="@color/white"/>
+
+                            <EditText
+
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:text=""
+                                android:hint="Silver"
+                                style="@style/MyEditTextStyle"
+
+                                />
+
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="6"
+                            android:layout_marginBottom="10dp">
+
+                            <TextView
+                                android:text="Cloth"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:layout_marginRight="20dp"
+                                android:layout_gravity="bottom"
+                                android:textColor="@color/white"/>
+
+                            <EditText
+
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:text=""
+                                android:hint="Cloth"
+                                style="@style/MyEditTextStyle"
+
+                                />
+
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="6"
+                            android:layout_marginBottom="10dp">
+
+                            <TextView
+                                android:text="placing"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:layout_marginRight="20dp"
+                                android:layout_gravity="bottom"
+                                android:textColor="@color/white"/>
+
+                            <EditText
+
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:text=""
+                                android:hint="placing"
+                                style="@style/MyEditTextStyle"
+
+                                />
+
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="6"
+                            android:layout_marginBottom="10dp">
+
+                            <TextView
+                                android:text="Copper"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:layout_marginRight="20dp"
+                                android:layout_gravity="bottom"
+                                android:textColor="@color/white"/>
+
+                            <EditText
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:text=""
+                                android:hint="Copper"
+                                style="@style/MyEditTextStyle"
+
+                                />
+
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="6"
+                            android:layout_marginBottom="10dp">
+
+                            <TextView
+                                android:text="Brass Pots"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:layout_marginRight="20dp"
+                                android:layout_gravity="bottom"
+                                android:textColor="@color/white"/>
+
+                            <EditText
+
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:text=""
+                                android:hint="Brass Pots"
+                                style="@style/MyEditTextStyle"
+
+                                />
+
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="6"
+                            android:layout_marginBottom="10dp">
+
+                            <TextView
+                                android:text="Bell"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:layout_marginRight="20dp"
+                                android:layout_gravity="bottom"
+                                android:textColor="@color/white"/>
+
+                            <EditText
+
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:text=""
+                                android:hint="Bell"
+                                style="@style/MyEditTextStyle"
+
+                                />
+
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="6"
+                            android:layout_marginBottom="10dp">
+
+                            <TextView
+                                android:text="Other Important Things ,Etc"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:layout_marginRight="20dp"
+                                android:layout_gravity="bottom"
+                                android:textColor="@color/white"/>
+
+                            <EditText
+
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:text=""
+                                android:hint="Other Important Things ,Etc"
+                                style="@style/MyEditTextStyle"
+
+                                />
+
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="6"
+                            android:layout_marginBottom="10dp">
+
+                            <TextView
+                                android:text="Register No"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:layout_marginRight="20dp"
+                                android:layout_gravity="bottom"
+                                android:textColor="@color/white"/>
+
+                            <EditText
+
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:text=""
+                                android:hint="Register No"
+                                style="@style/MyEditTextStyle"
+
+                                />
+
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="6"
+                            android:layout_marginBottom="10dp">
+
+                            <TextView
+                                android:text="Product Detail"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:layout_marginRight="20dp"
+                                android:layout_gravity="bottom"
+                                android:textColor="@color/white"/>
+
+                            <EditText
+
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:text=""
+                                android:hint="Product Detail"
+                                style="@style/MyEditTextStyle"
+
+                                />
+
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="6"
+                            android:layout_marginBottom="10dp">
+
+                            <TextView
+                                android:text="S.R.No in Book"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:layout_marginRight="20dp"
+                                android:layout_gravity="bottom"
+                                android:textColor="@color/white"/>
+
+                            <EditText
+
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:text=""
+                                android:hint="S.R.No in Book"
+                                style="@style/MyEditTextStyle"
+
+                                />
+
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="6"
+                            android:layout_marginBottom="10dp">
+
+                            <TextView
+                                android:text="Received From"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:layout_marginRight="20dp"
+                                android:layout_gravity="bottom"
+                                android:textColor="@color/white"/>
+
+                            <EditText
+
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:text=""
+                                android:hint="Received From"
+                                style="@style/MyEditTextStyle"
+
+                                />
+
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="6"
+                            android:layout_marginBottom="10dp">
+
+                            <TextView
+                                android:text="Weight Approx"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:layout_marginRight="20dp"
+                                android:layout_gravity="bottom"
+                                android:textColor="@color/white"/>
+
+                            <EditText
+
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:text=""
+                                android:hint="Weight Approx"
+                                style="@style/MyEditTextStyle"
+
+                                />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:orientation="horizontal"
+                            android:weightSum="6">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="bottom"
+                                android:layout_marginRight="20dp"
+                                android:layout_weight="2"
+                                android:text="Value of the Asset"
+                                android:textColor="@color/white" />
+
+                            <EditText
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:text=""
+                                android:hint="Value of the Asset"
+                                style="@style/MyEditTextStyle" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="6"
+                            android:layout_marginBottom="10dp"
+                            >
+
+                            <TextView
+                                android:text="Valuation done or Not"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:layout_marginRight="20dp"
+                                android:layout_gravity="bottom"
+                                android:textColor="@color/white"
+                                />
+
+                            <EditText
+
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:text=""
+                                android:hint="Valuation done or Not"
+                                style="@style/MyEditTextStyle"
+                                />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="6"
+                            android:layout_marginBottom="10dp">
+
+                            <TextView
+                                android:text="If Done then Detail"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:layout_marginRight="20dp"
+                                android:layout_gravity="bottom"
+                                android:textColor="@color/white"/>
+
+                            <EditText
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:text=""
+                                android:hint="If Done then Detail"
+                                style="@style/MyEditTextStyle"
+                                />
+
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="6"
+                            android:layout_marginBottom="10dp">
+
+                            <TextView
+                                android:text="Present Authority"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:layout_marginRight="20dp"
+                                android:layout_gravity="bottom"
+                                android:textColor="@color/white"/>
+
+                            <EditText
+
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:text=""
+                                android:hint="Present Authority"
+                                style="@style/MyEditTextStyle"
+
+                                />
+
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="6"
+                            android:layout_marginBottom="10dp">
+
+                            <TextView
+                                android:text="Authority Post"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:layout_marginRight="20dp"
+                                android:layout_gravity="bottom"
+                                android:textColor="@color/white"/>
+
+                            <EditText
+
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:text=""
+                                android:hint="Authority Post"
+                                style="@style/MyEditTextStyle"
+
+                                />
+
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="6"
+                            android:layout_marginBottom="10dp">
+
+                            <TextView
+                                android:text="Remarks"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:layout_marginRight="20dp"
+                                android:layout_gravity="bottom"
+                                android:textColor="@color/white"/>
+
+                            <EditText
+
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:text=""
+                                android:hint="Remarks"
+                                style="@style/MyEditTextStyle"
+
+                                />
+
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="6"
+                            android:layout_marginBottom="10dp">
+
+                            <TextView
+                                android:text="Is Valuation of Gold Done or Not"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:layout_marginRight="20dp"
+                                android:layout_gravity="bottom"
+                                android:textColor="@color/white"/>
+
+                            <EditText
+
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:text=""
+                                android:hint="Is Valuation of Gold Done or Not"
+                                style="@style/MyEditTextStyle"
+
+                                />
+
+
+                        </LinearLayout>
+
+                        jhfhj
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="6"
+                            android:layout_marginBottom="10dp">
+
+                            <TextView
+                                android:text="Is Valuation of Silver Done or Not"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:layout_marginRight="20dp"
+                                android:layout_gravity="bottom"
+                                android:textColor="@color/white"/>
+
+                            <EditText
+
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:text=""
+                                android:hint="Is Valuation of Silver Done or Not"
+                                style="@style/MyEditTextStyle"
+
+                                />
+
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="6"
+                            android:layout_marginBottom="10dp">
+
+                            <TextView
+                                android:text="Assessment Amount"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:layout_marginRight="20dp"
+                                android:layout_gravity="bottom"
+                                android:textColor="@color/white"/>
+
+                            <EditText
+
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:text=""
+                                android:hint="Assessment Amount"
+                                style="@style/MyEditTextStyle"
+
+                                />
+
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="6"
+                            android:layout_marginBottom="10dp">
+
+                            <TextView
+                                android:text="Is Donation box Available in the Temple"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:layout_marginRight="20dp"
+                                android:layout_gravity="bottom"
+                                android:textColor="@color/white"/>
+
+                            <EditText
+
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:text=""
+                                android:hint="Is Donation box Available in the Temple"
+                                style="@style/MyEditTextStyle"
+
+                                />
+
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="6"
+                            android:layout_marginBottom="10dp">
+
+                            <TextView
+                                android:text="Utilisation of Donation Box"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:layout_marginRight="20dp"
+                                android:layout_gravity="bottom"
+                                android:textColor="@color/white"/>
+
+                            <EditText
+
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:text=""
+                                android:hint="Utilisation of Donation Box"
+                                style="@style/MyEditTextStyle"
+
+                                />
+
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+
+                </ScrollView>
+
+                <LinearLayout
+                    android:id="@+id/actions"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:gravity="right">
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:text="Save"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/background_black_rectangle"/>
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:text="Submit"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/background_black_rectangle"/>
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:text="Update"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/background_black_rectangle"/>
+
+                </LinearLayout>
+
+
+
+
+        </RelativeLayout>
+
+
+</layout>

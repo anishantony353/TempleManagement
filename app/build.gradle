@@ -1,0 +1,78 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.saarit.temple_management.templemanagement"
+        minSdkVersion 19
+        targetSdkVersion 27
+        multiDexEnabled true
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    dataBinding {
+        enabled = true
+
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'com.google.android.material:material:1.2.0-alpha01'
+//    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta2'
+
+    //Testing
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.3.0-alpha02'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0-alpha02'
+
+    //MVVM
+    implementation "androidx.lifecycle:lifecycle-extensions:2.2.0-beta01"
+    implementation "androidx.lifecycle:lifecycle-viewmodel:2.2.0-beta01"
+
+    // RxJava
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.9'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+
+    // Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+    implementation 'com.google.code.gson:gson:2.6.1'
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    implementation 'com.squareup.retrofit2:converter-scalars:2.3.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+
+
+    //Logging Interceptor
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.12.1'
+
+
+    // Room
+    def room_version = "2.2.0-beta01"
+
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version" // For Kotlin use kapt instead of annotationProcessor
+
+
+
+    // optional - RxJava support for Room
+    implementation "androidx.room:room-rxjava2:$room_version"
+
+
+
+//    // Test helpers
+//    testImplementation "androidx.room:room-testing:$room_version"
+
+
+}
