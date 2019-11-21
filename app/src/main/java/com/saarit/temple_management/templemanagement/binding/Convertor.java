@@ -13,6 +13,22 @@ public class Convertor {
     }
 
     public static double stringToDouble(String value){
-        return Double.parseDouble(value);
+        if(value.equals("")){
+            return 0.0;
+        }else{
+            return Double.parseDouble(value);
+        }
+
+    }
+
+    @InverseMethod("stringToInt")
+    public static String intToString(int value){
+
+        return Integer.toString(value);
+
+    }
+
+    public static int stringToInt(String value){
+        return Integer.parseInt(value);
     }
 }

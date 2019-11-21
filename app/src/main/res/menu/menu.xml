@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_changeMap"
+        android:title="Change Map"
+        app:showAsAction="never"
+        >
+        <menu>
+            <group
+                android:checkableBehavior="single">
+                <item
+                    android:id="@+id/satellite"
+                    android:title="Satellite" />
+                <item
+                    android:id="@+id/hybrid"
+                    android:title="Hybrid" />
+                <item
+                    android:id="@+id/terrain"
+                    android:title="Terrain" />
+                <item
+                    android:id="@+id/normal"
+                    android:title="Normal" />
+            </group>
+
+
+        </menu>
+    </item>
+    <item
+        android:id="@+id/action_getNearbyTemples"
+        android:title="Get Nearby temples"
+        app:showAsAction="never"
+        ></item>
+    <item
+        android:id="@+id/action_clearNearbyTemples"
+        android:title="Clear Nearby temples"
+        app:showAsAction="never"
+        ></item>
+    <item
+        android:id="@+id/action_getLocalTemples"
+        android:title="Get Local temples"
+        app:showAsAction="never"
+        ></item>
+    <item
+        android:id="@+id/action_clearLocalTemples"
+        android:title="Clear Local temples"
+        app:showAsAction="never"
+        ></item>
+
+
+</menu>

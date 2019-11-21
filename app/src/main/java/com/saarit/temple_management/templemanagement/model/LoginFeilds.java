@@ -40,7 +40,6 @@ public class LoginFeilds extends BaseObservable {
         notifyPropertyChanged(BR.password);
     }
 
-
     public boolean isValidId(){
 
         Utility.log(TAG,"isValidId()");

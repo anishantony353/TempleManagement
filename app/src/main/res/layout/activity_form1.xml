@@ -12,7 +12,6 @@
     </data>
 
 
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -77,39 +76,34 @@
                     >
 
                     <TextView
-                        android:id="@+id/TV_form"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
                         android:textColor="@color/white"
 
                         android:textSize="15sp"
-                        android:text="Form No"
+                        android:text="Temple Id"
                         />
 
                     <TextView
-                        android:id="@+id/TV_form_value"
+                        android:id="@+id/TV_temple_id"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:text="@={Convertor.intToString(((FormType_1)(viewmodel.formType_1ObservableField.get())).templeId)}"
                         android:textStyle="bold"
                         android:textColor="@color/white"
                         android:background="@drawable/background_green_rectangle"
                         android:padding="5dp"
-
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="5dp"
                         android:textSize="20sp"
-                        android:text="A47851"
                         />
-
 
 
                 </LinearLayout>
 
 
-
             </LinearLayout>
-
 
                 <ScrollView
                     android:id="@+id/SV"
@@ -125,6 +119,48 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="6"
+                            android:layout_marginBottom="10dp"
+                            >
+
+                            <TextView
+                                android:text="Temple"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:layout_marginRight="20dp"
+                                android:layout_gravity="bottom"
+                                android:textColor="@color/white"
+                                />
+
+                            <EditText
+
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:text="@={((FormType_1)(viewmodel.formType_1ObservableField.get())).temple}"
+                                android:hint="Temple"
+                                app:invalid="@{viewmodel.error_msg_templeName}"
+                                style="@style/MyEditTextStyle"
+                                />
+
+                            <!--<AutoCompleteTextView-->
+
+                                <!--android:layout_width="0dp"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:layout_weight="4"-->
+                                <!--android:text="@={((FormType_1)(viewmodel.formType_1ObservableField.get())).temple}"-->
+                                <!--android:hint="Search"-->
+                                <!--style="@style/MyEditTextStyle"-->
+                                <!--/>-->
+
+
+                        </LinearLayout>
 
 
                         <LinearLayout
@@ -144,7 +180,6 @@
                                 android:layout_gravity="bottom"
                                 android:textColor="@color/white"
                                 />
-
                             <EditText
 
                                 android:layout_width="0dp"
@@ -154,6 +189,16 @@
                                 android:hint="Village"
                                 style="@style/MyEditTextStyle"
                                 />
+
+                            <!--<TextView-->
+
+                                <!--android:layout_width="0dp"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:layout_weight="4"-->
+                                <!--android:text="@={((FormType_1)(viewmodel.formType_1ObservableField.get())).village}"-->
+                                <!--android:hint="Village"-->
+                                <!--style="@style/MyEditTextStyle"-->
+                                <!--/>-->
 
 
                         </LinearLayout>
@@ -184,6 +229,16 @@
                                 style="@style/MyEditTextStyle"
                                 />
 
+                            <!--<TextView-->
+
+                                <!--android:layout_width="0dp"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:layout_weight="4"-->
+                                <!--android:text="@={((FormType_1)(viewmodel.formType_1ObservableField.get())).taluka}"-->
+                                <!--android:hint="Taluka"-->
+                                <!--style="@style/MyEditTextStyle"-->
+                                <!--/>-->
+
 
                         </LinearLayout>
                         <LinearLayout
@@ -207,11 +262,21 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="4"
-                                android:text=""
+                                android:text="@={((FormType_1)(viewmodel.formType_1ObservableField.get())).district}"
                                 android:hint="District"
                                 style="@style/MyEditTextStyle"
-
                                 />
+
+                            <!--<TextView-->
+
+                                <!--android:layout_width="0dp"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:layout_weight="4"-->
+                                <!--android:text="@={((FormType_1)(viewmodel.formType_1ObservableField.get())).district}"-->
+                                <!--android:hint="District"-->
+                                <!--style="@style/MyEditTextStyle"-->
+
+                                <!--/>-->
 
 
                         </LinearLayout>
@@ -236,10 +301,9 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="4"
-                                android:text=""
+                                android:text="@={((FormType_1)(viewmodel.formType_1ObservableField.get())).god_name}"
                                 android:hint="God Name"
                                 style="@style/MyEditTextStyle"
-
                                 />
 
 
@@ -265,7 +329,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="4"
-                                android:text=""
+                                android:text="@={((FormType_1)(viewmodel.formType_1ObservableField.get())).registration_no}"
                                 android:hint="Registration No"
                                 style="@style/MyEditTextStyle"
 
@@ -278,7 +342,7 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
                             android:weightSum="6"
-                            android:layout_marginBottom="10dp">
+                            android:layout_marginBottom="20dp">
 
                             <TextView
                                 android:text="Notification No"
@@ -294,7 +358,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="4"
-                                android:text=""
+                                android:text="@={((FormType_1)(viewmodel.formType_1ObservableField.get())).notification_no}"
                                 android:hint="Notification No"
                                 style="@style/MyEditTextStyle"
 
@@ -306,10 +370,16 @@
                         <ImageView
                             android:layout_width="50dp"
                             android:layout_height="60dp"
-                            android:layout_marginTop="20dp"
+
                             android:src="@drawable/location_marker"
                             android:layout_gravity="right"
-                            android:onClick="@{viewmodel::onLocationClick}"/>
+                            android:onClick="@{viewmodel::onLocationClick}"
+                            android:visibility="@{viewmodel.markerVisibility}"/>
+                        <ProgressBar
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:layout_gravity="right"
+                            android:visibility="@{viewmodel.progressVisibility}"/>
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -334,9 +404,9 @@
                                 android:inputType="numberDecimal"
                                 android:text="@={Convertor.doubleToString(((FormType_1)(viewmodel.formType_1ObservableField.get())).latitude)}"
                                 android:hint="Latitude"
+                                app:invalid="@{viewmodel.error_msg_latitude}"
                                 style="@style/MyEditTextStyle"
                                 android:enabled="false"
-
                                 />
 
 
@@ -365,9 +435,9 @@
                                 android:inputType="numberDecimal"
                                 android:text="@={Convertor.doubleToString(((FormType_1)(viewmodel.formType_1ObservableField.get())).longitude)}"
                                 android:hint="Longitude"
+                                app:invalid="@{viewmodel.error_msg_longitude}"
                                 style="@style/MyEditTextStyle"
                                 android:enabled="false"
-
                                 />
 
                         </LinearLayout>
@@ -392,7 +462,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="4"
-                                android:text=""
+                                android:text="@={((FormType_1)(viewmodel.formType_1ObservableField.get())).priest_name}"
                                 android:hint="Priest Name"
                                 style="@style/MyEditTextStyle"
 
@@ -408,7 +478,7 @@
                             android:layout_marginBottom="10dp">
 
                             <TextView
-                                android:text="Land GATH No"
+                                android:text="Land GAT No"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="2"
@@ -421,8 +491,8 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="4"
-                                android:text=""
-                                android:hint="Land GATH No"
+                                android:text="@={((FormType_1)(viewmodel.formType_1ObservableField.get())).land_gat_no}"
+                                android:hint="Land GAT No"
                                 style="@style/MyEditTextStyle"
 
                                 />
@@ -450,7 +520,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="4"
-                                android:text=""
+                                android:text="@={((FormType_1)(viewmodel.formType_1ObservableField.get())).taxation_of_land}"
                                 android:hint="Taxation of Land"
                                 style="@style/MyEditTextStyle"
 
@@ -479,7 +549,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="4"
-                                android:text=""
+                                android:text="@={((FormType_1)(viewmodel.formType_1ObservableField.get())).occupant_land}"
                                 android:hint="Occupant land"
                                 style="@style/MyEditTextStyle"
 
@@ -508,7 +578,8 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="4"
-                                android:text=""
+                                android:inputType="numberDecimal"
+                                android:text="@={Convertor.doubleToString(((FormType_1)(viewmodel.formType_1ObservableField.get())).gold_rupees)}"
                                 android:hint="Gold (if any) Rs"
                                 style="@style/MyEditTextStyle"
 
@@ -537,7 +608,8 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="4"
-                                android:text=""
+                                android:inputType="numberDecimal"
+                                android:text="@={Convertor.doubleToString(((FormType_1)(viewmodel.formType_1ObservableField.get())).gold_evaluation)}"
                                 android:hint="Evaluation Price"
                                 style="@style/MyEditTextStyle"
 
@@ -566,7 +638,8 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="4"
-                                android:text=""
+                                android:inputType="numberDecimal"
+                                android:text="@={Convertor.doubleToString(((FormType_1)(viewmodel.formType_1ObservableField.get())).silver_rupees)}"
                                 android:hint="Silver (if any) Rs"
                                 style="@style/MyEditTextStyle"
 
@@ -595,11 +668,106 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="4"
-                                android:text=""
+                                android:inputType="numberDecimal"
+                                android:text="@={Convertor.doubleToString(((FormType_1)(viewmodel.formType_1ObservableField.get())).silver_evaluation)}"
                                 android:hint="Evaluation Price"
                                 style="@style/MyEditTextStyle" />
 
 
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="15dp"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <Button
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="5dp"
+                                android:text="GET Front Image"
+                                android:onClick="@{viewmodel::onFrontBtnClick}"
+                                />
+
+                            <ImageView
+                                android:layout_width="250dp"
+                                android:layout_height="300dp"
+                                android:layout_gravity="center"
+                                android:src="@color/grey"
+                                app:setImgOnImageView="@{viewmodel.frontImgObservableField}"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="15dp"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+
+                            <Button
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="5dp"
+                                android:text="GET Left Image"
+                                android:onClick="@{viewmodel::onLeftBtnClick}"
+                                />
+
+                            <ImageView
+                                android:layout_width="250dp"
+                                android:layout_height="300dp"
+                                android:layout_gravity="center"
+                                android:src="@color/grey"
+                                app:setImgOnImageView="@{viewmodel.leftImgObservableField}"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="15dp"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+
+                            <Button
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="5dp"
+                                android:text="GET Right Image"
+                                android:onClick="@{viewmodel::onRightBtnClick}"
+                                />
+
+                            <ImageView
+                                android:layout_width="250dp"
+                                android:layout_height="300dp"
+                                android:layout_gravity="center"
+                                android:src="@color/grey"
+                                app:setImgOnImageView="@{viewmodel.rightImgObservableField}"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="15dp"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+
+                            <Button
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="5dp"
+                                android:text="GET Entry Image"
+                                android:onClick="@{viewmodel::onEntryBtnClick}"
+                                />
+
+                            <ImageView
+                                android:layout_width="250dp"
+                                android:layout_height="300dp"
+                                android:layout_gravity="center"
+                                android:src="@color/grey"
+                                app:setImgOnImageView="@{viewmodel.entryImgObservableField}"/>
                         </LinearLayout>
 
 

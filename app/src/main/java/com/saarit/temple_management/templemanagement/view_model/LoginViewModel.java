@@ -41,7 +41,6 @@ public class LoginViewModel extends AndroidViewModel {
         //successOrFailure = new SuccessOrFailure();
 
         //apiService = ApiClient.getClient(getApplication().getApplicationContext()).create(ApiService.class);
-
     }
 
 

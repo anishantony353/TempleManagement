@@ -1,10 +1,20 @@
 package com.saarit.temple_management.templemanagement.binding;
 
 
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.Priority;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.signature.ObjectKey;
 import com.google.android.material.tabs.TabLayout;
+import com.saarit.temple_management.templemanagement.R;
+import com.saarit.temple_management.templemanagement.util.Constant;
 import com.saarit.temple_management.templemanagement.util.Utility;
 import com.saarit.temple_management.templemanagement.view.adapters.FormListAdapter;
 import com.saarit.temple_management.templemanagement.view.adapters.NewListAdapter;
@@ -20,12 +30,26 @@ public class BindingAdapters {
 
     private static String TAG = BindingAdapters.class.getSimpleName();
 
+    private static RequestOptions options = new RequestOptions()
+            .centerCrop()
+            .diskCacheStrategy(DiskCacheStrategy.NONE)
+            .skipMemoryCache(true)
+            .priority(Priority.HIGH)
+            .signature(new ObjectKey(String.valueOf(System.currentTimeMillis())));
+
+//    .placeholder(R.drawable.check_box_selected)
+//            .error(R.drawable.check_box_unselected)
+
     @BindingAdapter("invalid")
     public static void setError(EditText editText, String errorMsg) {
         Utility.log(TAG,"setError()");
-        editText.requestFocus();
 
-        editText.setError(errorMsg);
+            if(errorMsg == null || errorMsg.equals(Constant.VALID)){
+                return;
+            }
+            editText.requestFocus();
+
+            editText.setError(errorMsg);
 
     }
 
@@ -38,7 +62,6 @@ public class BindingAdapters {
         tabLayout.setupWithViewPager(viewPager);
 
     }
-
 
 
     @BindingAdapter("adapter_submitted_list")
@@ -81,9 +104,15 @@ public class BindingAdapters {
     public static void setVisibility(View view, int reqType) {
         Utility.log(TAG,"setVisibility()..REQ Type:"+reqType);
 
-
         view.setVisibility(View.VISIBLE);
 
+    }
+
+    @BindingAdapter("setImgOnImageView")
+    public static void setImgOnImageView(ImageView view, String path) {
+        Utility.log(TAG,"setImgOnImageView()");
+
+        Glide.with(view.getContext()).load(path).apply(options).into(view);
 
     }
 }

@@ -34,48 +34,52 @@ public class LoginActivity extends AppCompatActivity {
     private void setupBindings(Bundle savedInstanceState) {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login);
         viewModel = ViewModelProviders.of(this).get(LoginViewModel.class);
+        //viewModel = new ViewModelProvider(this).get(LoginViewModel.class);
+
+        //viewModel = new ViewModelProvider(LoginViewModel.class);
 
         if (savedInstanceState == null) {
             viewModel.init();
         }
+
         binding.setViewmodel(viewModel);
-        setupIsSuccessfulloginObserver();
+        setupIsSuccessfullLoginObserver();
     }
 
-    private void setupIsSuccessfulloginObserver() {
+    private void setupIsSuccessfullLoginObserver() {
 
 
-        viewModel.getIsSucessfulLogin().observe(this, new Observer<SuccessOrFailure>() {
-            @Override
-            public void onChanged(@Nullable SuccessOrFailure successOrFailure) {
+        viewModel.getIsSucessfulLogin().observe(
+                this,
+                successOrFailure-> {
 
-                Utility.log(TAG,"onChanged()");
+                        Utility.log(TAG,"onChanged()");
 
-                if(successOrFailure != null){
-                    Utility.log(TAG,"SuccessOrFailure: NOT NULL");
+                        if(successOrFailure != null){
+                            Utility.log(TAG,"SuccessOrFailure: NOT NULL");
 
-                        switch (successOrFailure.getSuccess()){
-                            case 1:
-                                Utility.log(TAG,"Success:1");
-                                startActivity(new Intent(getBaseContext(),TabActivity.class));
-                                //startActivity(new Intent(getBaseContext(),Form1Activity.class));
-                                break;
+                                switch (successOrFailure.getSuccess()){
+                                    case 1:
+                                        Utility.log(TAG,"Success:1");
+                                        startActivity(new Intent(getBaseContext(),ActivityMap.class));
+                                        //startActivity(new Intent(getBaseContext(),Form1Activity.class));
+                                        break;
 
-                            case 0:
-                                Utility.log(TAG,"Success:0");
+                                    case 0:
+                                        Utility.log(TAG,"Success:0");
 
-                                //Toast here
+                                        //Toast here
 
-                                break;
+                                        break;
+                                }
+
+                        }else{
+                            Utility.log(TAG,"SuccessOrFailure:NULL");
+
                         }
 
-                }else{
-                    Utility.log(TAG,"SuccessOrFailure:NULL");
-
-                }
-
             }
-        });
+        );
 
     }
 }
