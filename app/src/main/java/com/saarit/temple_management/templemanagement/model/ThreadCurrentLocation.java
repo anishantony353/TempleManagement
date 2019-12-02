@@ -18,6 +18,7 @@ import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.saarit.temple_management.templemanagement.util.Constant;
+import com.saarit.temple_management.templemanagement.util.Utility;
 
 import androidx.core.app.ActivityCompat;
 
@@ -29,10 +30,12 @@ public class ThreadCurrentLocation extends Thread {
     private FusedLocationProviderClient mFusedLocationClient;
     private LocationRequest locationRequest;
     private LocationCallback mLocationCallback;
+    String intent_type;
 
-    public ThreadCurrentLocation(Context context) {
+    public ThreadCurrentLocation(Context context,String intent_type) {
 
         this.context = context;
+        this.intent_type = intent_type;
 
     }
 
@@ -120,10 +123,11 @@ public class ThreadCurrentLocation extends Thread {
         bundle.putDouble("lat",location.getLatitude());
         bundle.putDouble("lon",location.getLongitude());
 
-        Intent intent = new Intent(Constant.BROADCAST_INTENT);
+        Intent intent = new Intent(intent_type);
         intent.putExtras(bundle);
 
         context.sendBroadcast(intent);
+        Utility.log(TAG,"Broadcasted Location");
 
         context = null;
 

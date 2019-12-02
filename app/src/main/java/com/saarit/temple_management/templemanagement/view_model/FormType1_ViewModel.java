@@ -11,30 +11,50 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.Priority;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.Transition;
+import com.bumptech.glide.signature.ObjectKey;
 import com.saarit.temple_management.templemanagement.model.FormType_1;
-import com.saarit.temple_management.templemanagement.model.Repo_FormType_1;
 import com.saarit.temple_management.templemanagement.model.SuccessOrFailure;
+import com.saarit.temple_management.templemanagement.model.repositories.Repo_FormType_1;
 import com.saarit.temple_management.templemanagement.model.ThreadCurrentLocation;
+import com.saarit.temple_management.templemanagement.model.repositories.Repo_Temples_master;
+import com.saarit.temple_management.templemanagement.model.repositories.Repo_server;
+import com.saarit.temple_management.templemanagement.model.Temple_master;
 import com.saarit.temple_management.templemanagement.util.Constant;
 import com.saarit.temple_management.templemanagement.util.Utility;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.databinding.ObservableField;
 import androidx.databinding.ObservableInt;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import io.reactivex.Observable;
+import io.reactivex.ObservableSource;
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 
 public class FormType1_ViewModel extends AndroidViewModel {
 
@@ -44,7 +64,10 @@ public class FormType1_ViewModel extends AndroidViewModel {
         super(application);
     }
 
+
     Repo_FormType_1 repo_formType_1;
+    Repo_server repo_server;
+    Repo_Temples_master repo_temples_master;
 
     public CompositeDisposable disposable = new CompositeDisposable();
 
@@ -71,10 +94,12 @@ public class FormType1_ViewModel extends AndroidViewModel {
     public ObservableField<String> error_msg_templeName = new ObservableField<>(Constant.VALID);
     public ObservableField<String> error_msg_latitude = new ObservableField<>(Constant.VALID);
     public ObservableField<String> error_msg_longitude = new ObservableField<>(Constant.VALID);
+    public ObservableField<ArrayAdapter<Temple_master>> adapterTemples = new ObservableField<>();
+    public ObservableField<AdapterView.OnItemClickListener> listner = new ObservableField<>();
 
 
     //To Observe Submit Response
-    public MutableLiveData<SuccessOrFailure> submitResponseSuccessOrFailureMutableLiveData = new MutableLiveData<>();
+    public MutableLiveData<Integer> submitResponseMutableLiveData = new MutableLiveData<>();
 
     //To Observe 'Get Location' click
     public MutableLiveData locationClickMutableLiveData = new MutableLiveData();
@@ -83,50 +108,283 @@ public class FormType1_ViewModel extends AndroidViewModel {
     //To Observe 'Get Image' click
     public MutableLiveData<Boolean> getImageBooleanMutableLiveData = new MutableLiveData<>();
 
+    //To Observe 'Get NextForms' click
+    public MutableLiveData<Boolean> nextFormsMutableLiveData = new MutableLiveData<>();
+
 
     BroadcastReceiver locationBroadCastReceiver;
+    ThreadCurrentLocation threadCurrentLocation = new ThreadCurrentLocation(getApplication(),Constant.BROADCAST_INTENT_FORM_TYPE_1_ACTIVITY);
 
     public Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
     public int imageReqType;
     public Uri fileUri;
 
+    public ArrayAdapter<Temple_master> autotextview_adapter;
+
+    public AdapterView.OnItemClickListener onItemClickListener;
+
     public void init(int REQ_TYPE, int id) {
+
         reqType = new ObservableInt(REQ_TYPE);
+
+        repo_temples_master = Repo_Temples_master.getInstance(getApplication());
         repo_formType_1 = Repo_FormType_1.getInstance(getApplication());
-        setUpLocationBroadcastReceiver();
+        repo_server = Repo_server.getInstance();
+
+        //setUpLocationBroadcastReceiver();
         formType_1ObservableField = new ObservableField<>();
         frontImgObservableField = new ObservableField<>();
         leftImgObservableField = new ObservableField<>();
         rightImgObservableField = new ObservableField<>();
         entryImgObservableField = new ObservableField<>();
 
-        switch(REQ_TYPE){
-            case Constant.REQUEST_CODE_CLICK_LOCAL_TREES:
-                markerVisibility.set(View.GONE);
-                progressVisibility.set(View.GONE);
 
-                getTempleById(id);
+        deleteTempImages();
+        setUpUI(REQ_TYPE, id);
 
+        onItemClickListener = (adapterView, view, i, l)->{
+
+            Temple_master temple = (Temple_master) adapterView.getAdapter().getItem(i);
+            Utility.log(TAG,"Temple:"+temple.temple);
+            Utility.log(TAG,"Village:"+temple.village);
+            Utility.log(TAG,"Taluka:"+temple.taluka);
+            Utility.log(TAG,"District:"+temple.district);
+
+            formType_1.setTemple(temple.temple);
+            formType_1.setVillage(temple.village);
+            formType_1.setTaluka(temple.taluka);
+            formType_1.setDistrict(temple.district);
+
+            formType_1.templeId = temple.templeId;
+
+        };
+
+    }
+
+    private void setUpUI(int req_type, int id) {
+
+        disposable.add(
+
+                repo_temples_master.getTemples()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        listOfTemple->{
+
+                            Utility.log(TAG,"List Size:"+listOfTemple.size());
+
+                            autotextview_adapter = new ArrayAdapter<>(getApplication(),android.R.layout.simple_list_item_1,listOfTemple);
+                            Utility.log(TAG,"Adapter Count:"+autotextview_adapter.getCount());
+
+
+                            adapterTemples.set(autotextview_adapter);
+                            listner.set(onItemClickListener);
+
+                            switch(req_type){
+                                case Constant.REQUEST_CODE_CLICK_LOCAL_TREES:
+                                    markerVisibility.set(View.GONE);
+                                    progressVisibility.set(View.GONE);
+
+                                    getFormType_1_ById(id);
+
+                                    break;
+                                case Constant.REQUEST_CODE_CLICK_SERVER_TREES:
+                                    markerVisibility.set(View.GONE);
+                                    progressVisibility.set(View.GONE);
+                                    Utility.log(TAG,"about to fetch server form");
+                                    getFormType_1_ByTempleId_Server(id);
+
+                                    break;
+                                default:
+                                    formType_1 = new FormType_1();
+                                    formType_1ObservableField.set(formType_1);
+                                    break;
+
+                            }
+
+                        }
+                )
+        );
+
+
+    }
+
+    private void getFormType_1_ByTempleId_Server(int templeId) {
+        disposable.add(
+
+                repo_server.apiService.getFormType1byTempleId(templeId).toObservable().
+                        flatMap(
+                                dto ->{
+                                    if(dto.getSuccess() == 0){
+                                        throw new Exception(dto.getMsg());
+                                    }else{
+                                        formType_1 = dto.getFormType_1();
+                                        formType_1.id = 0;
+                                         return Observable.just(
+                                                     Constant.REQUEST_CODE_TAKE_FRONT_IMAGE,
+                                                     Constant.REQUEST_CODE_TAKE_LEFT_IMAGE,
+                                                     Constant.REQUEST_CODE_TAKE_RIGHT_IMAGE,
+                                                     Constant.REQUEST_CODE_TAKE_ENTRY_IMAGE
+                                         )
+                                        .flatMap(imgType->downloadImg(templeId,imgType))
+                                        .subscribeOn(Schedulers.io());
+                                    }
+                                }
+                        ).
+                        subscribeOn(Schedulers.io()).
+                        observeOn(AndroidSchedulers.mainThread()).
+                        subscribe(
+                                value -> {
+                                    formType_1ObservableField.set(formType_1);
+                                    Utility.log(TAG,"Form Id:"+formType_1.id);
+                                    Utility.log(TAG,"Temple Id:"+formType_1.templeId);
+
+                                },
+                                throwable -> Utility.log(TAG, throwable.getMessage()),
+                                ()->{},
+                                dsposble->{
+
+                                }
+                        )
+        );
+    }
+
+    private ObservableSource<?> downloadImg(int templeId, int imgType) {
+        String imgUrl = "";
+
+
+        switch(imgType){
+            case Constant.REQUEST_CODE_TAKE_FRONT_IMAGE:
+                imgUrl = Constant.IMG_URL+templeId+"_image1.jpg";
                 break;
-
-            default:
-                formType_1 = new FormType_1();
-                formType_1ObservableField.set(formType_1);
+            case Constant.REQUEST_CODE_TAKE_LEFT_IMAGE:
+                imgUrl = Constant.IMG_URL+templeId+"_image2.jpg";
+                break;
+            case Constant.REQUEST_CODE_TAKE_RIGHT_IMAGE:
+                imgUrl = Constant.IMG_URL+templeId+"_image3.jpg";
+                break;
+            case Constant.REQUEST_CODE_TAKE_ENTRY_IMAGE:
+                imgUrl = Constant.IMG_URL+templeId+"_image4.jpg";
                 break;
 
         }
+
+        Utility.log(TAG,"Glide about to download image");
+
+        /*frontImgObservableField.set(imgUrl);
+        leftImgObservableField.set(imgUrl);
+        rightImgObservableField.set(imgUrl);
+        entryImgObservableField.set(imgUrl);*/
+
+
+
+        try {
+            InputStream is = null;
+            is = new java.net.URL(imgUrl).openStream();
+
+            if(is != null){
+                Utility.log(TAG,"STREAM not NULL");
+                //Bitmap bitmap = BitmapFactory.decodeStream(stream);
+
+
+                OutputStream os = new FileOutputStream(
+                            Utility.getMediaFile(getApplication(),
+                                    imgType)
+                    );
+
+                byte[] b = new byte[2048];
+                int length;
+
+                while ((length = is.read(b)) != -1) {
+                    os.write(b, 0, length);
+                }
+
+                is.close();
+                os.close();
+            }
+
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        switch(imgType){
+            case Constant.REQUEST_CODE_TAKE_FRONT_IMAGE:
+                frontImgObservableField.set(Utility.getMediaFileUri(getApplication(),imgType).getPath());
+                break;
+            case Constant.REQUEST_CODE_TAKE_LEFT_IMAGE:
+                leftImgObservableField.set(Utility.getMediaFileUri(getApplication(),imgType).getPath());
+                break;
+            case Constant.REQUEST_CODE_TAKE_RIGHT_IMAGE:
+                rightImgObservableField.set(Utility.getMediaFileUri(getApplication(),imgType).getPath());
+                break;
+            case Constant.REQUEST_CODE_TAKE_ENTRY_IMAGE:
+                entryImgObservableField.set(Utility.getMediaFileUri(getApplication(),imgType).getPath());
+                break;
+        }
+
+
+
+        /*RequestOptions options = new RequestOptions()
+                .centerCrop()
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .skipMemoryCache(true)
+                .priority(Priority.HIGH)
+                .signature(new ObjectKey(String.valueOf(System.currentTimeMillis())));
+
+        Glide.with(getApplication()).
+                asBitmap()
+                .load(imgUrl)
+                .apply(options)
+                .into(new SimpleTarget<Bitmap>() {
+                    @Override
+                    public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+
+
+                        try {
+                            Utility.log(TAG,"ABout to put bitmap in file");
+                            OutputStream fOut = new FileOutputStream(
+                                    Utility.getMediaFile(getApplication(),
+                                            imgType)
+                            );
+                            resource.compress(Bitmap.CompressFormat.JPEG, 100, fOut);
+                            fOut.close();
+
+                            switch(imgType){
+                                case Constant.REQUEST_CODE_TAKE_FRONT_IMAGE:
+                                    frontImgObservableField.set(Utility.getMediaFileUri(getApplication(),imgType).getPath());
+                                    break;
+                                case Constant.REQUEST_CODE_TAKE_LEFT_IMAGE:
+                                    leftImgObservableField.set(Utility.getMediaFileUri(getApplication(),imgType).getPath());
+                                    break;
+                                case Constant.REQUEST_CODE_TAKE_RIGHT_IMAGE:
+                                    rightImgObservableField.set(Utility.getMediaFileUri(getApplication(),imgType).getPath());
+                                    break;
+                                case Constant.REQUEST_CODE_TAKE_ENTRY_IMAGE:
+                                    entryImgObservableField.set(Utility.getMediaFileUri(getApplication(),imgType).getPath());
+                                    break;
+                            }
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                });*/
+        return Observable.just(true);
     }
 
-    private void getTempleById(int id) {
+    private void getFormType_1_ById(int id) {
         disposable.add(
 
                 repo_formType_1.getFormByTempleId(id).
                         subscribeOn(Schedulers.io()).
                         observeOn(AndroidSchedulers.mainThread()).
                         subscribe(
-                                temple -> {
-                                    formType_1 = temple;
+                                form -> {
+                                    formType_1 = form;
                                     formType_1ObservableField.set(formType_1);
+                                    Utility.log(TAG,"Form Id:"+formType_1.id);
+                                    Utility.log(TAG,"Temple Id:"+formType_1.templeId);
                                     getImagesById(id);
                                 },
                                 throwable -> Utility.log(TAG, throwable.getMessage())
@@ -134,34 +392,54 @@ public class FormType1_ViewModel extends AndroidViewModel {
         );
     }
 
-    private void getImagesById(int id) {
+    private void deleteTempImages() {
         disposable.add(
                 Observable.fromCallable(
                         ()->{
-                                Utility.deleteTempImages(getApplication());
+                            Utility.deleteTempImages(getApplication());
 
                             return true;
                         }
                 )
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                        value->{
-                            try {
-                                frontImgObservableField.set(Utility.getLocalImageUri(getApplication(),"front",id).getPath());
-                                leftImgObservableField.set(Utility.getLocalImageUri(getApplication(),"left",id).getPath());
-                                rightImgObservableField.set(Utility.getLocalImageUri(getApplication(),"right",id).getPath());
-                                entryImgObservableField.set(Utility.getLocalImageUri(getApplication(),"entry",id).getPath());
-                            }catch(Exception e){
-                                if(e instanceof FileNotFoundException){
-                                    Utility.showToast(e.getMessage(),Toast.LENGTH_SHORT,getApplication());
-                                }
-                            }
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(
 
-
-                        }
-                )
+                        )
         );
+
+    }
+
+    private void getImagesById(int id) {
+        try {
+            frontImgObservableField.set(Utility.getLocalImageUri(getApplication(),"front",id).getPath());
+        }catch(Exception e){
+            if(e instanceof FileNotFoundException){
+                Utility.showToast(e.getMessage(),Toast.LENGTH_SHORT,getApplication());
+            }
+        }
+
+        try{
+            leftImgObservableField.set(Utility.getLocalImageUri(getApplication(),"left",id).getPath());
+        }catch(Exception e){
+            if(e instanceof FileNotFoundException){
+                Utility.showToast(e.getMessage(),Toast.LENGTH_SHORT,getApplication());
+            }
+        }
+        try{
+            rightImgObservableField.set(Utility.getLocalImageUri(getApplication(),"right",id).getPath());
+        }catch(Exception e){
+            if(e instanceof FileNotFoundException){
+                Utility.showToast(e.getMessage(),Toast.LENGTH_SHORT,getApplication());
+            }
+        }
+        try{
+            entryImgObservableField.set(Utility.getLocalImageUri(getApplication(),"entry",id).getPath());
+        }catch(Exception e){
+            if(e instanceof FileNotFoundException){
+                Utility.showToast(e.getMessage(),Toast.LENGTH_SHORT,getApplication());
+            }
+        }
 
     }
 
@@ -169,9 +447,9 @@ public class FormType1_ViewModel extends AndroidViewModel {
 //        formType_1ObservableField.set(formType_1);
 //    }
 
-    public LiveData<SuccessOrFailure> getSubmitResponse() {
+    public LiveData<Integer> getSubmitResponse() {
         Utility.log(TAG, "getSubmitResponse()");
-        return submitResponseSuccessOrFailureMutableLiveData;
+        return submitResponseMutableLiveData;
     }
 
     public LiveData getOnLocationClick() {
@@ -189,6 +467,11 @@ public class FormType1_ViewModel extends AndroidViewModel {
         return getImageBooleanMutableLiveData;
     }
 
+    public LiveData getNextFormsActivity(){
+        Utility.log(TAG, "getNextFormsActivity()");
+        return nextFormsMutableLiveData;
+    }
+
 
     public void onSaveClick(View view) {
         Utility.log(TAG, "onSaveClick()..\n Village:" + formType_1.village + "\n GodName:" + formType_1.god_name+ "\n Lat:" + formType_1.latitude);
@@ -201,7 +484,7 @@ public class FormType1_ViewModel extends AndroidViewModel {
                 repo_formType_1.insertForm(formType_1).
                         flatMap(
                                 id -> {
-                                    Utility.log(TAG, "Temple Id:" + id);
+                                    Utility.log(TAG, "Form ID:" + id);
                                     Utility.renameImage("temp_front.jpg",id+"_front.jpg",getApplication());
                                     return Single.just(id);
 
@@ -239,9 +522,12 @@ public class FormType1_ViewModel extends AndroidViewModel {
     }
 
     private boolean isValid() {
+        Utility.log(TAG,"Temple Id:"+formType_1.templeId);
         boolean value = true;
-        if(formType_1.temple == null || formType_1.temple.equals("")){
-             error_msg_templeName.set("Insert Temple name");
+        if(formType_1.templeId == 0){
+            Utility.log(TAG,"Temple Id inside If:"+formType_1.templeId);
+             error_msg_templeName.set("Select Temple");
+            error_msg_templeName.notifyChange();
              value = false;
         }
 
@@ -255,10 +541,149 @@ public class FormType1_ViewModel extends AndroidViewModel {
 
     public void onSubmitClick(View view) {
         Utility.log(TAG, "onSubmitClick()");
+        if(isValid()){
+
+            saveBeforeSubmit();
+
+        }
     }
 
-    public void onUpdateClick(View view) {
-        Utility.log(TAG, "onUpdateClick()");
+    private void saveBeforeSubmit() {
+        disposable.add(
+
+                repo_formType_1.insertForm(formType_1).
+                        flatMap(
+                                id -> {
+                                    Utility.log(TAG, "Form ID:" + id);
+                                    Utility.renameImage("temp_front.jpg",id+"_front.jpg",getApplication());
+                                    return Single.just(id);
+
+                                }
+                        ).
+                        flatMap(
+                                id -> {
+                                    Utility.renameImage("temp_left.jpg",id+"_left.jpg",getApplication());
+                                    return Single.just(id);
+
+                                }
+                        ).
+                        flatMap(
+                                id -> {
+                                    Utility.renameImage("temp_right.jpg",id+"_right.jpg",getApplication());
+                                    return Single.just(id);
+
+                                }
+                        ).
+                        flatMap(
+                                id -> {
+                                    Utility.renameImage("temp_entry.jpg",id+"_entry.jpg",getApplication());
+                                    return repo_formType_1.getFormByTempleId(id);
+
+                                }
+                        ).
+                        subscribeOn(Schedulers.io()).
+                        observeOn(AndroidSchedulers.mainThread()).
+                        subscribe(
+                                formType1 -> submitTemple(formType1),
+                                throwable -> Utility.log(TAG, throwable.getMessage())
+                        )
+        );
+
+    }
+
+    private void submitTemple(FormType_1 formType1) {
+        MultipartBody.Part frontImgPart=null,leftImgPart=null,rightImgPart=null,entryImgPart=null;
+
+
+        try {
+            File frontImgFile = Utility.getLocalImageFile(getApplication(),Constant.IMAGE_TYPE_FRONT,formType1.id);
+            RequestBody frontFileReq = RequestBody.create(MediaType.parse("image/*"),frontImgFile);
+
+            frontImgPart = MultipartBody.Part.createFormData("img1",
+                    "front_img.jpg",
+                    frontFileReq);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        try {
+            File leftImgFile = Utility.getLocalImageFile(getApplication(),Constant.IMAGE_TYPE_LEFT,formType1.id);
+            RequestBody leftFileReq = RequestBody.create(MediaType.parse("image/*"),leftImgFile);
+
+            leftImgPart = MultipartBody.Part.createFormData("img2",
+                    "left_img.jpg",
+                    leftFileReq);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        try {
+            File rightImgFile = Utility.getLocalImageFile(getApplication(),Constant.IMAGE_TYPE_RIGHT,formType1.id);
+            RequestBody rightFileReq = RequestBody.create(MediaType.parse("image/*"),rightImgFile);
+
+            rightImgPart = MultipartBody.Part.createFormData("img3",
+                    "right_img.jpg",
+                    rightFileReq);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        try {
+            File entryImgFile = Utility.getLocalImageFile(getApplication(),Constant.IMAGE_TYPE_ENTRY,formType1.id);
+            RequestBody entryFileReq = RequestBody.create(MediaType.parse("image/*"),entryImgFile);
+
+            entryImgPart = MultipartBody.Part.createFormData("img4",
+                    "entry_img.jpg",
+                    entryFileReq);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+
+
+        disposable.add(
+
+                repo_server.apiService.addTemple(formType1,frontImgPart,leftImgPart,rightImgPart,entryImgPart)
+                        .flatMap(
+                             baseResponse -> {
+
+                                 Utility.log(TAG,"Success:"+baseResponse.getSuccess());
+                                 if(baseResponse.getSuccess() == 1){
+                                     Utility.deleteImagesById(getApplication(),formType1.id);
+                                     return repo_formType_1.deleteFormById(formType1.id).toObservable();
+
+                                 }else{
+                                     throw new Exception(baseResponse.getMsg());
+                                 }
+
+
+                             }
+                        )
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(
+                                value -> {
+
+                                    Utility.log(TAG,"onNext..Success:"+value);
+                                    submitResponseMutableLiveData.setValue(value);
+
+
+                                },
+                                throwable -> {
+                                    Utility.log(TAG,throwable.getMessage());
+                                    Utility.showToast(throwable.getMessage(),Toast.LENGTH_SHORT,getApplication());
+
+                                },
+                                () -> {
+                                    Utility.log(TAG,"completed");
+                                },
+                                dspsbl -> {
+
+                                    Utility.log(TAG,"Initialilize");
+
+                                }
+
+                        )
+
+        );
+
     }
 
     public void onLocationClick(View view) {
@@ -287,6 +712,24 @@ public class FormType1_ViewModel extends AndroidViewModel {
         dispatchTakePictureIntent(Constant.REQUEST_CODE_TAKE_ENTRY_IMAGE);
     }
 
+    public void onNextFormsClick(View view){
+        Utility.log(TAG, "onNextFormsClick()");
+
+    }
+
+    public void onTextChanged(CharSequence s, int start, int before, int count){
+        Utility.log(TAG, "onTextChanged()");
+        formType_1.templeId = 0;
+
+    }
+
+//    public void onItemClick(AdapterView<?> adapterView,View view,int pos,long id){
+//        FormType_1 formType1 = ((ArrayAdapter<FormType_1>)adapterView.getAdapter()).getItem(pos);
+//
+//        Utility.log(TAG,"From Method...Temple:"+formType1.temple);
+//
+//    }
+
     public void dispatchTakePictureIntent(int requestType) {
         BitmapFactory.Options options = new BitmapFactory.Options();
 
@@ -295,7 +738,7 @@ public class FormType1_ViewModel extends AndroidViewModel {
         fileUri = Utility.getMediaFileUri(getApplication(),requestType);
         Utility.log(TAG,"URI:"+fileUri);
         takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
-        //takePictureIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
 
         if (takePictureIntent.resolveActivity(getApplication().getPackageManager()) != null) {
             imageReqType = requestType;
@@ -310,18 +753,18 @@ public class FormType1_ViewModel extends AndroidViewModel {
             disposable.add(
 
                     Observable.fromCallable(
-                            ()->{
-                                Bitmap out = Utility.rotateImageWithPath(fileUri.getPath());
+                                ()->{
+                                    Bitmap out = Utility.rotateImageWithPath(fileUri.getPath());
 
-                                File file = Utility.getMediaFile(getApplication(),req);
-                                FileOutputStream fOut = new FileOutputStream(file);
-                                out.compress(Bitmap.CompressFormat.JPEG, 15, fOut);
-                                fOut.flush();
-                                fOut.close();
+                                    File file = Utility.getMediaFile(getApplication(),req);
+                                    FileOutputStream fOut = new FileOutputStream(file);
+                                    out.compress(Bitmap.CompressFormat.JPEG, 15, fOut);
+                                    fOut.flush();
+                                    fOut.close();
 
-                                return true;
-                            }
-                    )
+                                    return true;
+                                }
+                            )
                             .subscribeOn(Schedulers.computation())
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe(
@@ -367,15 +810,17 @@ public class FormType1_ViewModel extends AndroidViewModel {
 
         markerVisibility.set(View.GONE);
         progressVisibility.set(View.VISIBLE);
-        ThreadCurrentLocation threadCurrentLocation = new ThreadCurrentLocation(getApplication());
+
         threadCurrentLocation.start();
+
+
 
     }
 
-    private void setUpLocationBroadcastReceiver() {
+    public void setUpLocationBroadcastReceiver() {
+        Utility.log(TAG,"setUpLocationBroadcastReceiver()");
 
         locationBroadCastReceiver = new BroadcastReceiver() {
-
             @Override
             public void onReceive(Context context, Intent intent) {
 
@@ -388,18 +833,35 @@ public class FormType1_ViewModel extends AndroidViewModel {
 
                 Utility.log("Lat n lon ", "Latitude: " + latitude
                         + " Longitude " + longitude);
-//                formType_1.latitude = latitude;
-//                formType_1.longitude = longitude;
-
+                // Observing individual feilds
                 formType_1.setLatitude(latitude);
                 formType_1.setLongitude(longitude);
+
+                //Observing entire Object
+                /*formType_1.latitude = latitude;
+                formType_1.longitude = longitude;
+
+                formType_1ObservableField.set(formType_1);
+                formType_1ObservableField.notifyChange();*/
+
+
 
                 }
         };
 
         IntentFilter filter = new IntentFilter();
-        filter.addAction(Constant.BROADCAST_INTENT);
+        filter.addAction(Constant.BROADCAST_INTENT_FORM_TYPE_1_ACTIVITY);
         getApplication().registerReceiver(locationBroadCastReceiver, filter);
+    }
+
+    public void unRegisterReceiver(){
+        Utility.log(TAG,"unRegisterReceiver()");
+        getApplication().unregisterReceiver(locationBroadCastReceiver);
+
+//            Utility.log(TAG,"Thread is Alive");
+//            threadCurrentLocation.interrupt();
+
+
     }
 
 
@@ -408,7 +870,8 @@ public class FormType1_ViewModel extends AndroidViewModel {
         //super.onCleared();
         Utility.log(TAG,"onCleared()");
         disposable.clear();
-        getApplication().unregisterReceiver(locationBroadCastReceiver);
+        //getApplication().unregisterReceiver(locationBroadCastReceiver);
+
     }
 
 

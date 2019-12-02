@@ -198,6 +198,32 @@ public class Utility {
 
     }
 
+    public static void deleteImagesById(Context context,int id){
+
+        File imgDir = new File(context.getExternalFilesDir(Environment.DIRECTORY_PICTURES), "temple_management");
+
+        File imgFront = new File(imgDir, id+"_front.jpg");
+        if (imgFront.exists()) {
+            imgFront.delete();
+        }
+
+        File imgLeft = new File(imgDir, id+"_left.jpg");
+        if (imgLeft.exists()) {
+            imgLeft.delete();
+        }
+
+        File imgRight = new File(imgDir, id+"_right.jpg");
+        if (imgRight.exists()) {
+            imgRight.delete();
+        }
+
+        File imgEntry = new File(imgDir, id+"_entry.jpg");
+        if (imgEntry.exists()) {
+            imgEntry.delete();
+        }
+
+    }
+
     public static Uri getLocalImageUri(Context context,String type,int id) throws FileNotFoundException {
 
         File imgDir=new File(context.getExternalFilesDir(Environment.DIRECTORY_PICTURES),"temple_management");
@@ -217,5 +243,25 @@ public class Utility {
 
 
         return Uri.fromFile(imgFile);
+    }
+    public static File getLocalImageFile(Context context,String type,int id) throws FileNotFoundException {
+
+        File imgDir=new File(context.getExternalFilesDir(Environment.DIRECTORY_PICTURES),"temple_management");
+
+        if(!imgDir.exists()){
+
+            throw new FileNotFoundException("Image Directory missing");
+
+        }
+
+        File imgFile = new File(imgDir,id+"_"+type+".jpg");
+        if(!imgFile.exists()){
+
+            throw new FileNotFoundException(id+"_"+type+".jpg missing");
+
+        }
+
+
+        return imgFile;
     }
 }

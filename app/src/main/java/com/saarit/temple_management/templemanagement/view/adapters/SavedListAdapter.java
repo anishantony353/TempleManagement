@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 
 import com.saarit.temple_management.templemanagement.BR;
 import com.saarit.temple_management.templemanagement.databinding.SavedListRowBinding;
-import com.saarit.temple_management.templemanagement.model.FormType;
+import com.saarit.temple_management.templemanagement.model.not_in_use.FormType;
 import com.saarit.temple_management.templemanagement.view_model.SavedListViewModel;
 
 import java.util.List;
@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class SavedListAdapter extends RecyclerView.Adapter<SavedListAdapter.MYViewHolder> {
 
-    private List<FormType> formTypes;
+    private List<FormType> formTypeNotinuses;
     private SavedListViewModel vm;
     private int layout_id;
 
@@ -27,8 +27,8 @@ public class SavedListAdapter extends RecyclerView.Adapter<SavedListAdapter.MYVi
 
     }
 
-    public void setFormTypes(List<FormType> formTypes){
-        this.formTypes = formTypes;
+    public void setFormTypeNotinuses(List<FormType> formTypeNotinuses){
+        this.formTypeNotinuses = formTypeNotinuses;
     }
 
 
@@ -52,7 +52,7 @@ public class SavedListAdapter extends RecyclerView.Adapter<SavedListAdapter.MYVi
     @Override
     public int getItemCount() {
 
-        return formTypes == null?0:formTypes.size();
+        return formTypeNotinuses == null?0: formTypeNotinuses.size();
     }
 
     class MYViewHolder extends RecyclerView.ViewHolder{

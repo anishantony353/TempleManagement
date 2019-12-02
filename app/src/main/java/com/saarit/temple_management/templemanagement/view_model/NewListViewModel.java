@@ -4,7 +4,7 @@ package com.saarit.temple_management.templemanagement.view_model;
 import android.view.View;
 
 import com.saarit.temple_management.templemanagement.R;
-import com.saarit.temple_management.templemanagement.model.FormType;
+import com.saarit.temple_management.templemanagement.model.not_in_use.FormType;
 import com.saarit.temple_management.templemanagement.util.Utility;
 import com.saarit.temple_management.templemanagement.view.adapters.NewListAdapter;
 
@@ -69,9 +69,9 @@ public class NewListViewModel extends ViewModel {
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribeWith(new DisposableSingleObserver<List<FormType>>() {
                             @Override
-                            public void onSuccess(List<FormType> formTypes) {
+                            public void onSuccess(List<FormType> formTypeNotinuses) {
 
-                                newList.setValue(formTypes);
+                                newList.setValue(formTypeNotinuses);
 
                             }
 
@@ -92,13 +92,13 @@ public class NewListViewModel extends ViewModel {
         return Single.create(new SingleOnSubscribe<List<FormType>>() {
             @Override
             public void subscribe(SingleEmitter<List<FormType>> emitter) throws Exception {
-                List<FormType> formTypes = new ArrayList<>();
-                formTypes.add(new FormType("Type new Aaa"));
-                formTypes.add(new FormType("Type new bbbb"));
-                formTypes.add(new FormType("Type new cccc"));
-                formTypes.add(new FormType("Type new ffff"));
-                formTypes.add(new FormType("Type new jfhfg"));
-                emitter.onSuccess(formTypes);
+                List<FormType> formTypeNotinuses = new ArrayList<>();
+                formTypeNotinuses.add(new FormType("Type new Aaa"));
+                formTypeNotinuses.add(new FormType("Type new bbbb"));
+                formTypeNotinuses.add(new FormType("Type new cccc"));
+                formTypeNotinuses.add(new FormType("Type new ffff"));
+                formTypeNotinuses.add(new FormType("Type new jfhfg"));
+                emitter.onSuccess(formTypeNotinuses);
             }
         });
     }
@@ -114,9 +114,9 @@ public class NewListViewModel extends ViewModel {
     }
 
 
-    public void setListInAdapter(List<FormType> formTypes) {
+    public void setListInAdapter(List<FormType> formTypeNotinuses) {
 
-        this.adapter.setFormTypes(formTypes);
+        this.adapter.setFormTypeNotinuses(formTypeNotinuses);
         this.adapter.notifyDataSetChanged();
 
 
@@ -124,9 +124,9 @@ public class NewListViewModel extends ViewModel {
 
     public void onItemClick(Integer position){
 
-        FormType formType = getFormTypeByPosition(position);
+        FormType formTypeNotinuse = getFormTypeByPosition(position);
 
-        selectedForm.setValue(formType);
+        selectedForm.setValue(formTypeNotinuse);
 
     }
 

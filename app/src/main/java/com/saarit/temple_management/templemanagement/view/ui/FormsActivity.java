@@ -9,7 +9,7 @@ import android.view.View;
 
 import com.saarit.temple_management.templemanagement.R;
 import com.saarit.temple_management.templemanagement.databinding.ActivityFormsBinding;
-import com.saarit.temple_management.templemanagement.model.FormName;
+import com.saarit.temple_management.templemanagement.model.not_in_use.FormName;
 import com.saarit.temple_management.templemanagement.util.Utility;
 import com.saarit.temple_management.templemanagement.view_model.FormsViewModel;
 

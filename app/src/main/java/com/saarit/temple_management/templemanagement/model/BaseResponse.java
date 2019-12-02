@@ -1,9 +1,15 @@
 package com.saarit.temple_management.templemanagement.model;
 
 public class BaseResponse {
-    String error;
 
-    public String getError() {
-        return error;
+    private int success;
+    private String msg;
+
+    public int getSuccess() {
+        return success;
+    }
+
+    public String getMsg() {
+        return msg;
     }
 }

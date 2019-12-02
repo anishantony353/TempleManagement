@@ -1,9 +1,10 @@
 package com.saarit.temple_management.templemanagement.binding;
 
 
-import android.graphics.Bitmap;
-import android.net.Uri;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ImageView;
 
@@ -13,7 +14,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.signature.ObjectKey;
 import com.google.android.material.tabs.TabLayout;
-import com.saarit.temple_management.templemanagement.R;
+import com.saarit.temple_management.templemanagement.model.Temple_master;
 import com.saarit.temple_management.templemanagement.util.Constant;
 import com.saarit.temple_management.templemanagement.util.Utility;
 import com.saarit.temple_management.templemanagement.view.adapters.FormListAdapter;
@@ -47,6 +48,10 @@ public class BindingAdapters {
             if(errorMsg == null || errorMsg.equals(Constant.VALID)){
                 return;
             }
+
+        Utility.log(TAG,"About to clear ");
+
+            editText.getText().clear();
             editText.requestFocus();
 
             editText.setError(errorMsg);
@@ -104,7 +109,16 @@ public class BindingAdapters {
     public static void setVisibility(View view, int reqType) {
         Utility.log(TAG,"setVisibility()..REQ Type:"+reqType);
 
-        view.setVisibility(View.VISIBLE);
+        switch(reqType){
+            case Constant.REQUEST_CODE_NEW_TEMPLE:
+                view.setVisibility(View.GONE);
+                break;
+
+                default:
+                    view.setVisibility(View.VISIBLE);
+                    break;
+        }
+
 
     }
 
@@ -112,7 +126,18 @@ public class BindingAdapters {
     public static void setImgOnImageView(ImageView view, String path) {
         Utility.log(TAG,"setImgOnImageView()");
 
-        Glide.with(view.getContext()).load(path).apply(options).into(view);
+        Glide.with(view.getContext().getApplicationContext()).load(path).apply(options).into(view);
+
+    }
+
+    @BindingAdapter({"adapter_auto_textview","onItemClicklistner"})
+    public static void setAdapter(AutoCompleteTextView view, ArrayAdapter<Temple_master> adapter, AdapterView.OnItemClickListener listner){
+
+        Utility.log(TAG,"setAdapter()");
+
+        view.setAdapter(adapter);
+        view.setOnItemClickListener(listner);
+
 
     }
 }

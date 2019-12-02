@@ -4,29 +4,22 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.util.Log;
 import android.widget.Toast;
 
 
-import com.google.android.gms.maps.model.LatLng;
 import com.saarit.temple_management.templemanagement.R;
 import com.saarit.temple_management.templemanagement.databinding.ActivityForm1Binding;
-import com.saarit.temple_management.templemanagement.model.SuccessOrFailure;
 import com.saarit.temple_management.templemanagement.util.Constant;
 import com.saarit.temple_management.templemanagement.util.Utility;
 import com.saarit.temple_management.templemanagement.view_model.FormType1_ViewModel;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.Serializable;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.databinding.DataBindingUtil;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 public class Form1Activity extends AppCompatActivity {
@@ -61,7 +54,16 @@ public class Form1Activity extends AppCompatActivity {
 
         viewModel.getSubmitResponse().observe(
                 this,
-                response -> Utility.log(TAG,"Observed Submit Response")
+                value -> {
+                    Utility.log(TAG,"Observed Submit Response");
+
+                    Intent resultIntent = new Intent();
+                    resultIntent.putExtra(Constant.KEY_RESHOW_LOCAL_TEMPLES,value);
+                    setResult(Constant.RESULT_CODE_AFTER_FORM_SUMBIT,resultIntent);
+                    finish();
+
+
+                }
         );
 
         viewModel.getOnLocationClick().observe(
@@ -102,6 +104,17 @@ public class Form1Activity extends AppCompatActivity {
                     Utility.log(TAG,"Observed getImage Request");
                     startActivityForResult(viewModel.takePictureIntent, viewModel.imageReqType);
                 }
+        );
+
+        viewModel.getNextFormsActivity().observe(
+                this,
+                value -> {
+                    Utility.log(TAG,"Observed goto NextForms Activity Click");
+                    Intent intent = new Intent(getBaseContext(),FormTypesActivity.class);
+                    intent.putExtra(Constant.KEY_EXTRA_TEMPLE_ID,viewModel.formType_1.templeId );
+                    startActivity(intent);
+                }
+
         );
 
     }
@@ -150,5 +163,17 @@ public class Form1Activity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onPause() {
+        Utility.log(TAG,"onPause()");
+        super.onPause();
+        viewModel.unRegisterReceiver();
+    }
 
+    @Override
+    protected void onResume() {
+        Utility.log(TAG,"onResume()");
+        super.onResume();
+        viewModel.setUpLocationBroadcastReceiver();
+    }
 }

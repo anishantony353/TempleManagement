@@ -5,24 +5,23 @@
 
         <variable
             name="viewmodel"
-            type="com.saarit.temple_management.templemanagement.view_model.MapViewModel"
-            />
+            type="com.saarit.temple_management.templemanagement.view_model.MapViewModel" />
 
     </data>
 
     <RelativeLayout
         android:id="@+id/RL_root_ActivityMap"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
+
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar_ActivityMap"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:background="@color/colorPrimary"
-            app:theme="@style/ToolBarStyle"
             app:popupTheme="@style/Theme.AppCompat.Light"
-            app:title="Map"/>
+            app:theme="@style/ToolBarStyle"
+            app:title="Map" />
 
         <fragment
             android:id="@+id/map_ActivityMap"
@@ -38,13 +37,22 @@
             android:id="@+id/FAB_newTemple_ActivityMap"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:fabSize="normal"
-            app:backgroundTint="@color/colorPrimary"
-            android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
             android:layout_margin="15dp"
-            android:src="@drawable/location_marker"
-            android:onClick="@{viewmodel::onAddClick}"/>
+            android:onClick="@{viewmodel::onAddClick}"
+            android:src="@drawable/temple_add"
+            app:backgroundTint="@color/colorPrimary"
+            app:fabSize="normal"
+            app:maxImageSize="35dp" />
+
+        <ProgressBar
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerInParent="true"
+            android:visibility="@{viewmodel.progressVisibility}"
+            />
+
 
 
     </RelativeLayout>

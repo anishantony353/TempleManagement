@@ -1,4 +1,4 @@
-package com.saarit.temple_management.templemanagement.repository;
+package com.saarit.temple_management.templemanagement.model.not_in_use;
 
 import android.content.Context;
 
@@ -17,7 +17,7 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class ApiClient {
+public class ApiClient_not_in_use {
     private static Retrofit retrofit = null;
     private static int REQUEST_TIMEOUT = 60;
     private static OkHttpClient okHttpClient;
@@ -29,7 +29,7 @@ public class ApiClient {
 
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()
-                    .baseUrl(Constant.BASE_URL)
+                    .baseUrl(Constant.APP_URL)
                     .client(okHttpClient)
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create())

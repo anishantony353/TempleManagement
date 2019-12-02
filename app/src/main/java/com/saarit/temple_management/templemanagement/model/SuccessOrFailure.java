@@ -5,7 +5,7 @@ public class SuccessOrFailure {
     int success;
     String msg;
 
-    public SuccessOrFailure(int success,String msg){
+    public SuccessOrFailure(int success, String msg){
         this.success = success;
         this.msg = msg;
 

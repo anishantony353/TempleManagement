@@ -5,14 +5,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import com.saarit.temple_management.templemanagement.R;
 import com.saarit.temple_management.templemanagement.databinding.ActivityLoginBinding;
-import com.saarit.temple_management.templemanagement.model.SuccessOrFailure;
 import com.saarit.temple_management.templemanagement.util.Utility;
 import com.saarit.temple_management.templemanagement.view_model.LoginViewModel;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 

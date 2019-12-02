@@ -2,15 +2,17 @@ package com.saarit.temple_management.templemanagement.view.ui;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.Manifest;
+import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -27,7 +29,6 @@ import com.saarit.temple_management.templemanagement.databinding.ActivityMapBind
 import com.saarit.temple_management.templemanagement.model.FormType_1;
 import com.saarit.temple_management.templemanagement.util.Constant;
 import com.saarit.temple_management.templemanagement.util.Utility;
-import com.saarit.temple_management.templemanagement.view_model.LoginViewModel;
 import com.saarit.temple_management.templemanagement.view_model.MapViewModel;
 
 public class ActivityMap extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMarkerDragListener, GoogleMap.OnInfoWindowClickListener {
@@ -37,18 +38,22 @@ public class ActivityMap extends AppCompatActivity implements OnMapReadyCallback
     private MapViewModel viewModel;
     GoogleMap map;
     Marker selectedMarker;
+    LatLng dragMarkerInitialLoc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Utility.log(TAG,"onCreate()");
         super.onCreate(savedInstanceState);
         setupBindings(savedInstanceState);
     }
 
     private void setupBindings(Bundle savedInstanceState) {
+        Utility.log(TAG,"setupBindings()");
         binding = DataBindingUtil.setContentView(this, R.layout.activity_map);
         viewModel = ViewModelProviders.of(this).get(MapViewModel.class);
 
         if (savedInstanceState == null) {
+            Utility.log(TAG,"savedInstanceState == null");
             viewModel.init();
         }
 
@@ -60,9 +65,14 @@ public class ActivityMap extends AppCompatActivity implements OnMapReadyCallback
     }
 
     private void setUpObservers() {
+        Utility.log(TAG,"Observed: setUpObservers()");
         viewModel.getIsAddButtonClicked().observe(
                 this,
-                value -> startActivityForResult(new Intent(getBaseContext(),Form1Activity.class),Constant.REQUEST_CODE_NEW_TEMPLE)
+                value -> {
+                    Intent intent = new Intent(getBaseContext(),Form1Activity.class);
+                    intent.putExtra("req_code",Constant.REQUEST_CODE_NEW_TEMPLE);
+                   startActivityForResult(intent,Constant.REQUEST_CODE_NEW_TEMPLE);
+                }
         );
 
         viewModel.getTempleToDisplay().observe(
@@ -70,9 +80,30 @@ public class ActivityMap extends AppCompatActivity implements OnMapReadyCallback
                 temple -> addTempleOnMap(temple)
         );
 
+        viewModel.getTempleToDisplayFromServer().observe(
+                this,
+                temple ->{
+                    Utility.log(TAG,"Observed: getTempleToDisplayFromServer()");
+                    addServerTempleOnMap(temple);
+                }
+
+
+        );
+
         viewModel.getShouldAnimateMap().observe(
                 this,
-                temple -> animateCamera(temple.latitude,temple.longitude)
+                latlng -> animateCamera(latlng.latitude,latlng.longitude)
+        );
+        viewModel.getIsDragSuccess().observe(
+                this,
+                value->{
+                    if(true){
+                        Utility.showToast("Updated Location",Toast.LENGTH_SHORT,getApplication());
+                    }else{
+                        Utility.showToast("Failed to Update Location",Toast.LENGTH_SHORT,getApplication());
+                        selectedMarker.setPosition(dragMarkerInitialLoc);
+                    }
+                }
         );
     }
 
@@ -82,44 +113,8 @@ public class ActivityMap extends AppCompatActivity implements OnMapReadyCallback
         map = googleMap;
         map.setMapType(GoogleMap.MAP_TYPE_HYBRID);
         map.getUiSettings().setMapToolbarEnabled(false);
-        //Utilities.setGoogleMapUiSettings(map);
         map.setOnMarkerDragListener(this);
         map.setOnInfoWindowClickListener(this);
-        /*map.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
-
-            @Override
-            public View getInfoWindow(Marker marker) {
-                return null;
-            }
-
-            @Override
-            public View getInfoContents(Marker marker) {
-
-                View view = getLayoutInflater().inflate(R.layout.info_window_layout,null);
-
-                TextView id =  view.findViewById(R.id.treeId);
-                TextView girth =  view.findViewById(R.id.girth);
-                TextView name =  view.findViewById(R.id.treeName);
-                TextView height =  view.findViewById(R.id.height);
-
-                if(hashmapNearbytree.get(marker) != null){
-                    name.setText(hashmapNearbytree.get(marker).getTreeName());
-                    id.setText("Id: "+hashmapNearbytree.get(marker).getTreeDetailsId());
-                    girth.setText("Girth: "+hashmapNearbytree.get(marker).getGirth());
-                    height.setText("Height :"+hashmapNearbytree.get(marker).getHeight());
-                }else if(hashmapLocaltrees.get(marker) != null){
-                    name.setText(hashmapLocaltrees.get(marker).getLocalName());
-                    id.setText("Id: "+hashmapLocaltrees.get(marker).getId());
-                    girth.setText("Girth: "+hashmapLocaltrees.get(marker).getGrithCm());
-                    height.setText("Height :"+hashmapLocaltrees.get(marker).getHeightMtr());
-
-                }
-
-
-                return view;
-            }
-        });*/
-
 
     }
     private void setUpmap() {
@@ -131,17 +126,36 @@ public class ActivityMap extends AppCompatActivity implements OnMapReadyCallback
     private void addTempleOnMap(FormType_1 temple){
 
         LatLng latLng;
-        latLng = new LatLng(temple.getLatitude(), temple.getLongitude());
+        latLng = new LatLng(temple.latitude, temple.longitude);
 
         MarkerOptions markerOpts = new MarkerOptions().position(
                 latLng);
 
-        markerOpts.icon(BitmapDescriptorFactory.fromResource(R.drawable.location_marker));
+        markerOpts.icon(BitmapDescriptorFactory.fromResource(R.drawable.temple_map_icon));
         Marker marker = map.addMarker(markerOpts);
         marker.setDraggable(true);
         marker.setTitle(temple.temple);
+        Utility.log(TAG,"Temple Name on marker:"+temple.temple);
 
         viewModel.hashmapLocalTemples.put(marker, temple);
+
+    }
+
+    private void addServerTempleOnMap(FormType_1 temple){
+
+        LatLng latLng;
+        latLng = new LatLng(temple.latitude, temple.longitude);
+
+        MarkerOptions markerOpts = new MarkerOptions().position(
+                latLng);
+
+        markerOpts.icon(BitmapDescriptorFactory.fromResource(R.drawable.temple_map_icon_2));
+        Marker marker = map.addMarker(markerOpts);
+        marker.setDraggable(false);
+        marker.setTitle(temple.temple);
+        Utility.log(TAG,"Server Temple Name on marker:"+temple.temple);
+
+        viewModel.hashmapServerTemples.put(marker, temple);
 
     }
 
@@ -149,7 +163,7 @@ public class ActivityMap extends AppCompatActivity implements OnMapReadyCallback
 
         CameraPosition cameraPosition = new CameraPosition.Builder()
                 .target(new LatLng(lat,lon)).
-                        zoom(17).build(); //location.getLatitude(),location.getLongitude()...19.17419383407308,72.86094389855862
+                        zoom(17).build();
         map.animateCamera(CameraUpdateFactory
                 .newCameraPosition(cameraPosition));
     }
@@ -186,16 +200,19 @@ public class ActivityMap extends AppCompatActivity implements OnMapReadyCallback
                 map.setMapType(GoogleMap.MAP_TYPE_NORMAL);
                 break;
             case R.id.action_getNearbyTemples:
-                /*if(Utilities.hasPermission(this)){
+                Utility.log(TAG,"Clicked Get Nearby Temples");
+                if(Utility.hasPermission(getApplicationContext())){
 
-                    ThreadCurrentLocation threadCurrentLocation = new ThreadCurrentLocation(this);
-                    threadCurrentLocation.start();
+                    Utility.showToast("Getting Location",Toast.LENGTH_SHORT,getApplicationContext());
 
-                    Utilities.showToast("Getting current location",Toast.LENGTH_SHORT,this);
+                    viewModel.getNearByTemples();
 
                 }else{
-                    Utilities.requestForPermission(this);
-                }*/
+
+                    ActivityCompat.requestPermissions(this,
+                            new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                            Constant.REQUEST_CODE_REQUEST_LOCATION_PERMISSION);
+                }
                 break;
             case R.id.action_clearNearbyTemples:
                 viewModel.clearServerTemplesFromMap();
@@ -216,18 +233,54 @@ public class ActivityMap extends AppCompatActivity implements OnMapReadyCallback
     }
 
     @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case Constant.REQUEST_CODE_REQUEST_LOCATION_PERMISSION: {
+
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // permission was granted
+                    Utility.showToast("Getting Location",Toast.LENGTH_SHORT,getApplicationContext());
+                    viewModel.getNearByTemples();
+
+
+                } else {
+                    // permission denied
+
+                    Utility.showToast("Permission Denied",Toast.LENGTH_SHORT,getApplicationContext());
+                }
+                return;
+            }
+
+        }
+    }
+
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
             case Constant.REQUEST_CODE_NEW_TEMPLE:
+            case Constant.REQUEST_CODE_CLICK_SERVER_TREES:
 
                 switch (resultCode) {
 
                     case RESULT_OK:
                         FormType_1 formType1 = (FormType_1) data.getSerializableExtra(Constant.KEY_ADDED_TEMPLE);
-                        Utility.log(TAG,"onActivityResult()..id:"+formType1.templeId);
+                        Utility.log(TAG,"onActivityResult()..id:"+formType1.id);
                         addTempleOnMap(formType1);
                         animateCamera(formType1.latitude,formType1.longitude);
+                        break;
+
+                    case Constant.RESULT_CODE_AFTER_FORM_SUMBIT:
+                        int value = data.getIntExtra(Constant.KEY_RESHOW_LOCAL_TEMPLES,0);
+                        switch(value){
+                            case 1:
+                                viewModel.getLocalTemples();
+                                break;
+                        }
+
                         break;
 
                     default:
@@ -247,6 +300,15 @@ public class ActivityMap extends AppCompatActivity implements OnMapReadyCallback
                         selectedMarker.hideInfoWindow();
                         selectedMarker.setTitle(formType1.temple);
 
+                        break;
+
+                    case Constant.RESULT_CODE_AFTER_FORM_SUMBIT:
+                        int value = data.getIntExtra(Constant.KEY_RESHOW_LOCAL_TEMPLES,0);
+                        switch(value){
+                            case 1:
+                                viewModel.getLocalTemples();
+                                break;
+                        }
 
                         break;
 
@@ -256,14 +318,17 @@ public class ActivityMap extends AppCompatActivity implements OnMapReadyCallback
 
                 }
                 break;
-
         }
 
     }
 
     @Override
     public void onMarkerDragStart(Marker marker) {
+        selectedMarker = marker;
+        FormType_1 temple = viewModel.hashmapLocalTemples.get(selectedMarker);
+        LatLng latLng = new LatLng(temple.latitude,temple.longitude);
 
+        dragMarkerInitialLoc = latLng;
     }
 
     @Override
@@ -273,7 +338,35 @@ public class ActivityMap extends AppCompatActivity implements OnMapReadyCallback
 
     @Override
     public void onMarkerDragEnd(Marker marker) {
+        showAlertDialog(marker);
+    }
 
+    private boolean showAlertDialog(final Marker m){
+
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                this);
+
+        alertDialogBuilder.setTitle("Do you want to update the position?");
+
+        alertDialogBuilder
+                .setCancelable(false)
+                .setPositiveButton(
+                        "Yes",
+                        (dialog,id)-> viewModel.updateDragLocation(selectedMarker)
+                )
+                .setNegativeButton("No", (dialog,id)->{
+
+                            selectedMarker.setPosition(dragMarkerInitialLoc);// keep the marker where it was
+                            dialog.cancel();
+                        }
+                );
+
+        // create alert dialog
+        AlertDialog alertDialog = alertDialogBuilder.create();
+
+        // show it
+        alertDialog.show();
+        return false;
     }
 
     @Override
@@ -296,7 +389,7 @@ public class ActivityMap extends AppCompatActivity implements OnMapReadyCallback
 
             Intent i = new Intent(this, Form1Activity.class);
 
-            i.putExtra("id",viewModel.hashmapLocalTemples.get(marker).templeId);
+            i.putExtra("id",viewModel.hashmapLocalTemples.get(marker).id);
             i.putExtra("req_code",Constant.REQUEST_CODE_CLICK_LOCAL_TREES);
 
             startActivityForResult(i,Constant.REQUEST_CODE_CLICK_LOCAL_TREES);
@@ -304,5 +397,26 @@ public class ActivityMap extends AppCompatActivity implements OnMapReadyCallback
         }
 
 
+    }
+
+    @Override
+    protected void onPause() {
+        Utility.log(TAG,"onPause()");
+        super.onPause();
+        viewModel.unRegisterReceiver();
+
+    }
+
+    @Override
+    protected void onStop() {
+        Utility.log(TAG,"onStop()");
+        super.onStop();
+    }
+
+    @Override
+    protected void onResume() {
+        Utility.log(TAG,"onResume()");
+        super.onResume();
+        viewModel.setUpLocationBroadcastReceiver();
     }
 }

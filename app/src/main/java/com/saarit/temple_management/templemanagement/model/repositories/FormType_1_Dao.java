@@ -1,4 +1,6 @@
-package com.saarit.temple_management.templemanagement.model;
+package com.saarit.temple_management.templemanagement.model.repositories;
+
+import com.saarit.temple_management.templemanagement.model.FormType_1;
 
 import java.util.List;
 
@@ -7,6 +9,7 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Transaction;
 import androidx.room.Update;
 import io.reactivex.Flowable;
 import io.reactivex.Single;
@@ -17,11 +20,33 @@ public interface FormType_1_Dao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     Single<Long> insertForm(FormType_1 form);
 
-    @Query("SELECT * FROM FormType_1 WHERE temple_id = :id")
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    Single<List<Long>> insertForms(List<FormType_1> forms);
+
+    @Query("SELECT count(temple_id) FROM FormType_1")
+    Single<Long> getCount();
+
+
+    @Query("SELECT * FROM FormType_1 WHERE id = :id")
     Single<FormType_1> getFormByTempleId(long id);
 
-    @Query("SELECT * FROM FormType_1")
+    @Query("SELECT * FROM FormType_1 where latitude != 0.0")
     Single<List<FormType_1>> getLocalTemples();
+
+    @Query("SELECT * FROM FormType_1 where latitude == 0.0")
+    Single<List<FormType_1>> getLocalTemplesForDropDown();
+
+    @Update
+    Single<Integer> updateFormByObject(FormType_1 form);
+
+
+    @Delete
+    Single<Integer> deleteFormByObject(FormType_1 form);
+
+    @Query("DELETE FROM FormType_1 WHERE id = :id")
+    Single<Integer> deleteFormById(int id);
+
+
 
 
 

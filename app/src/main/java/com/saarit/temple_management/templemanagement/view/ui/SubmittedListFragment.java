@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 
 import com.saarit.temple_management.templemanagement.R;
 import com.saarit.temple_management.templemanagement.databinding.FragmentSubmittedListBinding;
-import com.saarit.temple_management.templemanagement.model.FormType;
+import com.saarit.temple_management.templemanagement.model.not_in_use.FormType;
 import com.saarit.temple_management.templemanagement.util.Utility;
 import com.saarit.temple_management.templemanagement.view_model.SubmittedListViewModel;
 
@@ -92,16 +92,16 @@ public class SubmittedListFragment extends Fragment {
 
         viewModel.getList().observe(this, new Observer<List<FormType>>() {
             @Override
-            public void onChanged(@Nullable List<FormType> formTypes) {
+            public void onChanged(@Nullable List<FormType> formTypeNotinuses) {
 
                 Utility.log(TAG,"New List received...");
 
                 viewModel.loading.set(View.GONE);
 
-                if(formTypes.size() > 0){
+                if(formTypeNotinuses.size() > 0){
 
                     viewModel.showEmpty.set(View.GONE);
-                    viewModel.setListInAdapter(formTypes);
+                    viewModel.setListInAdapter(formTypeNotinuses);
 
 
                     //Update RecyclerView Adapter from ViewModel
@@ -118,7 +118,7 @@ public class SubmittedListFragment extends Fragment {
 
         viewModel.getSelectedForm().observe(this, new Observer<FormType>() {
             @Override
-            public void onChanged(@Nullable FormType formType) {
+            public void onChanged(@Nullable FormType formTypeNotinuse) {
 
                 Utility.log(TAG,"Selected Form received...");
 

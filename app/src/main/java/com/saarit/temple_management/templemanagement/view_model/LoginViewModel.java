@@ -6,41 +6,40 @@ import android.view.View;
 
 import com.saarit.temple_management.templemanagement.model.LoginFeilds;
 import com.saarit.temple_management.templemanagement.model.SuccessOrFailure;
-import com.saarit.temple_management.templemanagement.repository.ApiService;
-import com.saarit.temple_management.templemanagement.repository.Repository;
+import com.saarit.temple_management.templemanagement.model.repositories.Repo_Temples_master;
+import com.saarit.temple_management.templemanagement.model.repositories.Repo_server;
+import com.saarit.temple_management.templemanagement.model.Temple_master;
 import com.saarit.temple_management.templemanagement.util.Utility;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.schedulers.Schedulers;
 
 public class LoginViewModel extends AndroidViewModel {
 
     private static String TAG = LoginViewModel.class.getSimpleName();
-
-    public LoginFeilds loginFeilds;
-    SuccessOrFailure successOrFailure;
-
-    public MutableLiveData<SuccessOrFailure> isSuccessFulLogin = new MutableLiveData<>();
-    Repository repository;
-
-    private ApiService apiService;
-    private CompositeDisposable disposable = new CompositeDisposable();
-
-
     public LoginViewModel(@NonNull Application application) {
         super(application);
     }
 
+    public LoginFeilds loginFeilds;
+
+    public MutableLiveData<SuccessOrFailure> isSuccessFulLogin = new MutableLiveData<>();
+    Repo_server reposerver;
+    Repo_Temples_master repoTemplesMaster;
+
+    private CompositeDisposable disposable = new CompositeDisposable();
 
     public void init(){
         Utility.log(TAG,"init()");
         loginFeilds = new LoginFeilds();
-        //successOrFailure = new SuccessOrFailure();
+        reposerver = Repo_server.getInstance();
+        repoTemplesMaster = Repo_Temples_master.getInstance(getApplication());
 
-        //apiService = ApiClient.getClient(getApplication().getApplicationContext()).create(ApiService.class);
     }
 
 
@@ -50,21 +49,60 @@ public class LoginViewModel extends AndroidViewModel {
 
         if(loginFeilds.isValidId() && loginFeilds.isValidPassword()){
 
-            fetch_LoginResult();
+            fetchTemplesMasterFromServer();
+
+            //fetch_LoginResult();
 
             //Use Retrofit for Validation from SERVER...get Result and use it in setValue()
 
             //isSuccessFulLogin.setValue(true);
 
-            //repository = Repository.getInstance();
+            //reposerver = Repo_server.getInstance();
 
 
-            //isSuccessFulLogin.setValue(repository.isValidCredentialsFromServer(loginFeilds));
+            //isSuccessFulLogin.setValue(reposerver.isValidCredentialsFromServer(loginFeilds));
 
 
 
         }
 
+    }
+
+    private void fetchTemplesMasterFromServer() {
+        disposable.add(
+
+                reposerver.apiService.getTempleMaster()
+                        .flatMap(
+                                templesDto -> {
+                                    Utility.log(TAG,"SIZE:"+templesDto.getTemple_masters().size()
+                                            +" Success:"+templesDto.getSuccess()+" Msg:"+templesDto.getMsg());
+
+
+                                    return  repoTemplesMaster.insertTemples(templesDto.getTemple_masters());
+                                }
+                        )
+                        .flatMap(
+
+                                ids->{
+                                    return repoTemplesMaster.getTemples();
+                                }
+                        )
+
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        temples->{
+
+                            for(int i = 0;i<temples.size();i++){
+                                Temple_master temple = temples.get(i);
+                                Utility.log(TAG,i+":Temple Name:"+temple.temple
+                                        +" Village:"+temple.village+" Taluka:"+temple.taluka+" Dist:"+temple.district);
+
+                            }
+                            fetch_LoginResult();
+                        }
+                )
+        );
     }
 
     private void fetch_LoginResult() {
@@ -73,6 +111,8 @@ public class LoginViewModel extends AndroidViewModel {
 
         isSuccessFulLogin.setValue(new SuccessOrFailure(1,"Success..."));
 
+
+
         /*
         disposable.add(
                 apiService.isLoginSuccess(loginFeilds)
@@ -80,9 +120,9 @@ public class LoginViewModel extends AndroidViewModel {
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribeWith(new DisposableSingleObserver<SuccessOrFailure>() {
                             @Override
-                            public void onSuccess(SuccessOrFailure successOrFailure) {
+                            public void onSuccess(SuccessOrFailure successOrFailureNotinuse) {
 
-                                isSuccessFulLogin.setValue(successOrFailure);
+                                isSuccessFulLogin.setValue(successOrFailureNotinuse);
 
                             }
 

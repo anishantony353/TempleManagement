@@ -4,7 +4,7 @@ package com.saarit.temple_management.templemanagement.view_model;
 import android.view.View;
 
 import com.saarit.temple_management.templemanagement.R;
-import com.saarit.temple_management.templemanagement.model.FormName;
+import com.saarit.temple_management.templemanagement.model.not_in_use.FormName;
 import com.saarit.temple_management.templemanagement.util.Utility;
 import com.saarit.temple_management.templemanagement.view.adapters.FormListAdapter;
 
@@ -13,8 +13,6 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 
-import androidx.databinding.Observable;
-import androidx.databinding.ObservableField;
 import androidx.databinding.ObservableInt;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -28,8 +26,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.observers.DisposableSingleObserver;
 import io.reactivex.schedulers.Schedulers;
-
-import static io.reactivex.internal.operators.single.SingleInternalHelper.toObservable;
 
 public class FormsViewModel extends ViewModel {
 
@@ -138,9 +134,9 @@ public class FormsViewModel extends ViewModel {
 
     public void onItemClick(Integer position){
 
-        FormName formName = getFormByPosition(position);
+        FormName formNameNotinuse = getFormByPosition(position);
 
-        selectedForm.setValue(formName);
+        selectedForm.setValue(formNameNotinuse);
 
     }
 

@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 
 import com.saarit.temple_management.templemanagement.BR;
 import com.saarit.temple_management.templemanagement.databinding.FormListRowBinding;
-import com.saarit.temple_management.templemanagement.model.FormName;
+import com.saarit.temple_management.templemanagement.model.not_in_use.FormName;
 import com.saarit.temple_management.templemanagement.view_model.FormsViewModel;
 
 import java.util.List;

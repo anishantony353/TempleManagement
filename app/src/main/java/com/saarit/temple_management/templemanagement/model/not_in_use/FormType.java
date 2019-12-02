@@ -1,4 +1,4 @@
-package com.saarit.temple_management.templemanagement.model;
+package com.saarit.temple_management.templemanagement.model.not_in_use;
 
 public class FormType {
 

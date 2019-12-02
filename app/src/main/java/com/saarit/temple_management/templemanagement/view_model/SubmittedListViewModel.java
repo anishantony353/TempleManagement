@@ -4,7 +4,7 @@ package com.saarit.temple_management.templemanagement.view_model;
 import android.view.View;
 
 import com.saarit.temple_management.templemanagement.R;
-import com.saarit.temple_management.templemanagement.model.FormType;
+import com.saarit.temple_management.templemanagement.model.not_in_use.FormType;
 import com.saarit.temple_management.templemanagement.util.Utility;
 import com.saarit.temple_management.templemanagement.view.adapters.SubmittedListAdapter;
 
@@ -67,9 +67,9 @@ public class SubmittedListViewModel extends ViewModel {
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribeWith(new DisposableSingleObserver<List<FormType>>() {
                             @Override
-                            public void onSuccess(List<FormType> formTypes) {
+                            public void onSuccess(List<FormType> formTypeNotinuses) {
 
-                                submittedList.setValue(formTypes);
+                                submittedList.setValue(formTypeNotinuses);
                             }
 
                             @Override
@@ -86,17 +86,17 @@ public class SubmittedListViewModel extends ViewModel {
         return Single.create(new SingleOnSubscribe<List<FormType>>() {
             @Override
             public void subscribe(SingleEmitter<List<FormType>> emitter) throws Exception {
-                List<FormType> formTypes = new ArrayList<>();
-                formTypes.add(new FormType("Type A"));
-                formTypes.add(new FormType("Type 2"));
-                formTypes.add(new FormType("Type 3"));
-                formTypes.add(new FormType("Type 4"));
-                formTypes.add(new FormType("Type 5"));
-                formTypes.add(new FormType("Type 6"));
-                formTypes.add(new FormType("Type 7"));
-                formTypes.add(new FormType("Type 8"));
-                formTypes.add(new FormType("Type 9"));
-                emitter.onSuccess(formTypes);
+                List<FormType> formTypeNotinuses = new ArrayList<>();
+                formTypeNotinuses.add(new FormType("Type A"));
+                formTypeNotinuses.add(new FormType("Type 2"));
+                formTypeNotinuses.add(new FormType("Type 3"));
+                formTypeNotinuses.add(new FormType("Type 4"));
+                formTypeNotinuses.add(new FormType("Type 5"));
+                formTypeNotinuses.add(new FormType("Type 6"));
+                formTypeNotinuses.add(new FormType("Type 7"));
+                formTypeNotinuses.add(new FormType("Type 8"));
+                formTypeNotinuses.add(new FormType("Type 9"));
+                emitter.onSuccess(formTypeNotinuses);
             }
         });
     }
@@ -112,9 +112,9 @@ public class SubmittedListViewModel extends ViewModel {
     }
 
 
-    public void setListInAdapter(List<FormType> formTypes) {
+    public void setListInAdapter(List<FormType> formTypeNotinuses) {
 
-        this.adapter.setFormTypes(formTypes);
+        this.adapter.setFormTypeNotinuses(formTypeNotinuses);
         this.adapter.notifyDataSetChanged();
 
 
@@ -122,9 +122,9 @@ public class SubmittedListViewModel extends ViewModel {
 
     public void onItemClick(Integer position){
 
-        FormType formType = getFormTypeByPosition(position);
+        FormType formTypeNotinuse = getFormTypeByPosition(position);
 
-        selectedForm.setValue(formType);
+        selectedForm.setValue(formTypeNotinuse);
 
     }
 
