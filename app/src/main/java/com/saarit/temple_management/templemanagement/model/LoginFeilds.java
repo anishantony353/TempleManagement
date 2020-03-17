@@ -48,9 +48,13 @@ public class LoginFeilds extends BaseObservable {
         if(id == null || id.length() <= 0 ){
             Utility.log(TAG,"Error in id");
 
-            setErrorId("Error in id");
+            setErrorId("Enter Id");
             return false;
         }
+        /*if(!id.trim().equals("admin@gmail.com")){
+            setErrorId("Invalid ID");
+            return false;
+        }*/
         Utility.log(TAG,"ID lemgth:"+id.length());
 
         return true;
@@ -83,9 +87,14 @@ public class LoginFeilds extends BaseObservable {
 
         if(password == null || password.length() <= 0 ){
             Utility.log(TAG,"Error in password");
-            setErrorPassword("Error in password");
+            setErrorPassword("Enter Password");
             return false;
         }
+/*        if(!password.trim().equals("admin@123")){
+            setErrorPassword("Invalid Password");
+            return false;
+        }*/
+
         Utility.log(TAG,"Password lemgth:"+password.length());
 
         return true;

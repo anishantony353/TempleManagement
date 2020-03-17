@@ -1,20 +1,19 @@
 package com.saarit.temple_management.templemanagement.view_model;
 
+import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
 import android.location.Location;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
+import com.patloew.rxlocation.RxLocation;
 import com.saarit.temple_management.templemanagement.model.FormType_1;
-import com.saarit.temple_management.templemanagement.model.ThreadCurrentLocation;
+import com.saarit.temple_management.templemanagement.util.not_in_use.ThreadCurrentLocation;
 import com.saarit.temple_management.templemanagement.model.repositories.Repo_FormType_1;
 import com.saarit.temple_management.templemanagement.model.repositories.Repo_server;
 import com.saarit.temple_management.templemanagement.util.Constant;
@@ -24,7 +23,6 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.ObservableInt;
@@ -35,6 +33,7 @@ import androidx.room.EmptyResultSetException;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 public class MapViewModel extends AndroidViewModel {
@@ -54,6 +53,7 @@ public class MapViewModel extends AndroidViewModel {
     public MutableLiveData<FormType_1> formType1ServerMutableLiveData = new MutableLiveData<>();
     public MutableLiveData<LatLng> animateMapBooleanMutableLiveData = new MutableLiveData<>();
     public MutableLiveData<Boolean> dragSuccessBooleanMutableLiveData = new MutableLiveData<>();
+    public MutableLiveData<Boolean> requestScreenLockMutableLiveData = new MutableLiveData<>();
 
     public ObservableInt progressVisibility = new ObservableInt(View.GONE);
 
@@ -63,8 +63,12 @@ public class MapViewModel extends AndroidViewModel {
     public HashMap<Marker,FormType_1> hashmapLocalTemples;
     public HashMap<Marker,FormType_1> hashmapServerTemples;
 
-    BroadcastReceiver locationBroadCastReceiver;
-    ThreadCurrentLocation threadCurrentLocation = new ThreadCurrentLocation(getApplication(),Constant.BROADCAST_INTENT_MAP_ACTIVITY);
+    RxLocation rxLocation = new RxLocation(getApplication());
+    LocationRequest locationRequest = LocationRequest.create()
+            .setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY)
+            .setInterval(5000);
+
+    Disposable locDisposable;
 
     public void init(){
         Utility.log(TAG,"init()");
@@ -72,7 +76,6 @@ public class MapViewModel extends AndroidViewModel {
         repo_server = Repo_server.getInstance();
         hashmapLocalTemples = new HashMap<>();
         hashmapServerTemples = new HashMap<>();
-
 
     }
 
@@ -168,14 +171,36 @@ public class MapViewModel extends AndroidViewModel {
         hashmapServerTemples.clear();
     }
 
+    @SuppressLint("MissingPermission")
     public void getNearByTemples(){
 
-        Utility.showToast("Getting Current Location",Toast.LENGTH_LONG,getApplication());
-        progressVisibility.set(View.VISIBLE);
-
-
-        threadCurrentLocation.start();
-
+        locDisposable = rxLocation.location().updates(locationRequest)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        location -> {
+                            Utility.log(TAG,"Thread onNext:"+Thread.currentThread().getName());
+                            Utility.log(TAG,"Loc Received:"+location.getLatitude()+" / "+location.getLongitude());
+                            locDisposable.dispose();
+                            animateMapBooleanMutableLiveData.setValue(new LatLng(location.getLatitude(),location.getLongitude()));
+                            getBounds(location);
+                        },
+                        throwable -> {
+                            progressVisibility.set(View.GONE);
+                            requestScreenLockMutableLiveData.setValue(false);
+                            Utility.showToast(throwable.getMessage(),Toast.LENGTH_LONG,getApplication());
+                            locDisposable.dispose();
+                        },
+                        () -> {
+                            progressVisibility.set(View.GONE);
+                            requestScreenLockMutableLiveData.setValue(false);
+                        },
+                        dsposable -> {
+                            Utility.showToast("Getting Current Location",Toast.LENGTH_LONG,getApplication());
+                            progressVisibility.set(View.VISIBLE);
+                            requestScreenLockMutableLiveData.setValue(true);
+                        }
+                );
     }
 
 
@@ -198,6 +223,9 @@ public class MapViewModel extends AndroidViewModel {
         Utility.log(TAG,"getShouldAnimateMap()");
 
         return animateMapBooleanMutableLiveData;
+    }
+    public LiveData<Boolean> observeLockScreenRequest() {
+        return requestScreenLockMutableLiveData;
     }
 
     public LiveData<Boolean> getIsDragSuccess(){
@@ -231,46 +259,6 @@ public class MapViewModel extends AndroidViewModel {
         );
     }
 
-    public void setUpLocationBroadcastReceiver() {
-
-
-
-        locationBroadCastReceiver = new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                Utility.log(TAG,"onReceive() Broadcast");
-                Bundle bundle = intent.getExtras();
-                Double latitude = bundle.getDouble("lat");
-                Double longitude = bundle.getDouble("lon");
-
-                Utility.log("Lat n lon ", "Latitude: " + latitude
-                        + " Longitude " + longitude);
-
-                animateMapBooleanMutableLiveData.setValue(new LatLng(latitude,longitude));
-
-                Location location = new Location("");
-                location.setLatitude(latitude);
-                location.setLongitude(longitude);
-
-
-                getBounds(location);
-
-
-            }
-        };
-
-        IntentFilter filter = new IntentFilter();
-        filter.addAction(Constant.BROADCAST_INTENT_MAP_ACTIVITY);
-        getApplication().registerReceiver(locationBroadCastReceiver, filter);
-    }
-
-    public void unRegisterReceiver(){
-        getApplication().unregisterReceiver(locationBroadCastReceiver);
-        if(threadCurrentLocation.isAlive()){
-            threadCurrentLocation.interrupt();
-        }
-        progressVisibility.set(View.GONE);
-    }
 
     public void getBounds(Location loc){
 
@@ -286,15 +274,19 @@ public class MapViewModel extends AndroidViewModel {
                                 value -> {},
                                 throwable -> {
                                     progressVisibility.set(View.GONE);
+                                    requestScreenLockMutableLiveData.setValue(false);
                                     Utility.showToast(throwable.getMessage(),Toast.LENGTH_LONG,getApplication());
                                 },
                                 () -> {
-                                    //Utilities.dismissDialog();
-
+                                    progressVisibility.set(View.GONE);
+                                    requestScreenLockMutableLiveData.setValue(false);
                                     getNearbyTemplesFromServer();
-
                                 },
-                                dsposble-> Utility.showToast("Getting Bounds",Toast.LENGTH_LONG,getApplication())
+                                dsposble-> {
+                                    Utility.showToast("Getting Bounds",Toast.LENGTH_LONG,getApplication());
+                                    progressVisibility.set(View.VISIBLE);
+                                    requestScreenLockMutableLiveData.setValue(true);
+                                }
 
                         )
         );
@@ -332,28 +324,20 @@ public class MapViewModel extends AndroidViewModel {
 
                                 ,
                                 throwable->{
-
-                                    Log.i(TAG,"Exception accured",throwable);
-
-                                    Utility.showToast(throwable.getMessage(),Toast.LENGTH_SHORT,getApplication());
                                     progressVisibility.set(View.GONE);
-
-
+                                    requestScreenLockMutableLiveData.setValue(false);
+                                    Utility.showToast(throwable.getMessage(),Toast.LENGTH_LONG,getApplication());
                                 },
                                 ()->{
-
-                                    Utility.log(TAG,"Completed Displaying Nearby temples");
                                     Utility.showToast("Displayed Nearby temples sucessfully",Toast.LENGTH_SHORT,getApplication());
                                     progressVisibility.set(View.GONE);
-
-
+                                    requestScreenLockMutableLiveData.setValue(false);
                                 },
                                 dspsbl->{
-
-                                    Utility.log(TAG,"initializing ");
                                     Utility.showToast("Fetching Temples from Server",Toast.LENGTH_LONG,getApplication());
                                     clearServerTemplesFromMap();
-                                    //Utilities.getProgressDialog(this,"Displaying Local Trees...");
+                                    progressVisibility.set(View.VISIBLE);
+                                    requestScreenLockMutableLiveData.setValue(true);
                                 }
 
                         )
@@ -411,9 +395,17 @@ public class MapViewModel extends AndroidViewModel {
 
     @Override
     protected void onCleared() {
-        //super.onCleared();
+
         Utility.log(TAG,"onCleared()");
         disposable.clear();
+
+        if(locDisposable != null){
+            locDisposable.dispose();
+        }
+        super.onCleared();
+
         //unRegisterReceiver();
     }
+
+
 }

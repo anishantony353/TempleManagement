@@ -7,6 +7,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
@@ -17,11 +18,11 @@ import com.google.android.material.tabs.TabLayout;
 import com.saarit.temple_management.templemanagement.model.Temple_master;
 import com.saarit.temple_management.templemanagement.util.Constant;
 import com.saarit.temple_management.templemanagement.util.Utility;
-import com.saarit.temple_management.templemanagement.view.adapters.FormListAdapter;
-import com.saarit.temple_management.templemanagement.view.adapters.NewListAdapter;
-import com.saarit.temple_management.templemanagement.view.adapters.SavedListAdapter;
-import com.saarit.temple_management.templemanagement.view.adapters.SubmittedListAdapter;
+import com.saarit.temple_management.templemanagement.view.adapters.not_in_use.NewListAdapter;
+import com.saarit.temple_management.templemanagement.view.adapters.not_in_use.SavedListAdapter;
+import com.saarit.temple_management.templemanagement.view.adapters.not_in_use.SubmittedListAdapter;
 
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.databinding.BindingAdapter;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -96,8 +97,8 @@ public class BindingAdapters {
         rv.setAdapter(adapter);
     }
 
-    @BindingAdapter("adapter_forms")
-    public static void setRecyclerViewFormsAdapter(RecyclerView rv,FormListAdapter adapter){
+    @BindingAdapter("adapter_recyclerView")
+    public static void setRecyclerViewFormsAdapter(RecyclerView rv,RecyclerView.Adapter adapter){
 
         Utility.log(TAG,"setRecyclerViewFormsAdapter()");
         rv.setHasFixedSize(true);
@@ -124,7 +125,7 @@ public class BindingAdapters {
 
     @BindingAdapter("setImgOnImageView")
     public static void setImgOnImageView(ImageView view, String path) {
-        Utility.log(TAG,"setImgOnImageView()");
+        Utility.log(TAG,"setImgOnImageView()..Path:"+path);
 
         Glide.with(view.getContext().getApplicationContext()).load(path).apply(options).into(view);
 
@@ -140,4 +141,29 @@ public class BindingAdapters {
 
 
     }
+
+    @BindingAdapter("listview.onItemClicklistner")
+    public static void setListner(ListView view, AdapterView.OnItemClickListener listner){
+
+        Utility.log(TAG,"setListner()");
+
+        view.setOnItemClickListener(listner);
+
+    }
+
+    @BindingAdapter("switchChecked")
+    public static void setSwitchCheckState(SwitchCompat view,boolean state){
+
+//        view.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+//                Utility.log(TAG,"State:"+b);
+//
+//            }
+//        });
+
+        view.setChecked(state);
+
+    }
+
 }

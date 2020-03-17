@@ -3,6 +3,8 @@ package com.saarit.temple_management.templemanagement.model.repositories;
 import android.content.Context;
 
 import com.saarit.temple_management.templemanagement.model.FormType_1;
+import com.saarit.temple_management.templemanagement.model.repositories.local_storage.AppDatabase;
+import com.saarit.temple_management.templemanagement.model.repositories.local_storage.FormType_1_Dao;
 import com.saarit.temple_management.templemanagement.util.Utility;
 
 import java.util.List;
@@ -38,8 +40,12 @@ public class Repo_FormType_1 {
         return dao.insertForm(form);
     }
 
-    public Single<FormType_1> getFormByTempleId(long id){
-        return dao.getFormByTempleId(id);
+    public Single<FormType_1> getFormById(long id){
+        return dao.getFormById(id);
+    }
+
+    public Single<FormType_1> getFormByTempleId(long templeId){
+        return dao.getFormByTempleId(templeId);
     }
 
     public Single<List<FormType_1>> getLocalTemples(){
@@ -59,6 +65,10 @@ public class Repo_FormType_1 {
         return dao.getCount();
     }
 
+    public Single<Integer> getCountByTempleId(long templeId){
+        return dao.getCountByTempleId(templeId);
+    }
+
     public Single<Integer> deleteFormByObject(FormType_1 form){
         Utility.log(TAG,"About to Delete Form by object");
         return dao.deleteFormByObject(form);
@@ -68,9 +78,6 @@ public class Repo_FormType_1 {
         Utility.log(TAG,"About to Delete Form by ID:"+id);
         return dao.deleteFormById(id);
     }
-
-
-
 
 
 }

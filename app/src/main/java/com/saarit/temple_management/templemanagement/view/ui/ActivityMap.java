@@ -13,6 +13,7 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -61,7 +62,6 @@ public class ActivityMap extends AppCompatActivity implements OnMapReadyCallback
         setSupportActionBar(binding.toolbarActivityMap);
         setUpObservers();
         setUpmap();
-
     }
 
     private void setUpObservers() {
@@ -86,8 +86,6 @@ public class ActivityMap extends AppCompatActivity implements OnMapReadyCallback
                     Utility.log(TAG,"Observed: getTempleToDisplayFromServer()");
                     addServerTempleOnMap(temple);
                 }
-
-
         );
 
         viewModel.getShouldAnimateMap().observe(
@@ -105,6 +103,28 @@ public class ActivityMap extends AppCompatActivity implements OnMapReadyCallback
                     }
                 }
         );
+        viewModel.observeLockScreenRequest().observe(
+                this,
+                shouldLock->{
+                    if(shouldLock){
+                        Utility.log(TAG,"Locking Screen...");
+                        lockScreen();
+                    }else{
+                        Utility.log(TAG,"UnLocking Screen...");
+                        unlockScreen();
+                    }
+                }
+        );
+    }
+
+    private void lockScreen(){
+        getWindow().setFlags(
+                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+    }
+
+    private void unlockScreen(){
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
     }
 
     @Override
@@ -222,6 +242,9 @@ public class ActivityMap extends AppCompatActivity implements OnMapReadyCallback
                 break;
             case R.id.action_clearLocalTemples:
                 viewModel.clearLocalTemplesFromMap();
+                break;
+            case R.id.action_createUser:
+                startActivity(new Intent(this,Activity_CreateUser.class));
                 break;
 
         }
@@ -380,7 +403,7 @@ public class ActivityMap extends AppCompatActivity implements OnMapReadyCallback
 
             Intent i = new Intent(this, Form1Activity.class);
 
-            i.putExtra("id",viewModel.hashmapServerTemples.get(marker).templeId);
+            i.putExtra("temple_id",viewModel.hashmapServerTemples.get(marker).templeId);
             i.putExtra("req_code",Constant.REQUEST_CODE_CLICK_SERVER_TREES);
 
             startActivityForResult(i,Constant.REQUEST_CODE_CLICK_SERVER_TREES);
@@ -390,6 +413,7 @@ public class ActivityMap extends AppCompatActivity implements OnMapReadyCallback
             Intent i = new Intent(this, Form1Activity.class);
 
             i.putExtra("id",viewModel.hashmapLocalTemples.get(marker).id);
+            i.putExtra("temple_id",viewModel.hashmapLocalTemples.get(marker).templeId);
             i.putExtra("req_code",Constant.REQUEST_CODE_CLICK_LOCAL_TREES);
 
             startActivityForResult(i,Constant.REQUEST_CODE_CLICK_LOCAL_TREES);
@@ -403,7 +427,7 @@ public class ActivityMap extends AppCompatActivity implements OnMapReadyCallback
     protected void onPause() {
         Utility.log(TAG,"onPause()");
         super.onPause();
-        viewModel.unRegisterReceiver();
+        /*viewModel.unRegisterReceiver();*/
 
     }
 
@@ -417,6 +441,6 @@ public class ActivityMap extends AppCompatActivity implements OnMapReadyCallback
     protected void onResume() {
         Utility.log(TAG,"onResume()");
         super.onResume();
-        viewModel.setUpLocationBroadcastReceiver();
+        /*viewModel.setUpLocationBroadcastReceiver();*/
     }
 }

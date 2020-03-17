@@ -44,6 +44,12 @@
         <!--<item name="android:typeface">monospace</item>-->
         <item name="android:background">@drawable/background_login_feilds</item>
         <item name="android:textSize">20sp</item>
+
+    </style>
+
+    <style name="CustomViewGroupStyle">
+
+        <item name="android:background">@color/skyBlue</item>
     </style>
 
     <style name="ToolBarStyle" parent="Theme.AppCompat">

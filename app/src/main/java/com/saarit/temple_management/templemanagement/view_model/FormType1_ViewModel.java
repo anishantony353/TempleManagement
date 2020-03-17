@@ -1,31 +1,23 @@
 package com.saarit.temple_management.templemanagement.view_model;
 
+import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.Priority;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.request.RequestOptions;
-import com.bumptech.glide.request.target.SimpleTarget;
-import com.bumptech.glide.request.transition.Transition;
-import com.bumptech.glide.signature.ObjectKey;
+import com.google.android.gms.location.LocationRequest;
+import com.patloew.rxlocation.RxLocation;
 import com.saarit.temple_management.templemanagement.model.FormType_1;
-import com.saarit.temple_management.templemanagement.model.SuccessOrFailure;
 import com.saarit.temple_management.templemanagement.model.repositories.Repo_FormType_1;
-import com.saarit.temple_management.templemanagement.model.ThreadCurrentLocation;
+import com.saarit.temple_management.templemanagement.util.not_in_use.ThreadCurrentLocation;
 import com.saarit.temple_management.templemanagement.model.repositories.Repo_Temples_master;
 import com.saarit.temple_management.templemanagement.model.repositories.Repo_server;
 import com.saarit.temple_management.templemanagement.model.Temple_master;
@@ -35,12 +27,10 @@ import com.saarit.temple_management.templemanagement.util.Utility;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.databinding.ObservableField;
 import androidx.databinding.ObservableInt;
 import androidx.lifecycle.AndroidViewModel;
@@ -51,6 +41,7 @@ import io.reactivex.ObservableSource;
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -71,7 +62,6 @@ public class FormType1_ViewModel extends AndroidViewModel {
 
     public CompositeDisposable disposable = new CompositeDisposable();
 
-
     //Model
     public FormType_1 formType_1;
 
@@ -86,6 +76,8 @@ public class FormType1_ViewModel extends AndroidViewModel {
 
     //TO Set Visibility
     public ObservableInt reqType;
+    public ObservableInt progressSubmitting = new ObservableInt(View.GONE);
+    public int temple_id;
 
     public ObservableInt markerVisibility = new ObservableInt(View.VISIBLE);
     public ObservableInt progressVisibility = new ObservableInt(View.GONE);
@@ -111,9 +103,15 @@ public class FormType1_ViewModel extends AndroidViewModel {
     //To Observe 'Get NextForms' click
     public MutableLiveData<Boolean> nextFormsMutableLiveData = new MutableLiveData<>();
 
+    public MutableLiveData<Boolean> requestScreenLockMutableLiveData = new MutableLiveData<>();
 
-    BroadcastReceiver locationBroadCastReceiver;
-    ThreadCurrentLocation threadCurrentLocation = new ThreadCurrentLocation(getApplication(),Constant.BROADCAST_INTENT_FORM_TYPE_1_ACTIVITY);
+
+    RxLocation rxLocation = new RxLocation(getApplication());
+    LocationRequest locationRequest = LocationRequest.create()
+            .setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY)
+            .setInterval(5000);
+
+    Disposable locDisposable;
 
     public Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
     public int imageReqType;
@@ -123,7 +121,9 @@ public class FormType1_ViewModel extends AndroidViewModel {
 
     public AdapterView.OnItemClickListener onItemClickListener;
 
-    public void init(int REQ_TYPE, int id) {
+    public void init(int REQ_TYPE, int id, int templeId) {
+
+
 
         reqType = new ObservableInt(REQ_TYPE);
 
@@ -140,7 +140,7 @@ public class FormType1_ViewModel extends AndroidViewModel {
 
 
         deleteTempImages();
-        setUpUI(REQ_TYPE, id);
+        setUpUI(REQ_TYPE, id, templeId);
 
         onItemClickListener = (adapterView, view, i, l)->{
 
@@ -161,11 +161,11 @@ public class FormType1_ViewModel extends AndroidViewModel {
 
     }
 
-    private void setUpUI(int req_type, int id) {
+    private void setUpUI(int req_type, int id, int templeId) {
 
         disposable.add(
 
-                repo_temples_master.getTemples()
+                repo_temples_master.getTemplesForSelection(templeId)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
@@ -192,7 +192,7 @@ public class FormType1_ViewModel extends AndroidViewModel {
                                     markerVisibility.set(View.GONE);
                                     progressVisibility.set(View.GONE);
                                     Utility.log(TAG,"about to fetch server form");
-                                    getFormType_1_ByTempleId_Server(id);
+                                    getFormType_1_ByTempleId_Server(templeId);
 
                                     break;
                                 default:
@@ -220,6 +220,7 @@ public class FormType1_ViewModel extends AndroidViewModel {
                                     }else{
                                         formType_1 = dto.getFormType_1();
                                         formType_1.id = 0;
+                                        temple_id = formType_1.templeId;
                                          return Observable.just(
                                                      Constant.REQUEST_CODE_TAKE_FRONT_IMAGE,
                                                      Constant.REQUEST_CODE_TAKE_LEFT_IMAGE,
@@ -235,14 +236,25 @@ public class FormType1_ViewModel extends AndroidViewModel {
                         observeOn(AndroidSchedulers.mainThread()).
                         subscribe(
                                 value -> {
+
+
+                                },
+                                throwable -> {
+                                    Utility.log(TAG, throwable.getMessage());
+                                    requestScreenLockMutableLiveData.setValue(false);
+                                    progressSubmitting.set(View.GONE);
+                                },
+                                ()->{
+                                    Utility.log(TAG,"Updating UI with  server values");
                                     formType_1ObservableField.set(formType_1);
                                     Utility.log(TAG,"Form Id:"+formType_1.id);
                                     Utility.log(TAG,"Temple Id:"+formType_1.templeId);
-
+                                    requestScreenLockMutableLiveData.setValue(false);
+                                    progressSubmitting.set(View.GONE);
                                 },
-                                throwable -> Utility.log(TAG, throwable.getMessage()),
-                                ()->{},
                                 dsposble->{
+                                    requestScreenLockMutableLiveData.setValue(true);
+                                    progressSubmitting.set(View.VISIBLE);
 
                                 }
                         )
@@ -255,16 +267,16 @@ public class FormType1_ViewModel extends AndroidViewModel {
 
         switch(imgType){
             case Constant.REQUEST_CODE_TAKE_FRONT_IMAGE:
-                imgUrl = Constant.IMG_URL+templeId+"_image1.jpg";
+                imgUrl = Constant.IMG_URL_FORM_1 +templeId+"_image1.jpg";
                 break;
             case Constant.REQUEST_CODE_TAKE_LEFT_IMAGE:
-                imgUrl = Constant.IMG_URL+templeId+"_image2.jpg";
+                imgUrl = Constant.IMG_URL_FORM_1 +templeId+"_image2.jpg";
                 break;
             case Constant.REQUEST_CODE_TAKE_RIGHT_IMAGE:
-                imgUrl = Constant.IMG_URL+templeId+"_image3.jpg";
+                imgUrl = Constant.IMG_URL_FORM_1 +templeId+"_image3.jpg";
                 break;
             case Constant.REQUEST_CODE_TAKE_ENTRY_IMAGE:
-                imgUrl = Constant.IMG_URL+templeId+"_image4.jpg";
+                imgUrl = Constant.IMG_URL_FORM_1 +templeId+"_image4.jpg";
                 break;
 
         }
@@ -376,7 +388,7 @@ public class FormType1_ViewModel extends AndroidViewModel {
     private void getFormType_1_ById(int id) {
         disposable.add(
 
-                repo_formType_1.getFormByTempleId(id).
+                repo_formType_1.getFormById(id).
                         subscribeOn(Schedulers.io()).
                         observeOn(AndroidSchedulers.mainThread()).
                         subscribe(
@@ -385,6 +397,7 @@ public class FormType1_ViewModel extends AndroidViewModel {
                                     formType_1ObservableField.set(formType_1);
                                     Utility.log(TAG,"Form Id:"+formType_1.id);
                                     Utility.log(TAG,"Temple Id:"+formType_1.templeId);
+                                    temple_id = formType_1.templeId;
                                     getImagesById(id);
                                 },
                                 throwable -> Utility.log(TAG, throwable.getMessage())
@@ -396,7 +409,7 @@ public class FormType1_ViewModel extends AndroidViewModel {
         disposable.add(
                 Observable.fromCallable(
                         ()->{
-                            Utility.deleteTempImages(getApplication());
+                            Utility.deleteTempImages_Form1(getApplication());
 
                             return true;
                         }
@@ -412,7 +425,7 @@ public class FormType1_ViewModel extends AndroidViewModel {
 
     private void getImagesById(int id) {
         try {
-            frontImgObservableField.set(Utility.getLocalImageUri(getApplication(),"front",id).getPath());
+            frontImgObservableField.set(Utility.getLocalImageUri(getApplication(),Constant.IMAGE_TYPE_FRONT,id).getPath());
         }catch(Exception e){
             if(e instanceof FileNotFoundException){
                 Utility.showToast(e.getMessage(),Toast.LENGTH_SHORT,getApplication());
@@ -420,21 +433,21 @@ public class FormType1_ViewModel extends AndroidViewModel {
         }
 
         try{
-            leftImgObservableField.set(Utility.getLocalImageUri(getApplication(),"left",id).getPath());
+            leftImgObservableField.set(Utility.getLocalImageUri(getApplication(),Constant.IMAGE_TYPE_LEFT,id).getPath());
         }catch(Exception e){
             if(e instanceof FileNotFoundException){
                 Utility.showToast(e.getMessage(),Toast.LENGTH_SHORT,getApplication());
             }
         }
         try{
-            rightImgObservableField.set(Utility.getLocalImageUri(getApplication(),"right",id).getPath());
+            rightImgObservableField.set(Utility.getLocalImageUri(getApplication(),Constant.IMAGE_TYPE_RIGHT,id).getPath());
         }catch(Exception e){
             if(e instanceof FileNotFoundException){
                 Utility.showToast(e.getMessage(),Toast.LENGTH_SHORT,getApplication());
             }
         }
         try{
-            entryImgObservableField.set(Utility.getLocalImageUri(getApplication(),"entry",id).getPath());
+            entryImgObservableField.set(Utility.getLocalImageUri(getApplication(),Constant.IMAGE_TYPE_ENTRY,id).getPath());
         }catch(Exception e){
             if(e instanceof FileNotFoundException){
                 Utility.showToast(e.getMessage(),Toast.LENGTH_SHORT,getApplication());
@@ -472,6 +485,10 @@ public class FormType1_ViewModel extends AndroidViewModel {
         return nextFormsMutableLiveData;
     }
 
+    public LiveData<Boolean> observeLockScreenRequest() {
+        return requestScreenLockMutableLiveData;
+    }
+
 
     public void onSaveClick(View view) {
         Utility.log(TAG, "onSaveClick()..\n Village:" + formType_1.village + "\n GodName:" + formType_1.god_name+ "\n Lat:" + formType_1.latitude);
@@ -479,35 +496,52 @@ public class FormType1_ViewModel extends AndroidViewModel {
         if(!isValid()){
             return;
         }
+
+
         disposable.add(
 
-                repo_formType_1.insertForm(formType_1).
+                repo_formType_1.getCountByTempleId(formType_1.templeId).
+                        flatMap(
+                                count ->{
+                                    if(reqType.get() == Constant.REQUEST_CODE_CLICK_LOCAL_TREES){
+                                        return repo_formType_1.insertForm(formType_1);
+                                    }else{
+                                        if(count > 0){
+                                            throw new Exception("Temple already exist locally");
+                                        }else{
+
+                                            return repo_formType_1.insertForm(formType_1);
+                                        }
+                                    }
+
+                                }
+                        ).
                         flatMap(
                                 id -> {
                                     Utility.log(TAG, "Form ID:" + id);
-                                    Utility.renameImage("temp_front.jpg",id+"_front.jpg",getApplication());
+                                    Utility.renameImage("temp_"+Constant.IMAGE_TYPE_FRONT+".jpg",id+"_"+Constant.IMAGE_TYPE_FRONT+".jpg",getApplication());
                                     return Single.just(id);
 
                                 }
                         ).
                         flatMap(
                                 id -> {
-                                    Utility.renameImage("temp_left.jpg",id+"_left.jpg",getApplication());
+                                    Utility.renameImage("temp_"+Constant.IMAGE_TYPE_LEFT+".jpg",id+"_"+Constant.IMAGE_TYPE_LEFT+".jpg",getApplication());
                                     return Single.just(id);
 
                                 }
                         ).
                         flatMap(
                                 id -> {
-                                    Utility.renameImage("temp_right.jpg",id+"_right.jpg",getApplication());
+                                    Utility.renameImage("temp_"+Constant.IMAGE_TYPE_RIGHT+".jpg",id+"_"+Constant.IMAGE_TYPE_RIGHT+".jpg",getApplication());
                                     return Single.just(id);
 
                                 }
                         ).
                         flatMap(
                                 id -> {
-                                    Utility.renameImage("temp_entry.jpg",id+"_entry.jpg",getApplication());
-                                    return repo_formType_1.getFormByTempleId(id);
+                                    Utility.renameImage("temp_"+Constant.IMAGE_TYPE_ENTRY+".jpg",id+"_"+Constant.IMAGE_TYPE_ENTRY+".jpg",getApplication());
+                                    return repo_formType_1.getFormById(id);
 
                                 }
                         ).
@@ -515,7 +549,10 @@ public class FormType1_ViewModel extends AndroidViewModel {
                         observeOn(AndroidSchedulers.mainThread()).
                         subscribe(
                                 temple -> addedFormMutableLivedata.setValue(temple),
-                                throwable -> Utility.log(TAG, throwable.getMessage())
+                                throwable -> {
+                                    Utility.log(TAG, throwable.getMessage());
+                                    Utility.showToast(throwable.getMessage(),Toast.LENGTH_SHORT,getApplication());
+                                }
                         )
         );
 
@@ -542,7 +579,9 @@ public class FormType1_ViewModel extends AndroidViewModel {
     public void onSubmitClick(View view) {
         Utility.log(TAG, "onSubmitClick()");
         if(isValid()){
-
+            Utility.showToast("Submitting...",Toast.LENGTH_LONG,getApplication());
+            requestScreenLockMutableLiveData.setValue(true);
+            progressSubmitting.set(View.VISIBLE);
             saveBeforeSubmit();
 
         }
@@ -555,48 +594,58 @@ public class FormType1_ViewModel extends AndroidViewModel {
                         flatMap(
                                 id -> {
                                     Utility.log(TAG, "Form ID:" + id);
-                                    Utility.renameImage("temp_front.jpg",id+"_front.jpg",getApplication());
+                                    Utility.renameImage("temp_"+Constant.IMAGE_TYPE_FRONT+".jpg",id+"_"+Constant.IMAGE_TYPE_FRONT+".jpg",getApplication());
                                     return Single.just(id);
 
                                 }
                         ).
                         flatMap(
                                 id -> {
-                                    Utility.renameImage("temp_left.jpg",id+"_left.jpg",getApplication());
+                                    Utility.renameImage("temp_"+Constant.IMAGE_TYPE_LEFT+".jpg",id+"_"+Constant.IMAGE_TYPE_LEFT+".jpg",getApplication());
                                     return Single.just(id);
 
                                 }
                         ).
                         flatMap(
                                 id -> {
-                                    Utility.renameImage("temp_right.jpg",id+"_right.jpg",getApplication());
+                                    Utility.renameImage("temp_"+Constant.IMAGE_TYPE_RIGHT+".jpg",id+"_"+Constant.IMAGE_TYPE_RIGHT+".jpg",getApplication());
                                     return Single.just(id);
 
                                 }
                         ).
                         flatMap(
                                 id -> {
-                                    Utility.renameImage("temp_entry.jpg",id+"_entry.jpg",getApplication());
-                                    return repo_formType_1.getFormByTempleId(id);
+                                    Utility.renameImage("temp_"+Constant.IMAGE_TYPE_ENTRY+".jpg",id+"_"+Constant.IMAGE_TYPE_ENTRY+".jpg",getApplication());
+                                    return Single.just(id);
 
                                 }
                         ).
                         subscribeOn(Schedulers.io()).
                         observeOn(AndroidSchedulers.mainThread()).
                         subscribe(
-                                formType1 -> submitTemple(formType1),
-                                throwable -> Utility.log(TAG, throwable.getMessage())
+                                id -> {
+                                    formType_1.id = id.intValue();
+                                    submitTemple();
+                                },
+                                throwable -> {
+                                    Utility.log(TAG, throwable.getMessage());
+                                    Utility.showToast(throwable.getMessage(),Toast.LENGTH_SHORT,getApplication());
+                                    requestScreenLockMutableLiveData.setValue(false);
+                                    progressSubmitting.set(View.GONE);
+
+
+                                }
                         )
         );
 
     }
 
-    private void submitTemple(FormType_1 formType1) {
+    private void submitTemple() {
         MultipartBody.Part frontImgPart=null,leftImgPart=null,rightImgPart=null,entryImgPart=null;
 
 
         try {
-            File frontImgFile = Utility.getLocalImageFile(getApplication(),Constant.IMAGE_TYPE_FRONT,formType1.id);
+            File frontImgFile = Utility.getLocalImageFile(getApplication(),Constant.IMAGE_TYPE_FRONT,formType_1.id);
             RequestBody frontFileReq = RequestBody.create(MediaType.parse("image/*"),frontImgFile);
 
             frontImgPart = MultipartBody.Part.createFormData("img1",
@@ -606,7 +655,7 @@ public class FormType1_ViewModel extends AndroidViewModel {
             e.printStackTrace();
         }
         try {
-            File leftImgFile = Utility.getLocalImageFile(getApplication(),Constant.IMAGE_TYPE_LEFT,formType1.id);
+            File leftImgFile = Utility.getLocalImageFile(getApplication(),Constant.IMAGE_TYPE_LEFT,formType_1.id);
             RequestBody leftFileReq = RequestBody.create(MediaType.parse("image/*"),leftImgFile);
 
             leftImgPart = MultipartBody.Part.createFormData("img2",
@@ -616,7 +665,7 @@ public class FormType1_ViewModel extends AndroidViewModel {
             e.printStackTrace();
         }
         try {
-            File rightImgFile = Utility.getLocalImageFile(getApplication(),Constant.IMAGE_TYPE_RIGHT,formType1.id);
+            File rightImgFile = Utility.getLocalImageFile(getApplication(),Constant.IMAGE_TYPE_RIGHT,formType_1.id);
             RequestBody rightFileReq = RequestBody.create(MediaType.parse("image/*"),rightImgFile);
 
             rightImgPart = MultipartBody.Part.createFormData("img3",
@@ -626,7 +675,7 @@ public class FormType1_ViewModel extends AndroidViewModel {
             e.printStackTrace();
         }
         try {
-            File entryImgFile = Utility.getLocalImageFile(getApplication(),Constant.IMAGE_TYPE_ENTRY,formType1.id);
+            File entryImgFile = Utility.getLocalImageFile(getApplication(),Constant.IMAGE_TYPE_ENTRY,formType_1.id);
             RequestBody entryFileReq = RequestBody.create(MediaType.parse("image/*"),entryImgFile);
 
             entryImgPart = MultipartBody.Part.createFormData("img4",
@@ -637,17 +686,16 @@ public class FormType1_ViewModel extends AndroidViewModel {
         }
 
 
-
         disposable.add(
 
-                repo_server.apiService.addTemple(formType1,frontImgPart,leftImgPart,rightImgPart,entryImgPart)
+                repo_server.apiService.addTemple(formType_1,frontImgPart,leftImgPart,rightImgPart,entryImgPart)
                         .flatMap(
                              baseResponse -> {
 
                                  Utility.log(TAG,"Success:"+baseResponse.getSuccess());
                                  if(baseResponse.getSuccess() == 1){
-                                     Utility.deleteImagesById(getApplication(),formType1.id);
-                                     return repo_formType_1.deleteFormById(formType1.id).toObservable();
+                                     Utility.deleteImagesById_Form1(getApplication(),formType_1.id);
+                                     return repo_formType_1.deleteFormById(formType_1.id).toObservable();
 
                                  }else{
                                      throw new Exception(baseResponse.getMsg());
@@ -662,13 +710,17 @@ public class FormType1_ViewModel extends AndroidViewModel {
                                 value -> {
 
                                     Utility.log(TAG,"onNext..Success:"+value);
+                                    requestScreenLockMutableLiveData.setValue(false);
+                                    progressSubmitting.set(View.GONE);
                                     submitResponseMutableLiveData.setValue(value);
 
 
                                 },
                                 throwable -> {
                                     Utility.log(TAG,throwable.getMessage());
-                                    Utility.showToast(throwable.getMessage(),Toast.LENGTH_SHORT,getApplication());
+                                    Utility.showToast("Saved Locally"+"\n"+throwable.getMessage(),Toast.LENGTH_LONG,getApplication());
+                                    requestScreenLockMutableLiveData.setValue(false);
+                                    progressSubmitting.set(View.GONE);
 
                                 },
                                 () -> {
@@ -714,6 +766,7 @@ public class FormType1_ViewModel extends AndroidViewModel {
 
     public void onNextFormsClick(View view){
         Utility.log(TAG, "onNextFormsClick()");
+        nextFormsMutableLiveData.setValue(true);
 
     }
 
@@ -747,7 +800,7 @@ public class FormType1_ViewModel extends AndroidViewModel {
     }
 
     public void setImageOnImageView(int req){
-        try {
+
 
             //Compress the image in background thread using RxJava
             disposable.add(
@@ -755,6 +808,7 @@ public class FormType1_ViewModel extends AndroidViewModel {
                     Observable.fromCallable(
                                 ()->{
                                     Bitmap out = Utility.rotateImageWithPath(fileUri.getPath());
+
 
                                     File file = Utility.getMediaFile(getApplication(),req);
                                     FileOutputStream fOut = new FileOutputStream(file);
@@ -793,31 +847,48 @@ public class FormType1_ViewModel extends AndroidViewModel {
 
                                         }
 
+                                    },
+                                    throwable -> {
+                                        Utility.showToast(throwable.getMessage(),Toast.LENGTH_LONG,getApplication());
                                     }
 
                             )
             );
 
-        } catch (OutOfMemoryError outOfMemoryError) {
-            Utility.showToast("Out of Memory.Restart App",Toast.LENGTH_LONG,getApplication());
-        } catch (Exception e) {
-            Utility.showToast("Failed to Capture",Toast.LENGTH_LONG,getApplication());
-        }
 
     }
 
+    @SuppressLint("MissingPermission")
     public void getCurrentLocation() {
 
-        markerVisibility.set(View.GONE);
-        progressVisibility.set(View.VISIBLE);
+        /*threadCurrentLocation.start();*/
 
-        threadCurrentLocation.start();
+        locDisposable = rxLocation.location().updates(locationRequest)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        location -> {
+                            Utility.log(TAG,"Thread onNext:"+Thread.currentThread().getName());
+                            Utility.log(TAG,"Loc Received:"+location.getLatitude()+" / "+location.getLongitude());
+                            locDisposable.dispose();
+                            markerVisibility.set(View.VISIBLE);
+                            progressVisibility.set(View.GONE);
 
+                            formType_1.setLatitude(location.getLatitude());
+                            formType_1.setLongitude(location.getLongitude());
 
+                        },
+                        throwable -> {},
+                        () -> {},
+                        dsposable -> {
+                            markerVisibility.set(View.GONE);
+                            progressVisibility.set(View.VISIBLE);
+                        }
+                );
 
     }
 
-    public void setUpLocationBroadcastReceiver() {
+/*    public void setUpLocationBroadcastReceiver() {
         Utility.log(TAG,"setUpLocationBroadcastReceiver()");
 
         locationBroadCastReceiver = new BroadcastReceiver() {
@@ -838,11 +909,11 @@ public class FormType1_ViewModel extends AndroidViewModel {
                 formType_1.setLongitude(longitude);
 
                 //Observing entire Object
-                /*formType_1.latitude = latitude;
+                *//*formType_1.latitude = latitude;
                 formType_1.longitude = longitude;
 
                 formType_1ObservableField.set(formType_1);
-                formType_1ObservableField.notifyChange();*/
+                formType_1ObservableField.notifyChange();*//*
 
 
 
@@ -852,9 +923,9 @@ public class FormType1_ViewModel extends AndroidViewModel {
         IntentFilter filter = new IntentFilter();
         filter.addAction(Constant.BROADCAST_INTENT_FORM_TYPE_1_ACTIVITY);
         getApplication().registerReceiver(locationBroadCastReceiver, filter);
-    }
+    }*/
 
-    public void unRegisterReceiver(){
+    /*public void unRegisterReceiver(){
         Utility.log(TAG,"unRegisterReceiver()");
         getApplication().unregisterReceiver(locationBroadCastReceiver);
 
@@ -862,7 +933,7 @@ public class FormType1_ViewModel extends AndroidViewModel {
 //            threadCurrentLocation.interrupt();
 
 
-    }
+    }*/
 
 
     @Override
@@ -870,6 +941,10 @@ public class FormType1_ViewModel extends AndroidViewModel {
         //super.onCleared();
         Utility.log(TAG,"onCleared()");
         disposable.clear();
+        if(locDisposable != null){
+            locDisposable.dispose();
+        }
+        super.onCleared();
         //getApplication().unregisterReceiver(locationBroadCastReceiver);
 
     }

@@ -13,7 +13,7 @@ public class Convertor {
     }
 
     public static double stringToDouble(String value){
-        if(value.equals("")){
+        if(value.trim().equals("")){
             return 0.0;
         }else{
             return Double.parseDouble(value);

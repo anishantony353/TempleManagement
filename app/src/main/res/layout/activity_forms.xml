@@ -7,7 +7,7 @@
 
         <variable
             name="vm"
-            type="com.saarit.temple_management.templemanagement.view_model.FormsViewModel"/>
+            type="com.saarit.temple_management.templemanagement.view_model.not_in_use.FormsViewModel"/>
     </data>
 
 
@@ -35,7 +35,7 @@
                 android:id="@+id/RV_forms"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:adapter_forms="@{vm.getAdapter()}"/>
+                />
 
             <ProgressBar
                 android:id="@+id/PB_progress"

@@ -8,6 +8,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.media.ExifInterface;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
@@ -85,23 +87,29 @@ public class Utility {
             }
         }
 
-
         File imgFile;
         String fileName = "";
         switch(requestType){
             case Constant.REQUEST_CODE_TAKE_FRONT_IMAGE:
-                fileName = "temp_front.jpg";
+                fileName = "temp_"+Constant.IMAGE_TYPE_FRONT+".jpg";
                 break;
 
             case Constant.REQUEST_CODE_TAKE_LEFT_IMAGE:
-                fileName = "temp_left.jpg";
+                fileName = "temp_"+Constant.IMAGE_TYPE_LEFT+".jpg";
                 break;
             case Constant.REQUEST_CODE_TAKE_RIGHT_IMAGE:
-                fileName = "temp_right.jpg";
+                fileName = "temp_"+Constant.IMAGE_TYPE_RIGHT+".jpg";
                 break;
 
             case Constant.REQUEST_CODE_TAKE_ENTRY_IMAGE:
-                fileName = "temp_entry.jpg";
+                fileName = "temp_"+Constant.IMAGE_TYPE_ENTRY+".jpg";
+                break;
+            case Constant.REQUEST_CODE_TAKE_CUSTOM_1_IMAGE:
+                fileName = "temp_"+Constant.IMAGE_TYPE_CUSTOM_1+".jpg";
+                break;
+
+            case Constant.REQUEST_CODE_TAKE_CUSTOM_2_IMAGE:
+                fileName = "temp_"+Constant.IMAGE_TYPE_CUSTOM_2+".jpg";
                 break;
 
         }
@@ -172,55 +180,88 @@ public class Utility {
         return value;
     }
 
-    public static void deleteTempImages(Context context){
+    public static void deleteTempImages_Form1(Context context){
 
         File imgDir = new File(context.getExternalFilesDir(Environment.DIRECTORY_PICTURES), "temple_management");
 
-        File tempFront = new File(imgDir, "temp_front.jpg");
+        File tempFront = new File(imgDir, "temp_"+Constant.IMAGE_TYPE_FRONT+".jpg");
         if (tempFront.exists()) {
             tempFront.delete();
         }
 
-        File tempLeft = new File(imgDir, "temp_left.jpg");
+        File tempLeft = new File(imgDir, "temp_"+Constant.IMAGE_TYPE_LEFT+".jpg");
         if (tempLeft.exists()) {
             tempLeft.delete();
         }
 
-        File tempRight = new File(imgDir, "temp_right.jpg");
+        File tempRight = new File(imgDir, "temp_"+Constant.IMAGE_TYPE_RIGHT+".jpg");
         if (tempRight.exists()) {
             tempRight.delete();
         }
 
-        File tempEntry = new File(imgDir, "temp_entry.jpg");
+        File tempEntry = new File(imgDir, "temp_"+Constant.IMAGE_TYPE_ENTRY+".jpg");
         if (tempEntry.exists()) {
             tempEntry.delete();
         }
 
     }
 
-    public static void deleteImagesById(Context context,int id){
+    public static void deleteTempImages_Form2(Context context){
 
         File imgDir = new File(context.getExternalFilesDir(Environment.DIRECTORY_PICTURES), "temple_management");
 
-        File imgFront = new File(imgDir, id+"_front.jpg");
+        File tempCustom1 = new File(imgDir, "temp_"+Constant.IMAGE_TYPE_CUSTOM_1+".jpg");
+        if (tempCustom1.exists()) {
+            tempCustom1.delete();
+        }
+
+        File tempCustom2 = new File(imgDir, "temp_"+Constant.IMAGE_TYPE_CUSTOM_2+".jpg");
+        if (tempCustom2.exists()) {
+            tempCustom2.delete();
+        }
+
+    }
+
+    public static void deleteImagesById_Form1(Context context, int id){
+
+        File imgDir = new File(context.getExternalFilesDir(Environment.DIRECTORY_PICTURES), "temple_management");
+
+        File imgFront = new File(imgDir, id+"_"+Constant.IMAGE_TYPE_FRONT+".jpg");
         if (imgFront.exists()) {
             imgFront.delete();
         }
 
-        File imgLeft = new File(imgDir, id+"_left.jpg");
+        File imgLeft = new File(imgDir, id+"_"+Constant.IMAGE_TYPE_LEFT+".jpg");
         if (imgLeft.exists()) {
             imgLeft.delete();
         }
 
-        File imgRight = new File(imgDir, id+"_right.jpg");
+        File imgRight = new File(imgDir, id+"_"+Constant.IMAGE_TYPE_RIGHT+".jpg");
         if (imgRight.exists()) {
             imgRight.delete();
         }
 
-        File imgEntry = new File(imgDir, id+"_entry.jpg");
+        File imgEntry = new File(imgDir, id+"_"+Constant.IMAGE_TYPE_ENTRY+".jpg");
         if (imgEntry.exists()) {
             imgEntry.delete();
         }
+
+    }
+
+    public static void deleteImagesById_Form2(Context context, int id){
+
+        File imgDir = new File(context.getExternalFilesDir(Environment.DIRECTORY_PICTURES), "temple_management");
+
+        File imgCustom1 = new File(imgDir, id+"_"+Constant.IMAGE_TYPE_CUSTOM_1+".jpg");
+        if (imgCustom1.exists()) {
+            imgCustom1.delete();
+        }
+
+        File imgCustom2 = new File(imgDir, id+"_"+Constant.IMAGE_TYPE_CUSTOM_2+".jpg");
+        if (imgCustom2.exists()) {
+            imgCustom2.delete();
+        }
+
 
     }
 
@@ -263,5 +304,30 @@ public class Utility {
 
 
         return imgFile;
+    }
+
+    public static String formatDate(int year,int month,int day){
+        String date = "";
+
+        String monthString = String.valueOf(month);
+        if (monthString.length() == 1) {
+            monthString = "0" + monthString;
+        }
+
+        String dayString = String.valueOf(day);
+        if (dayString.length() == 1) {
+            dayString = "0" + dayString;
+        }
+
+        date = year+"-"+monthString+"-"+dayString;
+
+        return date;
+    }
+
+    public static boolean isNetworkAvailable(Context context) {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 }

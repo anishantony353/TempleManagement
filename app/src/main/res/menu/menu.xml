@@ -47,6 +47,11 @@
         android:title="Clear Local temples"
         app:showAsAction="never"
         ></item>
+    <item
+        android:id="@+id/action_createUser"
+        android:title="Create User"
+        app:showAsAction="never"
+        ></item>
 
 
 </menu>

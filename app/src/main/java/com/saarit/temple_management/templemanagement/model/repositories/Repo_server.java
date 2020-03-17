@@ -1,11 +1,14 @@
 package com.saarit.temple_management.templemanagement.model.repositories;
 
+import com.saarit.temple_management.templemanagement.model.repositories.server_storage.ApiService;
+import com.saarit.temple_management.templemanagement.model.repositories.server_storage.ApiServiceProvider;
+
 public class Repo_server {
 
     String TAG = Repo_server.class.getSimpleName();
 
     public static Repo_server instance;
-    public static ApiService apiService;
+    public ApiService apiService;
 
     public Repo_server(){
 
@@ -21,5 +24,6 @@ public class Repo_server {
 
         return instance;
     }
+
 
 }

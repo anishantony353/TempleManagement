@@ -6,7 +6,7 @@
 
         <variable
             name="vm"
-            type="com.saarit.temple_management.templemanagement.view_model.SavedListViewModel"/>
+            type="com.saarit.temple_management.templemanagement.view_model.not_in_use.SavedListViewModel"/>
 
     </data>
 

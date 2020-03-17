@@ -734,6 +734,59 @@
 
 
                 </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="2"
+                        android:text="Contact Name"
+                        android:textColor="@color/white" />
+
+                    <EditText
+                        style="@style/MyEditTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:hint="Contact Name"
+                        android:text="@={viewmodel.formType_1ObservableField.contact_name}" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="2"
+                        android:text="Contact Number"
+                        android:textColor="@color/white" />
+
+                    <EditText
+                        style="@style/MyEditTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:hint="Contact Number"
+                        android:text="@={viewmodel.formType_1ObservableField.contact_number}" />
+
+
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -870,6 +923,13 @@
             <!--app:visibility="@{viewmodel.reqType}"/>-->
 
         </LinearLayout>
+
+        <ProgressBar
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerInParent="true"
+            android:visibility="@{viewmodel.progressSubmitting}"
+            />
 
 
     </RelativeLayout>

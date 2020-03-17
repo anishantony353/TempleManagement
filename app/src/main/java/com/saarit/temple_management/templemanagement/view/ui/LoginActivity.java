@@ -3,6 +3,9 @@ package com.saarit.temple_management.templemanagement.view.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.WindowManager;
+import android.widget.Toast;
+
 import com.saarit.temple_management.templemanagement.R;
 import com.saarit.temple_management.templemanagement.databinding.ActivityLoginBinding;
 import com.saarit.temple_management.templemanagement.util.Utility;
@@ -23,6 +26,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Utility.log(TAG,"After onCreate()....LifeCycle State:"+getLifecycle().getCurrentState().name());
         //setContentView(R.layout.activity_login);
         setupBindings(savedInstanceState);
 
@@ -39,8 +43,10 @@ public class LoginActivity extends AppCompatActivity {
             viewModel.init();
         }
 
+
         binding.setViewmodel(viewModel);
         setupIsSuccessfullLoginObserver();
+        setupShouldLockScreenObserver();
     }
 
     private void setupIsSuccessfullLoginObserver() {
@@ -51,6 +57,7 @@ public class LoginActivity extends AppCompatActivity {
                 successOrFailure-> {
 
                         Utility.log(TAG,"onChanged()");
+                        Utility.log(TAG,"From onObserveLiveData....LifeCycle State:"+getLifecycle().getCurrentState().name());
 
                         if(successOrFailure != null){
                             Utility.log(TAG,"SuccessOrFailure: NOT NULL");
@@ -64,6 +71,7 @@ public class LoginActivity extends AppCompatActivity {
 
                                     case 0:
                                         Utility.log(TAG,"Success:0");
+                                        Utility.showToast(successOrFailure.getMsg(),Toast.LENGTH_LONG,getApplication());
 
                                         //Toast here
 
@@ -74,9 +82,69 @@ public class LoginActivity extends AppCompatActivity {
                             Utility.log(TAG,"SuccessOrFailure:NULL");
 
                         }
-
             }
         );
 
+    }
+
+    private void setupShouldLockScreenObserver(){
+        viewModel.observeLockScreenRequest().observe(
+                this,
+                shouldLock->{
+                    if(shouldLock){
+                        Utility.log(TAG,"Locking Screen...");
+                        lockScreen();
+                    }else{
+                        Utility.log(TAG,"UnLocking Screen...");
+                        unlockScreen();
+                    }
+                }
+                );
+    }
+
+    private void lockScreen(){
+        getWindow().setFlags(
+                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+    }
+
+    private void unlockScreen(){
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Utility.log(TAG,"From onResume()....LifeCycle State:"+getLifecycle().getCurrentState().name());
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Utility.log(TAG,"From onPause()....LifeCycle State:"+getLifecycle().getCurrentState().name());
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Utility.log(TAG,"From onStop()....LifeCycle State:"+getLifecycle().getCurrentState().name());
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Utility.log(TAG,"From onDestroy()....LifeCycle State:"+getLifecycle().getCurrentState().name());
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Utility.log(TAG,"From onStart()....LifeCycle State:"+getLifecycle().getCurrentState().name());
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Utility.log(TAG,"From onRestart()....LifeCycle State:"+getLifecycle().getCurrentState().name());
     }
 }

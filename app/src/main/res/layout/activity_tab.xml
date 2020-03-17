@@ -6,7 +6,7 @@
 
         <variable
             name="adapter"
-            type="com.saarit.temple_management.templemanagement.view.adapters.TabAdapter"/>
+            type="com.saarit.temple_management.templemanagement.view.adapters.not_in_use.TabAdapter"/>
 
     </data>
 

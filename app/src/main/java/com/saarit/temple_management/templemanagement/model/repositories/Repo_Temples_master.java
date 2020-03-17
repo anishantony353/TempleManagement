@@ -3,6 +3,8 @@ package com.saarit.temple_management.templemanagement.model.repositories;
 import android.content.Context;
 
 import com.saarit.temple_management.templemanagement.model.Temple_master;
+import com.saarit.temple_management.templemanagement.model.repositories.local_storage.AppDatabase;
+import com.saarit.temple_management.templemanagement.model.repositories.local_storage.Temples_master_Dao;
 import com.saarit.temple_management.templemanagement.util.Utility;
 
 import java.util.List;
@@ -33,6 +35,10 @@ public class Repo_Temples_master {
     }
 
 
+    public Single<List<Temple_master>> getTemplesForSelection(int templeId){
+        return dao.getTemplesForSelection(templeId);
+    }
+
     public Single<List<Temple_master>> getTemples(){
         return dao.getTemples();
     }
@@ -41,11 +47,5 @@ public class Repo_Temples_master {
         Utility.log(TAG,"About to Insert List");
         return dao.insertTemples(temples);
     }
-
-
-
-
-
-
 
 }

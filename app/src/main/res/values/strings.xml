@@ -1,7 +1,35 @@
 <resources>
-    <string name="app_name">TM V1.0</string>
+    <string name="app_name">tm_demo1.2</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="form_types">
+        <item>Form 2</item>
+        <item>Form 3a</item>
+        <item>Form 3b(1)</item>
+        <item>Form 3b(2)</item>
+        <item>Form 4</item>
+        <item>Form 5</item>
+    </string-array>
+
+    <string-array name="land_documents_a">
+        <item>Select</item>
+        <item>Mountain</item>
+        <item>Forest</item>
+    </string-array>
+
+    <string-array name="land_documents_b">
+        <item>Select</item>
+        <item>Fertile</item>
+        <item>Garden</item>
+        <item>Jirayat</item>
+        <item>Horticulture</item>
+    </string-array>
+
+    <string-array name="user_types">
+        <item>Select</item>
+        <item>Surveyor</item>
+    </string-array>
 
 </resources>

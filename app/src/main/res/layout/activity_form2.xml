@@ -1,95 +1,1092 @@
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="com.saarit.temple_management.templemanagement.view_model.FormType2_ViewModel" />
+
+        <import type="com.saarit.temple_management.templemanagement.util.Constant" />
+        <import type="com.saarit.temple_management.templemanagement.binding.Convertor" />
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/saffron"
+        android:padding="5dp">
+
+        <LinearLayout
+            android:id="@+id/LL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Form Type"
+                    android:textColor="@color/white"
+
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/background_green_rectangle"
+                    android:padding="5dp"
+                    android:text="2"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:padding="5dp"
+                    android:text="@{viewmodel.local_server_new_ObservableField}"
+                    android:textColor="@color/white"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
 
 
+            </LinearLayout>
 
-        <RelativeLayout
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Temple Id"
+                    android:textColor="@color/white"
+
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/background_green_rectangle"
+                    android:padding="5dp"
+
+                    android:text="@{Convertor.intToString(viewmodel.formType_2ObservableField.get().temple_id)}"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/SV"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="5dp"
-            android:background="@color/saffron"
-            >
+            android:layout_above="@+id/actions"
+            android:layout_below="@+id/LL"
+            android:layout_marginTop="10dp"
+            android:padding="5dp">
+
             <LinearLayout
-                android:id="@+id/LL"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="2">
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingBottom="10dp">
 
                 <LinearLayout
-                    android:id="@+id/LL_form_type"
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginRight="5dp"
-                    android:orientation="vertical">
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
 
                     <TextView
-                        android:id="@+id/TV_form_type"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:textColor="@color/white"
-
-                        android:textSize="15sp"
-                        android:text="Form Type"
-                        />
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="2"
+                        android:text="Temple Name"
+                        android:textColor="@color/white" />
 
                     <TextView
-                        android:id="@+id/TV_form_type_value"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:textColor="@color/white"
-                        android:background="@drawable/background_green_rectangle"
-                        android:padding="5dp"
 
-                        android:layout_marginTop="5dp"
-                        android:layout_marginBottom="5dp"
-                        android:textSize="20sp"
-                        android:text="2"
+                        style="@style/MyEditTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:hint="Temple Name"
+                        android:text="@{viewmodel.formType_2ObservableField.get().temple_name}"
+
                         />
 
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="2"
+                        android:text="Village"
+                        android:textColor="@color/white" />
+
+                    <TextView
+
+                        style="@style/MyEditTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:hint="Village"
+                        android:text="@{viewmodel.formType_2ObservableField.get().village_name}" />
 
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/LL_form_no"
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="2"
+                        android:text="Taluka"
+                        android:textColor="@color/white" />
+
+                    <TextView
+                        style="@style/MyEditTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:hint="Taluka"
+                        android:text="@{viewmodel.formType_2ObservableField.get().taluka_name}" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="2"
+                        android:text="District"
+                        android:textColor="@color/white" />
+
+                    <TextView
+
+                        style="@style/MyEditTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:hint="District"
+                        android:text="@{viewmodel.formType_2ObservableField.get().district_name}"
+
+                        />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="2"
+                        android:text="Devasthan Survey Report Notification No"
+                        android:textColor="@color/white" />
+
+                    <EditText
+
+                        style="@style/MyEditTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:hint="Devasthan Survey Report Notification No"
+                        android:text="@={viewmodel.formType_2ObservableField.get().survey_report_notification_no}"
+
+                        />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="2"
+                        android:text="Registration No"
+                        android:textColor="@color/white" />
+
+                    <EditText
+                        style="@style/MyEditTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:hint="Registration No"
+                        android:text="@={viewmodel.formType_2ObservableField.get().registration_no}"
+
+                        />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="2"
+                        android:text="Origin/Establishment/History"
+                        android:textColor="@color/white" />
+
+                    <EditText
+
+                        style="@style/MyEditTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:hint="Origin/Establishment/History"
+                        android:text="@={viewmodel.formType_2ObservableField.get().origin_establishment_history}"
+
+                        />
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@color/white"/>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="2"
+                        android:text="Custom/Tradition/Festival"
+                        android:textColor="@color/white" />
+
+                    <EditText
+
+                        style="@style/MyEditTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:hint="Custom/Tradition/Festival"
+                        android:text="@={viewmodel.formType_2ObservableField.get().custom_tradition_festival}"
+
+                        />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:text="GET Image 1"
+                        android:onClick="@{viewmodel::onCustom1BtnClick}"/>
+
+                    <ImageView
+                        android:layout_width="250dp"
+                        android:layout_height="300dp"
+                        android:layout_gravity="center"
+                        android:src="@color/grey"
+                        app:setImgOnImageView="@{viewmodel.custom1ImgObservableField}"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:text="GET Image 2"
+                        android:onClick="@{viewmodel::onCustom2BtnClick}"/>
+
+                    <ImageView
+                        android:layout_width="250dp"
+                        android:layout_height="300dp"
+                        android:layout_gravity="center"
+                        android:src="@color/grey"
+                        app:setImgOnImageView="@{viewmodel.custom2ImgObservableField}"
+                         />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@color/white"/>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="2"
+                        android:text="Village Population"
+                        android:textColor="@color/white" />
+
+                    <EditText
+
+                        style="@style/MyEditTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:hint="Village Population"
+                        android:text="@={viewmodel.formType_2ObservableField.get().village_population}"
+
+                        />
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@color/white"/>
+
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="400dp"
+
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
                     android:orientation="vertical"
-                    android:gravity="right"
                     >
 
                     <TextView
-                        android:id="@+id/TV_form"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textStyle="bold"
+                        android:layout_gravity="center_horizontal"
+                        android:text="Festival Of Devasthan"
                         android:textColor="@color/white"
+                        android:textSize="20sp" />
 
-                        android:textSize="15sp"
-                        android:text="Form No"
-                        />
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="right"
+                            android:layout_margin="5dp"
+                            android:src="@drawable/add_feild_icon"
+                            android:onClick="@{()->viewmodel.onAddClick(Constant.CLICK_FESTIVAL)}"/>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:adapter_recyclerView="@{viewmodel.festivalsAdapterObservableField}"
+                            />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@color/white"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
 
                     <TextView
-                        android:id="@+id/TV_form_value"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:textColor="@color/white"
-                        android:background="@drawable/background_green_rectangle"
-                        android:padding="5dp"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="2"
+                        android:text="Poojari Name"
+                        android:textColor="@color/white" />
 
-                        android:layout_marginTop="5dp"
-                        android:layout_marginBottom="5dp"
-                        android:textSize="20sp"
-                        android:text="A47851"
+                    <EditText
+                        style="@style/MyEditTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:hint="Poojari Name"
+                        android:text="@={viewmodel.formType_2ObservableField.get().poojari_name}"
+
                         />
 
 
+                </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="2"
+                        android:text="Poojari Address"
+                        android:textColor="@color/white" />
+
+                    <EditText
+                        style="@style/MyEditTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:hint="Poojari Address"
+                        android:text="@={viewmodel.formType_2ObservableField.get().poojari_address}"
+
+                        />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="2"
+                        android:text="Poojari Contact No"
+                        android:textColor="@color/white" />
+
+                    <EditText
+                        style="@style/MyEditTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:hint="Poojari Contact No"
+                        android:text="@={viewmodel.formType_2ObservableField.get().poojari_contact_no}"
+
+                        />
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@color/white"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="5">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="4"
+                            android:text="Is worship done by different houses"
+                            android:textColor="@color/white"
+                            android:textSize="20sp" />
+                        <androidx.appcompat.widget.SwitchCompat
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:onCheckedChanged="@{(view,value)->viewmodel.onSwitchCheckedChange(view,value,Constant.SWITCH_WORSHIPING_HOUSE)}"
+                            android:checked="@={viewmodel.formType_2ObservableField.get().is_worship_different_houses}"
+                            
+                            />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="400dp"
+                        android:orientation="vertical"
+                        android:visibility="@{viewmodel.visibility_layout_worshipingHouses}">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="right"
+                            android:layout_margin="5dp"
+                            android:src="@drawable/add_feild_icon"
+                            android:onClick="@{()->viewmodel.onAddClick(Constant.CLICK_WORSHIPING_HOUSE)}"/>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:adapter_recyclerView="@{viewmodel.worshipingHouseAdapterObservableField}"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@color/white"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="400dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="Work of Poojari"
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="right"
+                        android:layout_margin="5dp"
+                        android:src="@drawable/add_feild_icon"
+                        android:onClick="@{()->viewmodel.onAddClick(Constant.CLICK_POOJARI_WORK)}"/>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:adapter_recyclerView="@{viewmodel.poojariWorkAdapterObservableField}"/>
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@color/white"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="2"
+                        android:text="Poojari's Income"
+                        android:textColor="@color/white" />
+
+                    <EditText
+                        style="@style/MyEditTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:hint="Poojari's Income"
+                        android:inputType="numberDecimal"
+                        android:text="@={Convertor.doubleToString(viewmodel.formType_2ObservableField.get().poojari_income)}"
+                        />
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@color/white"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:text="Is Officer Available"
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:onCheckedChanged="@{(view,value)->viewmodel.onSwitchCheckedChange(view,value,Constant.SWITCH_OFFICER_AVAILABLE)}"
+                        android:checked="@={viewmodel.formType_2ObservableField.get().is_officer_available}"/>
+                </LinearLayout>
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@color/white"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="5">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="4"
+                            android:text="Respected person Available"
+                            android:textColor="@color/white"
+                            android:textSize="20sp" />
+                        <androidx.appcompat.widget.SwitchCompat
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:onCheckedChanged="@{(view,value)->viewmodel.onSwitchCheckedChange(view,value,Constant.SWITCH_RESPECTED_PERSON_AVAILABLE)}"
+                            android:checked="@={viewmodel.formType_2ObservableField.get().is_respected_person_available}"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="400dp"
+                        android:orientation="vertical"
+                        android:visibility="@{viewmodel.visibility_layout_respectedPersons}">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="right"
+                            android:layout_margin="5dp"
+                            android:src="@drawable/add_feild_icon"
+                            android:onClick="@{()->viewmodel.onAddClick(Constant.CLICK_RESPECTED_PERSON)}"/>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:adapter_recyclerView="@{viewmodel.respectedPersonAdapterObservableField}"/>
+                    </LinearLayout>
+
+
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@color/white"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="5">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="4"
+                            android:text="Is act of worshiping on a regular basis"
+                            android:textColor="@color/white"
+                            android:textSize="20sp" />
+                        <androidx.appcompat.widget.SwitchCompat
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:onCheckedChanged="@{(view,value)->viewmodel.onSwitchCheckedChange(view,value,Constant.SWITCH_WORSHIPING_REGULAR_BASIS)}"
+                            android:checked="@={viewmodel.formType_2ObservableField.get().is_worshiping_regular_basis}"/>
+                    </LinearLayout>
+
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:orientation="horizontal"
+                        android:weightSum="6"
+                        android:visibility="@{viewmodel.visibility_layout_worshipingProcedure}">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
+                            android:layout_marginRight="20dp"
+                            android:layout_weight="2"
+                            android:text="How the woship is done"
+                            android:textColor="@color/white" />
+
+                        <EditText
+                            style="@style/MyEditTextStyle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="4"
+                            android:hint="How the woship is done"
+                            android:text="@={viewmodel.formType_2ObservableField.get().worshiping_procedure}"
+
+                            />
+
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@color/white"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="5">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="4"
+                            android:text="Type of worshiping"
+                            android:textColor="@color/white"
+                            android:textSize="20sp" />
+                        <androidx.appcompat.widget.SwitchCompat
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:onCheckedChanged="@{(view,value)->viewmodel.onSwitchCheckedChange(view,value,Constant.SWITCH_WORSHIPING_TYPE)}"
+                            android:checked="@={viewmodel.formType_2ObservableField.get().types_of_worshiping}"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="400dp"
+                        android:orientation="vertical"
+                        android:visibility="@{viewmodel.visibility_layout_worshipingTypes}">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="right"
+                            android:layout_margin="5dp"
+                            android:src="@drawable/add_feild_icon"
+                            android:onClick="@{()->viewmodel.onAddClick(Constant.CLICK_WORSHIPING_TYPE)}"/>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:adapter_recyclerView="@{viewmodel.worshipingTypeAdapterObservableField}"/>
+                    </LinearLayout>
+
+
+
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@color/white"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:text="Both gender allowed to worship"
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:onCheckedChanged="@{(view,value)->viewmodel.onSwitchCheckedChange(view,value,Constant.SWITCH_GENDER_ALLOWED_WORSHIPING)}"
+                        android:checked="@={viewmodel.formType_2ObservableField.get().is_both_gender_allowed_to_worship}"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:text="Both gender allowed in premises"
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:onCheckedChanged="@{(view,value)->viewmodel.onSwitchCheckedChange(view,value,Constant.SWITCH_GENDER_ALLOWED_PREMISES)}"
+                        android:checked="@={viewmodel.formType_2ObservableField.get().is_both_gender_allowed_in_premises}"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@color/white"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="5">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="4"
+                            android:text="Is other servicemen available"
+                            android:textColor="@color/white"
+                            android:textSize="20sp" />
+                        <androidx.appcompat.widget.SwitchCompat
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:onCheckedChanged="@{(view,value)->viewmodel.onSwitchCheckedChange(view,value,Constant.SWITCH_OTHER_SERVICES_PRESENT)}"
+                            android:checked="@={viewmodel.formType_2ObservableField.get().is_other_servicemen_available}"/>
+                    </LinearLayout>
+
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:orientation="horizontal"
+                        android:weightSum="6"
+                        android:visibility="@{viewmodel.visibility_layout_otherServicemenWork}">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
+                            android:layout_marginRight="20dp"
+                            android:layout_weight="2"
+                            android:text="Type of work done"
+                            android:textColor="@color/white" />
+
+                        <EditText
+                            style="@style/MyEditTextStyle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="4"
+                            android:hint="Type of work done"
+                            android:text="@={viewmodel.formType_2ObservableField.get().servicemen_work}"
+
+                            />
+
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@color/white"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:text="Is land allocated to them"
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:onCheckedChanged="@{(view,value)->viewmodel.onSwitchCheckedChange(view,value,Constant.SWITCH_LAND_ALLOCATED)}"
+                        android:checked="@={viewmodel.formType_2ObservableField.get().is_land_allocated_to_them}"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:text="Is allocated land utilised"
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:onCheckedChanged="@{(view,value)->viewmodel.onSwitchCheckedChange(view,value,Constant.SWITCH_LAND_ALLOCATED_UTILISED)}"
+                        android:checked="@={viewmodel.formType_2ObservableField.get().is_allocated_land_utilised}"/>
                 </LinearLayout>
 
 
@@ -97,537 +1094,48 @@
             </LinearLayout>
 
 
-                <ScrollView
-                    android:id="@+id/SV"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="5dp"
-                    android:layout_above="@+id/actions"
-                    android:layout_below="@+id/LL"
-                    android:layout_marginTop="10dp"
-                    >
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:weightSum="6"
-                            android:layout_marginBottom="10dp"
-                            >
-
-                            <TextView
-                                android:text="Village"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="2"
-                                android:layout_marginRight="20dp"
-                                android:layout_gravity="bottom"
-                                android:textColor="@color/white"
-                                />
-
-                            <EditText
-
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="4"
-                                android:text=""
-                                android:hint="Village"
-                                style="@style/MyEditTextStyle"
-                                />
-
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:weightSum="6"
-                            android:layout_marginBottom="10dp">
-
-                            <TextView
-                                android:text="Taluka"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="2"
-                                android:layout_marginRight="20dp"
-                                android:layout_gravity="bottom"
-                                android:textColor="@color/white"/>
-
-                            <EditText
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="4"
-                                android:text=""
-                                android:hint="Taluka"
-                                style="@style/MyEditTextStyle"
-                                />
-
-
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:weightSum="6"
-                            android:layout_marginBottom="10dp">
-
-                            <TextView
-                                android:text="District"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="2"
-                                android:layout_marginRight="20dp"
-                                android:layout_gravity="bottom"
-                                android:textColor="@color/white"/>
-
-                            <EditText
-
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="4"
-                                android:text=""
-                                android:hint="District"
-                                style="@style/MyEditTextStyle"
-
-                                />
-
-
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:weightSum="6"
-                            android:layout_marginBottom="10dp">
-
-                            <TextView
-                                android:text="Temple Name"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="2"
-                                android:layout_marginRight="20dp"
-                                android:layout_gravity="bottom"
-                                android:textColor="@color/white"/>
-
-                            <EditText
-
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="4"
-                                android:text=""
-                                android:hint="Temple Name"
-                                style="@style/MyEditTextStyle"
-
-                                />
-
-
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:weightSum="6"
-                            android:layout_marginBottom="10dp">
-
-                            <TextView
-                                android:text="Devasthan Survey Report Notification No"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="2"
-                                android:layout_marginRight="20dp"
-                                android:layout_gravity="bottom"
-                                android:textColor="@color/white"/>
-
-                            <EditText
-
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="4"
-                                android:text=""
-                                android:hint="Devasthan Survey Report Notification No"
-                                style="@style/MyEditTextStyle"
-
-                                />
-
-
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:weightSum="6"
-                            android:layout_marginBottom="10dp">
-
-                            <TextView
-                                android:text="Notification No"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="2"
-                                android:layout_marginRight="20dp"
-                                android:layout_gravity="bottom"
-                                android:textColor="@color/white"/>
-
-                            <EditText
-
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="4"
-                                android:text=""
-                                android:hint="Notification No"
-                                style="@style/MyEditTextStyle"
-
-                                />
-
-
-                        </LinearLayout>
-
-                        <!--<ImageView-->
-                            <!--android:layout_width="50dp"-->
-                            <!--android:layout_height="60dp"-->
-                            <!--android:layout_marginTop="20dp"-->
-                            <!--android:src="@drawable/location_marker"-->
-                            <!--android:layout_gravity="right"/>-->
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:weightSum="6"
-                            android:layout_marginBottom="10dp">
-
-                            <TextView
-                                android:text="Registration No"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="2"
-                                android:layout_marginRight="20dp"
-                                android:layout_gravity="bottom"
-                                android:textColor="@color/white"/>
-
-                            <EditText
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="4"
-                                android:text=""
-                                android:hint="Registration No"
-                                style="@style/MyEditTextStyle"
-
-                                />
-
-
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:weightSum="6"
-                            android:layout_marginBottom="10dp">
-
-                            <TextView
-                                android:text="Devsthan Origin"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="2"
-                                android:layout_marginRight="20dp"
-                                android:layout_gravity="bottom"
-                                android:textColor="@color/white"/>
-
-                            <EditText
-
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="4"
-                                android:text=""
-                                android:hint="Devsthan Origin"
-                                style="@style/MyEditTextStyle"
-
-                                />
-
-
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:weightSum="6"
-                            android:layout_marginBottom="10dp">
-
-                            <TextView
-                                android:text="History of Devsthan"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="2"
-                                android:layout_marginRight="20dp"
-                                android:layout_gravity="bottom"
-                                android:textColor="@color/white"/>
-
-                            <EditText
-
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="4"
-                                android:text=""
-                                android:hint="History of Devsthan"
-                                style="@style/MyEditTextStyle"
-
-                                />
-
-
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:weightSum="6"
-                            android:layout_marginBottom="10dp">
-
-                            <TextView
-                                android:text="Custom Of Devastahan"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="2"
-                                android:layout_marginRight="20dp"
-                                android:layout_gravity="bottom"
-                                android:textColor="@color/white"/>
-
-                            <EditText
-
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="4"
-                                android:text=""
-                                android:hint="Custom Of Devastahan"
-                                style="@style/MyEditTextStyle"
-
-                                />
-
-
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:weightSum="6"
-                            android:layout_marginBottom="10dp">
-
-                            <TextView
-                                android:text="Tradition Of Devasthan"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="2"
-                                android:layout_marginRight="20dp"
-                                android:layout_gravity="bottom"
-                                android:textColor="@color/white"/>
-
-                            <EditText
-
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="4"
-                                android:text=""
-                                android:hint="Tradition Of Devasthan"
-                                style="@style/MyEditTextStyle"
-
-                                />
-
-
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:weightSum="6"
-                            android:layout_marginBottom="10dp">
-
-                            <TextView
-                                android:text="Festival Of Devasthan"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="2"
-                                android:layout_marginRight="20dp"
-                                android:layout_gravity="bottom"
-                                android:textColor="@color/white"/>
-
-                            <EditText
-
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="4"
-                                android:text=""
-                                android:hint="Festival Of Devasthan"
-                                style="@style/MyEditTextStyle"
-
-                                />
-
-
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:weightSum="6"
-                            android:layout_marginBottom="10dp">
-
-                            <TextView
-                                android:text="E.E.E"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="2"
-                                android:layout_marginRight="20dp"
-                                android:layout_gravity="bottom"
-                                android:textColor="@color/white"/>
-
-                            <EditText
-
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="4"
-                                android:text=""
-                                android:hint="E.E.E"
-                                style="@style/MyEditTextStyle"
-
-                                />
-
-
-                        </LinearLayout>
-
-
-
-
-                        <!--<LinearLayout-->
-                            <!--android:layout_width="match_parent"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--android:orientation="horizontal"-->
-                            <!--android:weightSum="6"-->
-                            <!--android:layout_marginBottom="10dp">-->
-
-                            <!--<TextView-->
-                                <!--android:text="Evaluation Price"-->
-                                <!--android:layout_width="0dp"-->
-                                <!--android:layout_height="wrap_content"-->
-                                <!--android:layout_weight="2"-->
-                                <!--android:layout_marginRight="20dp"-->
-                                <!--android:layout_gravity="bottom"-->
-                                <!--android:textColor="@color/white"/>-->
-
-                            <!--<EditText-->
-
-                                <!--android:layout_width="0dp"-->
-                                <!--android:layout_height="wrap_content"-->
-                                <!--android:layout_weight="4"-->
-                                <!--android:text=""-->
-                                <!--android:hint="Evaluation Price"-->
-                                <!--style="@style/MyEditTextStyle"-->
-
-                                <!--/>-->
-
-
-                        <!--</LinearLayout>-->
-                        <!--<LinearLayout-->
-                            <!--android:layout_width="match_parent"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--android:orientation="horizontal"-->
-                            <!--android:weightSum="6"-->
-                            <!--android:layout_marginBottom="10dp">-->
-
-                            <!--<TextView-->
-                                <!--android:text="Silver (if any) Rs"-->
-                                <!--android:layout_width="0dp"-->
-                                <!--android:layout_height="wrap_content"-->
-                                <!--android:layout_weight="2"-->
-                                <!--android:layout_marginRight="20dp"-->
-                                <!--android:layout_gravity="bottom"-->
-                                <!--android:textColor="@color/white"/>-->
-
-                            <!--<EditText-->
-
-                                <!--android:layout_width="0dp"-->
-                                <!--android:layout_height="wrap_content"-->
-                                <!--android:layout_weight="4"-->
-                                <!--android:text=""-->
-                                <!--android:hint="Silver (if any) Rs"-->
-                                <!--style="@style/MyEditTextStyle"-->
-
-                                <!--/>-->
-
-
-                        <!--</LinearLayout>-->
-
-                        <!--<LinearLayout-->
-                            <!--android:layout_width="match_parent"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--android:layout_marginBottom="10dp"-->
-                            <!--android:orientation="horizontal"-->
-                            <!--android:weightSum="6">-->
-
-                            <!--<TextView-->
-                                <!--android:layout_width="0dp"-->
-                                <!--android:layout_height="wrap_content"-->
-                                <!--android:layout_gravity="bottom"-->
-                                <!--android:layout_marginRight="20dp"-->
-                                <!--android:layout_weight="2"-->
-                                <!--android:text="Evaluation Price"-->
-                                <!--android:textColor="@color/white" />-->
-
-                            <!--<EditText-->
-                                <!--android:layout_width="0dp"-->
-                                <!--android:layout_height="wrap_content"-->
-                                <!--android:layout_weight="4"-->
-                                <!--android:text=""-->
-                                <!--android:hint="Evaluation Price"-->
-                                <!--style="@style/MyEditTextStyle" />-->
-
-
-                        <!--</LinearLayout>-->
-
-
-
-                    </LinearLayout>
-
-
-                </ScrollView>
-
-                <LinearLayout
-                    android:id="@+id/actions"
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:gravity="right">
-
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="30dp"
-                        android:text="Save"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/background_black_rectangle"/>
-
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="30dp"
-                        android:text="Submit"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/background_black_rectangle"/>
-
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="30dp"
-                        android:text="Update"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/background_black_rectangle"/>
-
-                </LinearLayout>
-
-
-
-
-        </RelativeLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <LinearLayout
+            android:id="@+id/actions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal"
+            >
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                android:background="@drawable/background_black_rectangle"
+                android:text="Save locally"
+                android:onClick="@{viewmodel::onSaveClick}"/>
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                android:background="@drawable/background_black_rectangle"
+                android:text="Submit to server"
+                android:onClick="@{viewmodel::onSubmitClick}"/>
+
+
+        </LinearLayout>
+
+        <ProgressBar
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerInParent="true"
+            android:visibility="@{viewmodel.progressBar}"
+            />
+
+
+
+
+    </RelativeLayout>
 
 
 </layout>

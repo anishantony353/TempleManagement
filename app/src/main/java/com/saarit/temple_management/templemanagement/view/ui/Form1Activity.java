@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 
@@ -29,6 +30,7 @@ public class Form1Activity extends AppCompatActivity {
     ActivityForm1Binding binding;
     FormType1_ViewModel viewModel;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +38,7 @@ public class Form1Activity extends AppCompatActivity {
         //setContentView(R.layout.activity_form1);
         setupBindings(savedInstanceState);
         setUpObservers();
+        /*getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);*/
     }
 
     private void setupBindings(Bundle savedInstanceState) {
@@ -43,8 +46,10 @@ public class Form1Activity extends AppCompatActivity {
         viewModel = ViewModelProviders.of(this).get(FormType1_ViewModel.class);
 
         if(savedInstanceState == null){
+
             viewModel.init(getIntent().getIntExtra("req_code",0),
-                    getIntent().getIntExtra("id",0));
+                    getIntent().getIntExtra("id",0),
+                    getIntent().getIntExtra("temple_id",0));
         }
         binding.setViewmodel(viewModel);
 
@@ -109,14 +114,36 @@ public class Form1Activity extends AppCompatActivity {
         viewModel.getNextFormsActivity().observe(
                 this,
                 value -> {
-                    Utility.log(TAG,"Observed goto NextForms Activity Click");
+                    Utility.log(TAG,"Observed goto NextForms Activity Click...Temple ID:"+viewModel.temple_id);
                     Intent intent = new Intent(getBaseContext(),FormTypesActivity.class);
-                    intent.putExtra(Constant.KEY_EXTRA_TEMPLE_ID,viewModel.formType_1.templeId );
+                    intent.putExtra(Constant.KEY_EXTRA_TEMPLE_ID,viewModel.temple_id );
                     startActivity(intent);
                 }
 
         );
 
+        viewModel.observeLockScreenRequest().observe(
+                this,
+                shouldLock->{
+                    if(shouldLock){
+                        Utility.log(TAG,"Locking Screen...");
+                        lockScreen();
+                    }else{
+                        Utility.log(TAG,"UnLocking Screen...");
+                        unlockScreen();
+                    }
+                }
+        );
+
+    }
+    private void lockScreen(){
+        getWindow().setFlags(
+                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+    }
+
+    private void unlockScreen(){
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
     }
 
     @Override
@@ -167,13 +194,13 @@ public class Form1Activity extends AppCompatActivity {
     protected void onPause() {
         Utility.log(TAG,"onPause()");
         super.onPause();
-        viewModel.unRegisterReceiver();
+        /*viewModel.unRegisterReceiver();*/
     }
 
     @Override
     protected void onResume() {
         Utility.log(TAG,"onResume()");
         super.onResume();
-        viewModel.setUpLocationBroadcastReceiver();
+        /*viewModel.setUpLocationBroadcastReceiver();*/
     }
 }

@@ -20,7 +20,7 @@
 
         <activity
             android:name=".view.ui.LoginActivity"
-            android:screenOrientation="portrait">
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -29,17 +29,25 @@
         </activity>
         <activity
             android:name=".view.ui.ActivityMap"
-            android:screenOrientation="portrait" />
+            />
         <activity
             android:name=".view.ui.Form1Activity"
             android:screenOrientation="portrait" />
-        <activity android:name=".view.ui.Form2Activity" />
-        <activity android:name=".view.ui.Form3Activity" />
+        <activity
+            android:name=".view.ui.Form2Activity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".view.ui.Form3aActivity" />
+        <activity android:name=".view.ui.Form3b_1Activity" />
+        <activity android:name=".view.ui.Form3b_2Activity" />
         <activity android:name=".view.ui.Form4Activity" />
         <activity android:name=".view.ui.Form5aActivity" />
-        <activity android:name=".view.ui.FormsActivity" />
-        <activity android:name=".view.ui.TabActivity" />
-        <activity android:name=".view.ui.FormTypesActivity"></activity>
+        <activity android:name=".view.ui.not_in_use.FormsActivity" />
+        <activity android:name=".view.ui.not_in_use.TabActivity" />
+        <activity
+            android:name=".view.ui.FormTypesActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".view.ui.Activity_CreateUser"/>
+
     </application>
 
 </manifest>
