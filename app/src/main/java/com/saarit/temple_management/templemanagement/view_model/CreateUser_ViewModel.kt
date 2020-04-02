@@ -51,7 +51,7 @@ class CreateUser_ViewModel(application:Application): AndroidViewModel(applicatio
         when(parent.getItemAtPosition(position)){
             "Surveyor"-> {
                 Utility.log(TAG, "Selected Surveyor")
-                user.user_type_id = 1
+                user.user_type_id = 2
             }
             else->{ user.user_type_id = 0 }
         }

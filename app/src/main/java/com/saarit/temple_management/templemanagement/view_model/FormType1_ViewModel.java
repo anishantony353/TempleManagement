@@ -17,6 +17,7 @@ import com.google.android.gms.location.LocationRequest;
 import com.patloew.rxlocation.RxLocation;
 import com.saarit.temple_management.templemanagement.model.FormType_1;
 import com.saarit.temple_management.templemanagement.model.repositories.Repo_FormType_1;
+import com.saarit.temple_management.templemanagement.util.PrefManager;
 import com.saarit.temple_management.templemanagement.util.not_in_use.ThreadCurrentLocation;
 import com.saarit.temple_management.templemanagement.model.repositories.Repo_Temples_master;
 import com.saarit.temple_management.templemanagement.model.repositories.Repo_server;
@@ -582,6 +583,8 @@ public class FormType1_ViewModel extends AndroidViewModel {
             Utility.showToast("Submitting...",Toast.LENGTH_LONG,getApplication());
             requestScreenLockMutableLiveData.setValue(true);
             progressSubmitting.set(View.VISIBLE);
+
+            formType_1.user_id = PrefManager.getUserId(getApplication());
             saveBeforeSubmit();
 
         }

@@ -9,6 +9,7 @@ import com.saarit.temple_management.templemanagement.model.repositories.Repo_For
 import com.saarit.temple_management.templemanagement.model.repositories.Repo_FormType_3a;
 import com.saarit.temple_management.templemanagement.model.repositories.Repo_server;
 import com.saarit.temple_management.templemanagement.util.Constant;
+import com.saarit.temple_management.templemanagement.util.PrefManager;
 import com.saarit.temple_management.templemanagement.util.Utility;
 
 import androidx.annotation.NonNull;
@@ -276,7 +277,7 @@ public class FormType3a_ViewModel extends AndroidViewModel {
 
     public void onSubmitClick(View view) {
         Utility.log(TAG, "onSubmitClick()");
-
+            formType_3a.user_id = PrefManager.getUserId(getApplication());
             save_or_submit_form3a(Constant.REQ_SUBMIT);
 
     }

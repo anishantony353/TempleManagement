@@ -22,13 +22,13 @@ public class Constant {
     public static final String BROADCAST_INTENT_MAP_ACTIVITY = "received_location_map_activity";
     public static final String BROADCAST_INTENT_FORM_TYPE_1_ACTIVITY = "received_location_form_type_1_activity";
 
-    /*public static final String APP_URL = "http://103.233.79.142:90/temple_management2.0/portal/tm/index.php/api/";
+    public static final String APP_URL = "http://103.233.79.142:90/temple_management3.0/portal/tm/index.php/api/";
     public static final String IMG_URL_FORM_1 = "http://103.233.79.142:90/temple_images/form1/";
-    public static final String IMG_URL_FORM_2 = "http://103.233.79.142:90/temple_images/form2/";*/
+    public static final String IMG_URL_FORM_2 = "http://103.233.79.142:90/temple_images/form2/";
 
-    public static final String APP_URL = "http://172.17.47.166/temple_management1.0/portal/tm/index.php/api/";
+    /*public static final String APP_URL = "http://172.17.47.166/temple_management1.0/portal/tm/index.php/api/";
     public static final String IMG_URL_FORM_1 = "http://172.17.47.166/temple_images/form1/";
-    public static final String IMG_URL_FORM_2 = "http://172.17.47.166/temple_images/form2/";
+    public static final String IMG_URL_FORM_2 = "http://172.17.47.166/temple_images/form2/";*/
 
     public static final String VALID = "valid";
     public static final String IMAGE_TYPE_FRONT = "front";

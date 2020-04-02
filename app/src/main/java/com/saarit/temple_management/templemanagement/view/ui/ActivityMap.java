@@ -29,6 +29,7 @@ import com.saarit.temple_management.templemanagement.R;
 import com.saarit.temple_management.templemanagement.databinding.ActivityMapBinding;
 import com.saarit.temple_management.templemanagement.model.FormType_1;
 import com.saarit.temple_management.templemanagement.util.Constant;
+import com.saarit.temple_management.templemanagement.util.PrefManager;
 import com.saarit.temple_management.templemanagement.util.Utility;
 import com.saarit.temple_management.templemanagement.view_model.MapViewModel;
 
@@ -191,6 +192,11 @@ public class ActivityMap extends AppCompatActivity implements OnMapReadyCallback
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu,menu);
+        if(PrefManager.getUserTypeId(getApplicationContext()) != 1){
+            MenuItem item = menu.findItem(R.id.action_createUser);
+            item.setVisible(false);
+        }
+
         return super.onCreateOptionsMenu(menu);
     }
 

@@ -10,6 +10,7 @@ import com.saarit.temple_management.templemanagement.model.SuccessOrFailure;
 import com.saarit.temple_management.templemanagement.model.repositories.Repo_Temples_master;
 import com.saarit.temple_management.templemanagement.model.repositories.Repo_server;
 import com.saarit.temple_management.templemanagement.model.Temple_master;
+import com.saarit.temple_management.templemanagement.util.PrefManager;
 import com.saarit.temple_management.templemanagement.util.Utility;
 
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -17,6 +18,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.databinding.ObservableBoolean;
 import androidx.databinding.ObservableField;
 import androidx.databinding.ObservableInt;
 import androidx.lifecycle.AndroidViewModel;
@@ -37,9 +39,10 @@ public class LoginViewModel extends AndroidViewModel {
     }
 
     public ObservableInt progressVisibility = new ObservableInt(View.GONE);
+    public ObservableBoolean checked = new ObservableBoolean(false);
     private MutableLiveData<Boolean> mutableLiveData_LockScreen = new MutableLiveData<Boolean>();
 
-    public LoginFeilds loginFeilds;
+    public LoginFeilds loginFeilds = new LoginFeilds();
 
     public SingleLiveEvent<SuccessOrFailure> isSuccessFulLogin = new SingleLiveEvent<>();
     Repo_server reposerver;
@@ -49,10 +52,20 @@ public class LoginViewModel extends AndroidViewModel {
 
     public void init(){
         Utility.log(TAG,"init()");
-        loginFeilds = new LoginFeilds();
         reposerver = Repo_server.getInstance();
         repoTemplesMaster = Repo_Temples_master.getInstance(getApplication());
+        setRememberMeCheckBox();
 
+    }
+
+    private void setRememberMeCheckBox() {
+        if(PrefManager.getRemember(getApplication()) ){
+            checked.set(true);
+            loginFeilds.id = PrefManager.getLoginId(getApplication());
+            loginFeilds.password = PrefManager.getLoginPassword(getApplication());
+            loginFeilds.notifyChange();
+
+        }
     }
 
 
@@ -79,9 +92,9 @@ public class LoginViewModel extends AndroidViewModel {
                                     if(templesDto.getSuccess() == 0){
                                         throw new Exception(templesDto.getMsg());
                                     }else{
-                                        /*Utility.log(TAG,"SIZE:"+templesDto.getTemple_masters().size()
-                                            +" Success:"+templesDto.getSuccess()+" Msg:"+templesDto.getMsg());*/
-                                        return  repoTemplesMaster.insertTemples(templesDto.getTemple_masters()).toObservable();
+                                        PrefManager.setUserId(templesDto.user_detail.getUser_id(),getApplication());
+                                        PrefManager.setUserTypeId(templesDto.user_detail.getUser_type_id(),getApplication());
+                                        return  repoTemplesMaster.insertTemples(templesDto.temple_details).toObservable();
                                     }
 
                                 }
@@ -106,6 +119,12 @@ public class LoginViewModel extends AndroidViewModel {
 
                             progressVisibility.set(View.GONE);
                             mutableLiveData_LockScreen.setValue(false);
+
+                            PrefManager.setRemember(checked.get(),getApplication());
+                            PrefManager.setLoginId(loginFeilds.id,getApplication());
+                            PrefManager.setLoginPassword(loginFeilds.password,getApplication());
+
+
                         },
                         dsposable ->{
                             if(!Utility.isNetworkAvailable(getApplication())){

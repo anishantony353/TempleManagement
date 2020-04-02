@@ -11,4 +11,6 @@ class User:BaseObservable(){
     @Transient var confirmPassword:String? = null
     var mobile:String? = null
     var user_type_id:Int = 0
+    var user_id = 0
+
 }

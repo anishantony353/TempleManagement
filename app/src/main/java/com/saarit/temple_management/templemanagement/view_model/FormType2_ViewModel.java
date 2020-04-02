@@ -20,6 +20,7 @@ import com.saarit.temple_management.templemanagement.model.repositories.Repo_For
 import com.saarit.temple_management.templemanagement.model.repositories.Repo_FormType_2;
 import com.saarit.temple_management.templemanagement.model.repositories.Repo_server;
 import com.saarit.temple_management.templemanagement.util.Constant;
+import com.saarit.temple_management.templemanagement.util.PrefManager;
 import com.saarit.temple_management.templemanagement.util.Utility;
 import com.saarit.temple_management.templemanagement.view.adapters.FestivalsAdapter;
 import com.saarit.temple_management.templemanagement.view.adapters.PoojariWorkAdapter;
@@ -621,6 +622,7 @@ public class FormType2_ViewModel extends AndroidViewModel {
     public void onSubmitClick(View view) {
         Utility.log(TAG, "onSubmitClick()");
 
+            formType_2.user_id = PrefManager.getUserId(getApplication());
             save_or_submit_form2(Constant.REQ_SUBMIT);
 
     }

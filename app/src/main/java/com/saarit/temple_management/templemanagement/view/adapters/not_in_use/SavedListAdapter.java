@@ -12,6 +12,7 @@ import com.saarit.temple_management.templemanagement.view_model.not_in_use.Saved
 import java.util.List;
 
 import androidx.annotation.NonNull;
+
 import androidx.recyclerview.widget.RecyclerView;
 
 public class SavedListAdapter extends RecyclerView.Adapter<SavedListAdapter.MYViewHolder> {
