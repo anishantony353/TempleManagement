@@ -1,0 +1,1211 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="com.saarit.temple_management.templemanagement.view_model.FormType3b_1_ViewModel" />
+
+        <import type="com.saarit.temple_management.templemanagement.util.Constant" />
+
+        <import type="com.saarit.temple_management.templemanagement.binding.Convertor" />
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/saffron"
+        android:padding="5dp">
+
+        <LinearLayout
+            android:id="@+id/LL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Form Type"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/background_green_rectangle"
+                    android:padding="5dp"
+                    android:text="3B 1"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:padding="5dp"
+                    android:text="@{viewmodel.local_server_new_ObservableField}"
+                    android:textColor="@color/white"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Temple Id"
+                    android:textColor="@color/white"
+
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/background_green_rectangle"
+                    android:padding="5dp"
+
+                    android:text="@{Convertor.intToString(viewmodel.formType_3b_1_ObservableField.temple_id)}"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/SV"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/actions"
+            android:layout_below="@+id/LL"
+            android:layout_marginTop="10dp"
+            android:padding="5dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingBottom="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="2"
+                        android:text="Temple Name"
+                        android:textColor="@color/white" />
+
+                    <TextView
+
+                        style="@style/MyEditTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:hint="मंदिराचे नाव"
+                        android:text="@{viewmodel.formType_3b_1_ObservableField.temple_name}"
+
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="2"
+                        android:text="God Name"
+                        android:textColor="@color/white" />
+
+                    <TextView
+
+                        style="@style/MyEditTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:hint="देवाचे नाव"
+                        android:text="@{viewmodel.formType_3b_1_ObservableField.god_name}"
+
+                        />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="2"
+                        android:text="Village"
+                        android:textColor="@color/white" />
+
+                    <TextView
+                        style="@style/MyEditTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:hint="गावचे नाव"
+                        android:text="@{viewmodel.formType_3b_1_ObservableField.village_name}" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="2"
+                        android:text="Taluka"
+                        android:textColor="@color/white" />
+
+                    <TextView
+                        style="@style/MyEditTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:hint="तालुक्याचे नाव"
+                        android:text="@{viewmodel.formType_3b_1_ObservableField.taluka_name}" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="2"
+                        android:text="District"
+                        android:textColor="@color/white" />
+
+                    <TextView
+
+                        style="@style/MyEditTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:hint="जिल्ह्याचे नाव"
+                        android:text="@{viewmodel.formType_3b_1_ObservableField.district_name}"
+
+                        />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="2"
+                        android:text="Latitude"
+                        android:textColor="@color/white" />
+
+                    <TextView
+
+                        style="@style/MyEditTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:hint="जागेचा अक्षांश"
+                        android:text="@{viewmodel.formType_3b_1_ObservableField.latitude}"
+
+                        />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="2"
+                        android:text="Longitude"
+                        android:textColor="@color/white" />
+
+                    <TextView
+
+                        style="@style/MyEditTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:hint="जागेचा रेखांश"
+                        android:text="@{viewmodel.formType_3b_1_ObservableField.longitude}"
+
+                        />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="2"
+                        android:text="Group No"
+                        android:textColor="@color/white" />
+
+                    <EditText
+                        style="@style/MyEditTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:hint="गट नं"
+                        android:text="@={viewmodel.formType_3b_1_ObservableField.group_no}"
+
+                        />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="2"
+                        android:text="Notification No"
+                        android:textColor="@color/white" />
+
+                    <EditText
+
+                        style="@style/MyEditTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:hint="आधिसूचना नं"
+                        android:text="@={viewmodel.formType_3b_1_ObservableField.notification_no}"
+
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="2"
+                        android:text="Register No"
+                        android:textColor="@color/white" />
+
+                    <EditText
+
+                        style="@style/MyEditTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:hint="रजि. नं"
+                        android:text="@={viewmodel.formType_3b_1_ObservableField.register_no}"
+
+                        />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="2"
+                        android:text="Area in ha(Hectare)"
+                        android:textColor="@color/white" />
+
+                    <EditText
+
+                        style="@style/MyEditTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:hint="क्षेत्र हे. आर"
+                        android:text="@={viewmodel.formType_3b_1_ObservableField.area_hectare}"
+
+                        />
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@color/white" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="5">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="4"
+                            android:text="Is there any land under cultivation (तेथे शेती अंतर्गत आहे)"
+                            android:textColor="@color/white"
+                            android:textSize="20sp" />
+
+                        <androidx.appcompat.widget.SwitchCompat
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:layout_weight="1"
+                            android:checked="@={viewmodel.formType_3b_1_ObservableField.is_any_land_cultivation}"
+                            android:onCheckedChanged="@{(view,value)->viewmodel.onSwitchCheckedChange(view,value,Constant.SWITCH_LAND_CULTIVATION)}" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:visibility="@{viewmodel.visibility_layout_land_cultivation_info}">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:orientation="horizontal"
+                            android:weightSum="6">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="bottom"
+                                android:layout_marginRight="20dp"
+                                android:layout_weight="2"
+                                android:text="Area of Agricultural Land"
+                                android:textColor="@color/white" />
+
+                            <EditText
+                                style="@style/MyEditTextStyle"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:hint="लागवडी खालील माप"
+                                android:text="@={viewmodel.formType_3b_1_ObservableField.area_agriculture_land}"
+
+                                />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:orientation="horizontal"
+                            android:weightSum="6">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="bottom"
+                                android:layout_marginRight="20dp"
+                                android:layout_weight="2"
+                                android:text="Area of Non Agricultural Land"
+                                android:textColor="@color/white" />
+
+                            <EditText
+                                style="@style/MyEditTextStyle"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:hint="पोटखराब माप"
+                                android:text="@={viewmodel.formType_3b_1_ObservableField.area_non_agriculture_land}"
+
+                                />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:orientation="horizontal"
+                            android:weightSum="6">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="bottom"
+                                android:layout_marginRight="20dp"
+                                android:layout_weight="2"
+                                android:text="Total area under cultivation"
+                                android:textColor="@color/white" />
+
+                            <EditText
+                                style="@style/MyEditTextStyle"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:hint="एकूण"
+                                android:text="@={viewmodel.formType_3b_1_ObservableField.total_area_cultivation}"
+
+                                />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@color/white" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="2"
+                        android:text="Shape"
+                        android:textColor="@color/white" />
+
+                    <EditText
+
+                        style="@style/MyEditTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:hint="आकार"
+                        android:text="@={viewmodel.formType_3b_1_ObservableField.shape}"
+
+                        />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="2"
+                        android:text="Annual Budget"
+                        android:textColor="@color/white" />
+
+                    <EditText
+
+                        style="@style/MyEditTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:hint="वार्षिक लागण रक्क्म"
+                        android:text="@={viewmodel.formType_3b_1_ObservableField.annual_budget}"
+                        android:inputType="number"
+                        />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="2"
+                        android:text="Controller Name"
+                        android:textColor="@color/white" />
+
+                    <EditText
+
+                        style="@style/MyEditTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:hint="लागणदाराचे नाव"
+                        android:text="@={viewmodel.formType_3b_1_ObservableField.controller_name}"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="2"
+                        android:text="Controller Responsibility"
+                        android:textColor="@color/white" />
+
+                    <EditText
+
+                        style="@style/MyEditTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:hint="लागणदाराचे जबाबदारी"
+                        android:text="@={viewmodel.formType_3b_1_ObservableField.controller_responsibility}"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="2"
+                        android:text="Controller Work"
+                        android:textColor="@color/white" />
+
+                    <EditText
+
+                        style="@style/MyEditTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:hint="लागणदाराचे काम"
+                        android:text="@={viewmodel.formType_3b_1_ObservableField.controller_work}"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="2"
+                        android:text="Land encroachment on construction"
+                        android:textColor="@color/white" />
+
+                    <EditText
+
+                        style="@style/MyEditTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:hint="बांधकामांवर जमीन अतिक्रमण"
+                        android:text="@={viewmodel.formType_3b_1_ObservableField.land_encroachment_on_construction}"
+                        />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@color/white" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="5">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="4"
+                            android:text="Is land surveyed (जमीनींची मोजणी झाली आहे काय)"
+                            android:textColor="@color/white"
+                            android:textSize="20sp" />
+
+                        <androidx.appcompat.widget.SwitchCompat
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:layout_weight="1"
+                            android:checked="@={viewmodel.formType_3b_1_ObservableField.is_land_surveyed}"
+                            android:onCheckedChanged="@{(view,value)->viewmodel.onSwitchCheckedChange(view,value,Constant.SWITCH_LAND_SURVEYED)}" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:visibility="@{viewmodel.visibility_layout_land_survey_info}">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:orientation="horizontal"
+                            android:weightSum="6">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="bottom"
+                                android:layout_marginRight="20dp"
+                                android:layout_weight="2"
+                                android:text="Survey Date"
+                                android:textColor="@color/white" />
+
+                            <TextView
+                                style="@style/MyEditTextStyle"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="3"
+                                android:hint="असल्यास कधी"
+                                android:text="@={viewmodel.formType_3b_1_ObservableField.survey_date}"
+                                />
+
+                            <ImageView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="10dp"
+                                android:layout_weight="1"
+                                android:src="@drawable/calender_icon"
+                                android:onClick="@{viewmodel::onDateClick}"/>
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:orientation="horizontal"
+                            android:weightSum="5">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:text="Is border fixed (हददी निश्चीत आहेत काय)?"
+                                android:textColor="@color/white" />
+
+                            <androidx.appcompat.widget.SwitchCompat
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="5dp"
+                                android:layout_weight="1"
+                                android:checked="@={viewmodel.formType_3b_1_ObservableField.is_border_fixed}" />
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@color/white" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="2"
+                        android:text="Whether map received"
+                        android:textColor="@color/white" />
+
+                    <EditText
+
+                        style="@style/MyEditTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:hint="नकाशा प्रत"
+                        android:text="@={viewmodel.formType_3b_1_ObservableField.whether_map_received}"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="2"
+                        android:text="Land Document a"
+                        android:textColor="@color/white" />
+
+                    <TextView
+                        style="@style/MyEditTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:hint="जमीनीची प्रत"
+                        android:text="@={viewmodel.formType_3b_1_ObservableField.land_document_a}"
+                        />
+
+                    <androidx.appcompat.widget.AppCompatSpinner
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="2"
+                        android:entries="@array/land_documents_a"
+                        android:onItemSelected="@{(parent,view,position,id)->viewmodel.onItemSelected(parent,view,position,id,Constant.SPINNER_TYPE_LAND_DOC_A)}"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="2"
+                        android:text="Land Document b"
+                        android:textColor="@color/white" />
+
+                    <TextView
+                        style="@style/MyEditTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:hint="जमीनीची प्रत"
+                        android:text="@={viewmodel.formType_3b_1_ObservableField.land_document_b}"
+                        />
+
+                    <androidx.appcompat.widget.AppCompatSpinner
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="2"
+                        android:entries="@array/land_documents_b"
+                        android:onItemSelected="@{(parent,view,position,id)->viewmodel.onItemSelected(parent,view,position,id,Constant.SPINNER_TYPE_LAND_DOC_B)}"
+                        />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@color/white" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="2"
+                        android:text="Planning for water Availability"
+                        android:textColor="@color/white" />
+
+                    <EditText
+
+                        style="@style/MyEditTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:hint="जमिनीसाठी बारमाही पाण्याचे नियोजन"
+                        android:text="@={viewmodel.formType_3b_1_ObservableField.planning_water_availability}"
+
+                        />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="2"
+                        android:text="What are the options to keep Land Productive"
+                        android:textColor="@color/white" />
+
+                    <EditText
+
+                        style="@style/MyEditTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:hint="असल्यास कशप्रकारे आहे"
+                        android:text="@={viewmodel.formType_3b_1_ObservableField.options_land_productive}"
+
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="2"
+                        android:text="Whether utilisation of Land for Business and how"
+                        android:textColor="@color/white" />
+
+                    <EditText
+
+                        style="@style/MyEditTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:hint="जमिनीचे व्यापारी प्रयोजन करता येईल किंवा कसे"
+                        android:text="@={viewmodel.formType_3b_1_ObservableField.utilisation_land_business}"
+
+                        />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@color/white" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="5">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="4"
+                            android:text="Is land use for Cultivation (जमीन उत्पादक करणे/सुपीक करण्यासाठी पर्याय काढता येईल काय)"
+                            android:textColor="@color/white"
+                            android:textSize="20sp" />
+
+                        <androidx.appcompat.widget.SwitchCompat
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:layout_weight="1"
+                            android:checked="@={viewmodel.formType_3b_1_ObservableField.is_land_used_cultivation}"
+                            android:onCheckedChanged="@{(view,value)->viewmodel.onSwitchCheckedChange(view,value,Constant.SWITCH_LAND_USED_CULTIVATION)}" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:visibility="@{viewmodel.visibility_layout_land_used_cultivation_info}">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:orientation="horizontal"
+                            android:weightSum="6">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="bottom"
+                                android:layout_marginRight="20dp"
+                                android:layout_weight="2"
+                                android:text="How is land use for Cultivation"
+                                android:textColor="@color/white" />
+
+                            <EditText
+                                style="@style/MyEditTextStyle"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:hint="कोणता पर्याय"
+                                android:text="@={viewmodel.formType_3b_1_ObservableField.land_cultivation_procedure}"
+
+                                />
+
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@color/white" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="2"
+                        android:text="Remarks"
+                        android:textColor="@color/white" />
+
+                    <EditText
+
+                        style="@style/MyEditTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:hint="शेरा"
+                        android:text="@={viewmodel.formType_3b_1_ObservableField.remarks}"
+
+                        />
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </androidx.core.widget.NestedScrollView>
+
+        <LinearLayout
+            android:id="@+id/actions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/background_black_rectangle"
+                android:onClick="@{viewmodel::onSaveClick}"
+                android:text="Save locally" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/background_black_rectangle"
+                android:onClick="@{viewmodel::onSubmitClick}"
+                android:text="Submit to server" />
+
+
+        </LinearLayout>
+
+        <ProgressBar
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerInParent="true"
+            android:visibility="@{viewmodel.progressBar}" />
+
+
+    </RelativeLayout>
+
+
+</layout>
