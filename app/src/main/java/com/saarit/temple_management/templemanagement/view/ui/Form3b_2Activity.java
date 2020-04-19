@@ -11,7 +11,6 @@ import com.saarit.temple_management.templemanagement.util.Utility;
 import com.saarit.temple_management.templemanagement.view.listeners.DateSetListner;
 import com.saarit.temple_management.templemanagement.view_model.FormType3b_1_ViewModel;
 import com.saarit.temple_management.templemanagement.view_model.FormType3b_2_ViewModel;
-import com.saarit.temple_management.templemanagement.view_model.not_in_use.MyViewModelFactory;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;

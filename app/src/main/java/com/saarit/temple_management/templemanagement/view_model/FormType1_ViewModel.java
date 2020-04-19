@@ -18,7 +18,6 @@ import com.patloew.rxlocation.RxLocation;
 import com.saarit.temple_management.templemanagement.model.FormType_1;
 import com.saarit.temple_management.templemanagement.model.repositories.Repo_FormType_1;
 import com.saarit.temple_management.templemanagement.util.PrefManager;
-import com.saarit.temple_management.templemanagement.util.not_in_use.ThreadCurrentLocation;
 import com.saarit.temple_management.templemanagement.model.repositories.Repo_Temples_master;
 import com.saarit.temple_management.templemanagement.model.repositories.Repo_server;
 import com.saarit.temple_management.templemanagement.model.Temple_master;

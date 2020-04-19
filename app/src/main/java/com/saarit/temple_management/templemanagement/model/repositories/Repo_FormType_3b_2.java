@@ -5,7 +5,7 @@ import android.content.Context;
 import com.saarit.temple_management.templemanagement.model.FormType_3b_2;
 import com.saarit.temple_management.templemanagement.model.repositories.local_storage.AppDatabase;
 import com.saarit.temple_management.templemanagement.model.repositories.local_storage.FormType_3b_2_Dao;
-import com.saarit.temple_management.templemanagement.testing_objects.Inserter;
+
 import com.saarit.temple_management.templemanagement.util.Utility;
 
 import androidx.lifecycle.LiveData;
@@ -77,15 +77,5 @@ public class Repo_FormType_3b_2 {
         return mutableLiveData;
     }
 
-    Inserter inserter;
-
-    public Repo_FormType_3b_2(Inserter inserter){
-        this.inserter = inserter;
-    }
-
-    public void insertValue(int value){
-
-        inserter.insertValue(value);
-    }
     
 }

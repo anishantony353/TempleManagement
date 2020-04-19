@@ -84,21 +84,21 @@
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:background="@drawable/background_green_rectangle"
-                    android:padding="5dp"
-
-                    android:text="@{Convertor.intToString(viewmodel.formType_3b_1_ObservableField.temple_id)}"
-                    android:textColor="@color/white"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
 
             </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/background_green_rectangle"
+                android:padding="5dp"
+
+                android:text="@{Convertor.intToString(viewmodel.formType_3b_1_ObservableField.temple_id)}"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
 
         </LinearLayout>

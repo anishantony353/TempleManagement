@@ -18,10 +18,6 @@ import com.google.android.material.tabs.TabLayout;
 import com.saarit.temple_management.templemanagement.model.Temple_master;
 import com.saarit.temple_management.templemanagement.util.Constant;
 import com.saarit.temple_management.templemanagement.util.Utility;
-import com.saarit.temple_management.templemanagement.view.adapters.not_in_use.NewListAdapter;
-import com.saarit.temple_management.templemanagement.view.adapters.not_in_use.SavedListAdapter;
-import com.saarit.temple_management.templemanagement.view.adapters.not_in_use.SubmittedListAdapter;
-
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.databinding.BindingAdapter;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -70,37 +66,21 @@ public class BindingAdapters {
     }
 
 
-    @BindingAdapter("adapter_submitted_list")
-    public static void setRecyclerViewSubmittedAdapter(RecyclerView rv, SubmittedListAdapter adapter){
 
-        Utility.log(TAG,"setRecyclerViewSubmittedAdapter()");
-        rv.setHasFixedSize(true);
-        rv.setLayoutManager(new LinearLayoutManager(rv.getContext()));
-        rv.setAdapter(adapter);
-    }
-
-    @BindingAdapter("adapter_saved_list")
-    public static void setRecyclerViewSavedAdapter(RecyclerView rv,SavedListAdapter adapter){
-
-        Utility.log(TAG,"setRecyclerViewSavedAdapter()");
-        rv.setHasFixedSize(true);
-        rv.setLayoutManager(new LinearLayoutManager(rv.getContext()));
-        rv.setAdapter(adapter);
-    }
-
-    @BindingAdapter("adapter_new_list")
-    public static void setRecyclerViewNewAdapter(RecyclerView rv,NewListAdapter adapter){
-
-        Utility.log(TAG,"setRecyclerViewNewAdapter()");
-        rv.setHasFixedSize(true);
-        rv.setLayoutManager(new LinearLayoutManager(rv.getContext()));
-        rv.setAdapter(adapter);
-    }
 
     @BindingAdapter("adapter_recyclerView")
     public static void setRecyclerViewFormsAdapter(RecyclerView rv,RecyclerView.Adapter adapter){
 
         Utility.log(TAG,"setRecyclerViewFormsAdapter()");
+        rv.setHasFixedSize(true);
+        rv.setLayoutManager(new LinearLayoutManager(rv.getContext()));
+        rv.setAdapter(adapter);
+    }
+
+    @BindingAdapter("rv_adapter")
+    public static void setRVAdapter(RecyclerView rv,RecyclerView.Adapter adapter){
+
+        Utility.log(TAG,"setRVAdapter()");
         rv.setHasFixedSize(true);
         rv.setLayoutManager(new LinearLayoutManager(rv.getContext()));
         rv.setAdapter(adapter);
@@ -139,7 +119,6 @@ public class BindingAdapters {
         view.setAdapter(adapter);
         view.setOnItemClickListener(listner);
 
-
     }
 
     @BindingAdapter("listview.onItemClicklistner")
@@ -148,6 +127,15 @@ public class BindingAdapters {
         Utility.log(TAG,"setListner()");
 
         view.setOnItemClickListener(listner);
+
+    }
+
+    @BindingAdapter("clearEditText")
+    public static void clearEditText(EditText et,Boolean clear){
+        Utility.log(TAG,"clearEditText() :"+clear);
+        if(clear == false){
+            et.setText("");
+        }
 
     }
 
@@ -163,7 +151,6 @@ public class BindingAdapters {
 //        });
 
         view.setChecked(state);
-
     }
 
 }

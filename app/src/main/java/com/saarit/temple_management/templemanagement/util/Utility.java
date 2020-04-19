@@ -26,7 +26,7 @@ public class Utility {
 
     private static String TAG = Utility.class.getSimpleName();
 
-    private static boolean isLogEnabled = false;
+    private static boolean isLogEnabled = true;
 
 
     public static void log(String TAG,String msg){

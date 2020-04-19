@@ -1,0 +1,351 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/saffron"
+        android:padding="10dp"
+        tools:context=".view.ui.Form5Activity">
+
+        <Button
+            android:id="@+id/save"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/background_black_rectangle"
+            android:text="Save Locally"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/root_guideline"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/submit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/background_black_rectangle"
+            android:text="submit to server"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/root_guideline" />
+
+        <TextView
+            android:id="@+id/temple_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Temple Id"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/form_type_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/background_green_rectangle"
+            android:padding="5dp"
+            android:text="5"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/form_type" />
+
+        <TextView
+            android:id="@+id/temple_id_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/background_green_rectangle"
+            android:padding="5dp"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/root_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/temple_id"
+            tools:text="125888" />
+
+        <TextView
+            android:id="@+id/local_server_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:padding="5dp"
+            android:text="local /server "
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintEnd_toStartOf="@+id/root_guideline"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/form_type_value" />
+
+        <TextView
+            android:id="@+id/form_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Form Type"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <!--<android.support.constraint.Barrier
+            android:id="@+id/top_barrier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="bottom"
+            app:constraint_referenced_ids="textView7,textView6" />-->
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier_top_of_scrollview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            app:barrierDirection="bottom"
+            app:constraint_referenced_ids="temple_id_value,local_server_value"
+            tools:layout_editor_absoluteX="10dp"
+            tools:layout_editor_absoluteY="151dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/root_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nestedScrollView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="8dp"
+            android:fillViewport="true"
+            android:padding="5dp"
+            app:layout_constrainedHeight="true"
+            app:layout_constraintBottom_toTopOf="@+id/save"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/barrier_top_of_scrollview"
+            app:layout_constraintVertical_bias="1.0">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/temple_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:text="Temple Name"
+                    android:textColor="@color/white"
+                    app:layout_constrainedHeight="true"
+                    app:layout_constrainedWidth="true"
+                    app:layout_constraintBottom_toTopOf="@id/barrier_temple_name"
+                    app:layout_constraintEnd_toStartOf="@+id/scrollview_guideline"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="1.0"
+                    app:layout_constraintWidth_default="spread" />
+
+                <TextView
+                    android:id="@+id/temple_name_value"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/background_login_feilds"
+                    android:hint="Temple Name"
+                    android:padding="2dp"
+                    android:text="Some temple nam drddkkkkkkkkkkkzzz"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constrainedHeight="true"
+                    app:layout_constrainedWidth="false"
+                    app:layout_constraintBottom_toTopOf="@id/barrier_temple_name"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="@+id/scrollview_guideline"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="1.0" />
+
+
+                <TextView
+                    android:id="@+id/village_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Village Name"
+                    android:textColor="@color/white"
+                    app:layout_constrainedHeight="true"
+                    app:layout_constraintBottom_toTopOf="@id/barrier_village_name"
+                    app:layout_constraintEnd_toStartOf="@+id/scrollview_guideline"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/barrier_temple_name"
+                    app:layout_constraintVertical_bias="0.96" />
+
+                <TextView
+                    android:id="@+id/village_name_value"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/background_login_feilds"
+                    android:padding="2dp"
+                    android:text="Some Village abcfh kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkknnnnnnnnnnnnnnnnnnppp"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constrainedHeight="true"
+                    app:layout_constraintBottom_toTopOf="@id/barrier_village_name"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/scrollview_guideline"
+                    app:layout_constraintTop_toBottomOf="@id/barrier_temple_name"
+                    app:layout_constraintVertical_bias="1.0" />
+
+                <TextView
+                    android:id="@+id/taluka_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Taluka Name"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    app:layout_constrainedHeight="false"
+                    app:layout_constraintBottom_toTopOf="@id/barrier_taluka_name"
+                    app:layout_constraintEnd_toStartOf="@+id/scrollview_guideline"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/barrier_village_name"
+                    app:layout_constraintVertical_bias="0.97" />
+
+
+                <TextView
+                    android:id="@+id/taluka_name_value"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/background_login_feilds"
+                    android:padding="2dp"
+                    android:text="Some talukadggghhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyhhhhhz"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constrainedHeight="true"
+                    app:layout_constraintBottom_toTopOf="@id/barrier_taluka_name"
+
+
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/scrollview_guideline"
+                    app:layout_constraintTop_toBottomOf="@id/barrier_village_name"
+                    app:layout_constraintVertical_bias="1.0" />
+
+                <TextView
+                    android:id="@+id/district_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="District Name"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    app:layout_constrainedHeight="true"
+                    app:layout_constraintBottom_toTopOf="@id/barrier_district_name"
+                    app:layout_constraintEnd_toStartOf="@+id/scrollview_guideline"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/barrier_taluka_name"
+                    app:layout_constraintVertical_bias="0.97" />
+
+                <TextView
+                    android:id="@+id/district_name_value"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/background_login_feilds"
+                    android:padding="2dp"
+                    android:text="Some dist name uuyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyymmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmzzz"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constrainedHeight="true"
+                    app:layout_constraintBottom_toTopOf="@id/barrier_district_name"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/scrollview_guideline"
+                    app:layout_constraintTop_toBottomOf="@id/barrier_taluka_name"
+                    app:layout_constraintVertical_bias="0.95" />
+
+                <androidx.constraintlayout.widget.Barrier
+                    android:id="@+id/barrier_temple_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:barrierDirection="bottom"
+                    app:constraint_referenced_ids="temple_name,temple_name_value"
+                    tools:layout_editor_absoluteY="520dp" />
+
+                <androidx.constraintlayout.widget.Barrier
+                    android:id="@+id/barrier_village_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:barrierDirection="bottom"
+                    app:constraint_referenced_ids="village_name,village_name_value"
+                    tools:layout_editor_absoluteY="518dp" />
+
+                <androidx.constraintlayout.widget.Barrier
+                    android:id="@+id/barrier_taluka_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:barrierDirection="bottom"
+                    app:constraint_referenced_ids="taluka_name,taluka_name_value"
+                    tools:layout_editor_absoluteY="518dp" />
+
+                <androidx.constraintlayout.widget.Barrier
+                    android:id="@+id/barrier_district_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    app:barrierDirection="bottom"
+                    app:constraint_referenced_ids="district_name,district_name_value"
+                    tools:layout_editor_absoluteY="518dp"
+                    tools:visibility="visible" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/scrollview_guideline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.4" />
+
+                <View
+                    android:id="@+id/view"
+                    android:layout_width="0dp"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@color/white"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/district_name_value" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
+
+
+
+
+

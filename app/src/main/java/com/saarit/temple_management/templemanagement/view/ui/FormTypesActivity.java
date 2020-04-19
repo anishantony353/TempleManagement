@@ -63,16 +63,19 @@ public class FormTypesActivity extends AppCompatActivity {
                         case Constant.FORM_TYPE_3b_2:
                             intent = new Intent(this,Form3b_2Activity.class);
                             intent.putExtra(Constant.KEY_EXTRA_TEMPLE_ID,getIntent().getIntExtra(Constant.KEY_EXTRA_TEMPLE_ID,0));
-                            /*startActivity(intent);*/
-                            Utility.showToast("Under Process",Toast.LENGTH_SHORT,this);
+                            startActivity(intent);
+                            /*Utility.showToast("Under Process",Toast.LENGTH_SHORT,this);*/
                             break;
                         case Constant.FORM_TYPE_4:
-                            intent = new Intent(this,Form2Activity.class);
-                            Utility.showToast("Under Process",Toast.LENGTH_SHORT,this);
+                            intent = new Intent(this,Form4Activity.class);
+                            startActivity(intent);
+                            /*Utility.showToast("Under Process",Toast.LENGTH_SHORT,this);*/
                             break;
                         case Constant.FORM_TYPE_5:
-                            intent = new Intent(this,Form2Activity.class);
-                            Utility.showToast("Under Process",Toast.LENGTH_SHORT,this);
+                            intent = new Intent(this,Form5Activity.class);
+                            startActivity(intent);
+
+                            /*Utility.showToast("Under Process",Toast.LENGTH_SHORT,this);*/
                             break;
 
                     }

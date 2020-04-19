@@ -5,6 +5,8 @@ import com.saarit.temple_management.templemanagement.model.DTOs.FormType_2_DTO;
 import com.saarit.temple_management.templemanagement.model.DTOs.FormType_3a_DTO;
 import com.saarit.temple_management.templemanagement.model.DTOs.FormType_3b_1_DTO;
 import com.saarit.temple_management.templemanagement.model.DTOs.FormType_3b_2_DTO;
+import com.saarit.temple_management.templemanagement.model.DTOs.FormType_4_DTO;
+import com.saarit.temple_management.templemanagement.model.DonatedProduct;
 import com.saarit.temple_management.templemanagement.model.Festival;
 import com.saarit.temple_management.templemanagement.model.FormType_1;
 import com.saarit.temple_management.templemanagement.model.DTOs.FormType_1_DTO;
@@ -13,6 +15,7 @@ import com.saarit.temple_management.templemanagement.model.FormType_2;
 import com.saarit.temple_management.templemanagement.model.FormType_3a;
 import com.saarit.temple_management.templemanagement.model.FormType_3b_1;
 import com.saarit.temple_management.templemanagement.model.FormType_3b_2;
+import com.saarit.temple_management.templemanagement.model.FormType_4;
 import com.saarit.temple_management.templemanagement.model.LoginFeilds;
 import com.saarit.temple_management.templemanagement.model.PoojariWork;
 import com.saarit.temple_management.templemanagement.model.RespectedPerson;
@@ -87,6 +90,12 @@ public interface ApiService {
     @POST("temple/addForm_3b2")
     Observable<BaseResponse> addForm3b_2(@Body FormType_3b_2 formType3b_2);
 
+    @Multipart
+    @POST("temple/addForm_4")
+    Observable<BaseResponse> addForm4(@Part("form_4_data") FormType_4 formType4,
+                                      @Part("form_4_data_products[]") List<DonatedProduct> products
+                                      );
+
 /*    @Multipart
     @POST("temple/addForm_3b2")
     Observable<BaseResponse> addForm_Testing(@Body FormType_3b_2 formTypea,
@@ -113,6 +122,9 @@ public interface ApiService {
 
     @GET("temple/getForm_3b2ById")
     Single<FormType_3b_2_DTO> getFormType3b2byTempleId(@Query("temple_id") int templeId);
+
+    @GET("temple/getForm_4ById")
+    Single<FormType_4_DTO> getFormType4byTempleId(@Query("temple_id") int templeId);
 
 //    // Create note
 //    @FormUrlEncoded

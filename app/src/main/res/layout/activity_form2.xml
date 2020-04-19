@@ -91,7 +91,7 @@
                     android:background="@drawable/background_green_rectangle"
                     android:padding="5dp"
 
-                    android:text="@{Convertor.intToString(viewmodel.formType_2ObservableField.get().temple_id)}"
+                    android:text="@{Convertor.intToString(viewmodel.formType_2ObservableField.temple_id)}"
                     android:textColor="@color/white"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -140,7 +140,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="Temple Name"
-                        android:text="@{viewmodel.formType_2ObservableField.get().temple_name}"
+                        android:text="@{viewmodel.formType_2ObservableField.temple_name}"
 
                         />
 
@@ -171,7 +171,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="Village"
-                        android:text="@{viewmodel.formType_2ObservableField.get().village_name}" />
+                        android:text="@{viewmodel.formType_2ObservableField.village_name}" />
 
 
                 </LinearLayout>
@@ -198,7 +198,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="Taluka"
-                        android:text="@{viewmodel.formType_2ObservableField.get().taluka_name}" />
+                        android:text="@{viewmodel.formType_2ObservableField.taluka_name}" />
 
 
                 </LinearLayout>
@@ -226,7 +226,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="District"
-                        android:text="@{viewmodel.formType_2ObservableField.get().district_name}"
+                        android:text="@{viewmodel.formType_2ObservableField.district_name}"
 
                         />
 
@@ -256,7 +256,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="Devasthan Survey Report Notification No"
-                        android:text="@={viewmodel.formType_2ObservableField.get().survey_report_notification_no}"
+                        android:text="@={viewmodel.formType_2ObservableField.survey_report_notification_no}"
 
                         />
 
@@ -285,7 +285,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="Registration No"
-                        android:text="@={viewmodel.formType_2ObservableField.get().registration_no}"
+                        android:text="@={viewmodel.formType_2ObservableField.registration_no}"
 
                         />
 
@@ -315,7 +315,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="Origin/Establishment/History"
-                        android:text="@={viewmodel.formType_2ObservableField.get().origin_establishment_history}"
+                        android:text="@={viewmodel.formType_2ObservableField.origin_establishment_history}"
 
                         />
 
@@ -352,7 +352,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="Custom/Tradition/Festival"
-                        android:text="@={viewmodel.formType_2ObservableField.get().custom_tradition_festival}"
+                        android:text="@={viewmodel.formType_2ObservableField.custom_tradition_festival}"
 
                         />
 
@@ -436,7 +436,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="Village Population"
-                        android:text="@={viewmodel.formType_2ObservableField.get().village_population}"
+                        android:text="@={viewmodel.formType_2ObservableField.village_population}"
 
                         />
 
@@ -512,7 +512,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="Poojari Name"
-                        android:text="@={viewmodel.formType_2ObservableField.get().poojari_name}"
+                        android:text="@={viewmodel.formType_2ObservableField.poojari_name}"
 
                         />
 
@@ -541,7 +541,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="Poojari Address"
-                        android:text="@={viewmodel.formType_2ObservableField.get().poojari_address}"
+                        android:text="@={viewmodel.formType_2ObservableField.poojari_address}"
 
                         />
 
@@ -570,7 +570,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="Poojari Contact No"
-                        android:text="@={viewmodel.formType_2ObservableField.get().poojari_contact_no}"
+                        android:text="@={viewmodel.formType_2ObservableField.poojari_contact_no}"
 
                         />
 
@@ -608,9 +608,10 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
                             android:onCheckedChanged="@{(view,value)->viewmodel.onSwitchCheckedChange(view,value,Constant.SWITCH_WORSHIPING_HOUSE)}"
-                            android:checked="@={viewmodel.formType_2ObservableField.get().is_worship_different_houses}"
+                            android:checked="@={viewmodel.formType_2ObservableField.is_worship_different_houses}"
                             
                             />
+
                     </LinearLayout>
 
                     <LinearLayout
@@ -702,7 +703,7 @@
                         android:layout_weight="4"
                         android:hint="Poojari's Income"
                         android:inputType="numberDecimal"
-                        android:text="@={Convertor.doubleToString(viewmodel.formType_2ObservableField.get().poojari_income)}"
+                        android:text="@={Convertor.doubleToString(viewmodel.formType_2ObservableField.poojari_income)}"
                         />
 
 
@@ -732,7 +733,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
                         android:onCheckedChanged="@{(view,value)->viewmodel.onSwitchCheckedChange(view,value,Constant.SWITCH_OFFICER_AVAILABLE)}"
-                        android:checked="@={viewmodel.formType_2ObservableField.get().is_officer_available}"/>
+                        android:checked="@={viewmodel.formType_2ObservableField.is_officer_available}"/>
                 </LinearLayout>
 
 
@@ -767,7 +768,7 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
                             android:onCheckedChanged="@{(view,value)->viewmodel.onSwitchCheckedChange(view,value,Constant.SWITCH_RESPECTED_PERSON_AVAILABLE)}"
-                            android:checked="@={viewmodel.formType_2ObservableField.get().is_respected_person_available}"/>
+                            android:checked="@={viewmodel.formType_2ObservableField.is_respected_person_available}"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -826,7 +827,7 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
                             android:onCheckedChanged="@{(view,value)->viewmodel.onSwitchCheckedChange(view,value,Constant.SWITCH_WORSHIPING_REGULAR_BASIS)}"
-                            android:checked="@={viewmodel.formType_2ObservableField.get().is_worshiping_regular_basis}"/>
+                            android:checked="@={viewmodel.formType_2ObservableField.is_worshiping_regular_basis}"/>
                     </LinearLayout>
 
 
@@ -854,7 +855,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="4"
                             android:hint="How the woship is done"
-                            android:text="@={viewmodel.formType_2ObservableField.get().worshiping_procedure}"
+                            android:text="@={viewmodel.formType_2ObservableField.worshiping_procedure}"
 
                             />
 
@@ -895,7 +896,7 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
                             android:onCheckedChanged="@{(view,value)->viewmodel.onSwitchCheckedChange(view,value,Constant.SWITCH_WORSHIPING_TYPE)}"
-                            android:checked="@={viewmodel.formType_2ObservableField.get().types_of_worshiping}"/>
+                            android:checked="@={viewmodel.formType_2ObservableField.types_of_worshiping}"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -948,7 +949,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
                         android:onCheckedChanged="@{(view,value)->viewmodel.onSwitchCheckedChange(view,value,Constant.SWITCH_GENDER_ALLOWED_WORSHIPING)}"
-                        android:checked="@={viewmodel.formType_2ObservableField.get().is_both_gender_allowed_to_worship}"/>
+                        android:checked="@={viewmodel.formType_2ObservableField.is_both_gender_allowed_to_worship}"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -969,7 +970,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
                         android:onCheckedChanged="@{(view,value)->viewmodel.onSwitchCheckedChange(view,value,Constant.SWITCH_GENDER_ALLOWED_PREMISES)}"
-                        android:checked="@={viewmodel.formType_2ObservableField.get().is_both_gender_allowed_in_premises}"/>
+                        android:checked="@={viewmodel.formType_2ObservableField.is_both_gender_allowed_in_premises}"/>
                 </LinearLayout>
 
                 <View
@@ -1003,7 +1004,7 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
                             android:onCheckedChanged="@{(view,value)->viewmodel.onSwitchCheckedChange(view,value,Constant.SWITCH_OTHER_SERVICES_PRESENT)}"
-                            android:checked="@={viewmodel.formType_2ObservableField.get().is_other_servicemen_available}"/>
+                            android:checked="@={viewmodel.formType_2ObservableField.is_other_servicemen_available}"/>
                     </LinearLayout>
 
 
@@ -1031,7 +1032,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="4"
                             android:hint="Type of work done"
-                            android:text="@={viewmodel.formType_2ObservableField.get().servicemen_work}"
+                            android:text="@={viewmodel.formType_2ObservableField.servicemen_work}"
 
                             />
 
@@ -1065,7 +1066,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
                         android:onCheckedChanged="@{(view,value)->viewmodel.onSwitchCheckedChange(view,value,Constant.SWITCH_LAND_ALLOCATED)}"
-                        android:checked="@={viewmodel.formType_2ObservableField.get().is_land_allocated_to_them}"/>
+                        android:checked="@={viewmodel.formType_2ObservableField.is_land_allocated_to_them}"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -1086,7 +1087,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
                         android:onCheckedChanged="@{(view,value)->viewmodel.onSwitchCheckedChange(view,value,Constant.SWITCH_LAND_ALLOCATED_UTILISED)}"
-                        android:checked="@={viewmodel.formType_2ObservableField.get().is_allocated_land_utilised}"/>
+                        android:checked="@={viewmodel.formType_2ObservableField.is_allocated_land_utilised}"/>
                 </LinearLayout>
 
 

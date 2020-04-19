@@ -73,7 +73,7 @@ public class FormType_2 extends BaseObservable implements Serializable {
     public boolean is_allocated_land_utilised;
 
     @SerializedName("last_updated_by")
-    public int user_id = 1;
+    public int user_id = 0;
 
 
     @NonNull

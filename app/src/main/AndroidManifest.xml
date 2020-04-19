@@ -2,11 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.saarit.temple_management.templemanagement">
 
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/app_icon"
@@ -14,40 +9,39 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyAgOMiwFEmnwXMxqXvb3hTckF7vYghoiA0" />
+        <activity android:name=".view.ui.Form5Activity"></activity>
 
-        <activity
-            android:name=".view.ui.LoginActivity"
-            >
+        <activity android:name=".view.ui.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".view.ui.ActivityMap"
-            />
+
+        <activity android:name=".view.ui.ActivityMap" />
         <activity
             android:name=".view.ui.Form1Activity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".view.ui.Form2Activity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity android:name=".view.ui.Form3aActivity" />
         <activity android:name=".view.ui.Form3b_1Activity" />
         <activity android:name=".view.ui.Form3b_2Activity" />
         <activity android:name=".view.ui.Form4Activity" />
-        <activity android:name=".view.ui.Form5aActivity" />
-        <activity android:name=".view.ui.not_in_use.FormsActivity" />
-        <activity android:name=".view.ui.not_in_use.TabActivity" />
         <activity
             android:name=".view.ui.FormTypesActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".view.ui.Activity_CreateUser"/>
-
+            android:screenOrientation="portrait" />
+        <activity android:name=".view.ui.Activity_CreateUser" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAgOMiwFEmnwXMxqXvb3hTckF7vYghoiA0" />
     </application>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
 </manifest>

@@ -92,7 +92,7 @@
                     android:background="@drawable/background_green_rectangle"
                     android:padding="5dp"
 
-                    android:text="@{Convertor.intToString(viewmodel.formType_3b_2_ObservableField.get().temple_id)}"
+                    android:text="@{Convertor.intToString(viewmodel.formType_3b_2_ObservableField.temple_id)}"
                     android:textColor="@color/white"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -141,7 +141,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="Temple Name"
-                        android:text="@{viewmodel.formType_3b_2_ObservableField.get().temple_name}"
+                        android:text="@{viewmodel.formType_3b_2_ObservableField.temple_name}"
 
                         />
 
@@ -170,7 +170,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="God Name"
-                        android:text="@{viewmodel.formType_3b_2_ObservableField.get().god_name}"
+                        android:text="@{viewmodel.formType_3b_2_ObservableField.god_name}"
 
                         />
 
@@ -199,7 +199,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="Village"
-                        android:text="@{viewmodel.formType_3b_2_ObservableField.get().village_name}" />
+                        android:text="@{viewmodel.formType_3b_2_ObservableField.village_name}" />
 
 
                 </LinearLayout>
@@ -226,7 +226,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="Taluka"
-                        android:text="@{viewmodel.formType_3b_2_ObservableField.get().taluka_name}" />
+                        android:text="@{viewmodel.formType_3b_2_ObservableField.taluka_name}" />
 
 
                 </LinearLayout>
@@ -254,7 +254,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="District"
-                        android:text="@{viewmodel.formType_3b_2_ObservableField.get().district_name}"
+                        android:text="@{viewmodel.formType_3b_2_ObservableField.district_name}"
 
                         />
 
@@ -284,7 +284,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="Latitude"
-                        android:text="@{viewmodel.formType_3b_2_ObservableField.get().latitude}"
+                        android:text="@{viewmodel.formType_3b_2_ObservableField.latitude}"
 
                         />
 
@@ -314,7 +314,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="Longitude"
-                        android:text="@{viewmodel.formType_3b_2_ObservableField.get().longitude}"
+                        android:text="@{viewmodel.formType_3b_2_ObservableField.longitude}"
 
                         />
 
@@ -343,7 +343,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="Group No"
-                        android:text="@={viewmodel.formType_3b_2_ObservableField.get().group_no}"
+                        android:text="@={viewmodel.formType_3b_2_ObservableField.group_no}"
 
                         />
 
@@ -373,7 +373,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="Notification No"
-                        android:text="@={viewmodel.formType_3b_2_ObservableField.get().notification_no}"
+                        android:text="@={viewmodel.formType_3b_2_ObservableField.notification_no}"
 
                         />
 
@@ -402,7 +402,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="Register No"
-                        android:text="@={viewmodel.formType_3b_2_ObservableField.get().register_no}"
+                        android:text="@={viewmodel.formType_3b_2_ObservableField.register_no}"
 
                         />
 
@@ -432,7 +432,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="Area in ha(Hectare)"
-                        android:text="@={viewmodel.formType_3b_2_ObservableField.get().area_hectare}"
+                        android:text="@={viewmodel.formType_3b_2_ObservableField.area_hectare}"
 
                         />
 
@@ -471,7 +471,7 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
                             android:layout_weight="1"
-                            android:checked="@={viewmodel.formType_3b_2_ObservableField.get().is_any_land_cultivation}"
+                            android:checked="@={viewmodel.formType_3b_2_ObservableField.is_any_land_cultivation}"
                             android:onCheckedChanged="@{(view,value)->viewmodel.onSwitchCheckedChange(view,value,Constant.SWITCH_LAND_CULTIVATION)}" />
                     </LinearLayout>
 
@@ -503,7 +503,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="4"
                                 android:hint="Area of Agricultural Land"
-                                android:text="@={viewmodel.formType_3b_2_ObservableField.get().area_agriculture_land}"
+                                android:text="@={viewmodel.formType_3b_2_ObservableField.area_agriculture_land}"
 
                                 />
 
@@ -532,7 +532,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="4"
                                 android:hint="Area of Non Agricultural Land"
-                                android:text="@={viewmodel.formType_3b_2_ObservableField.get().area_non_agriculture_land}"
+                                android:text="@={viewmodel.formType_3b_2_ObservableField.area_non_agriculture_land}"
 
                                 />
 
@@ -560,7 +560,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="4"
                                 android:hint="Total area under cultivation"
-                                android:text="@={viewmodel.formType_3b_2_ObservableField.get().total_area_cultivation}"
+                                android:text="@={viewmodel.formType_3b_2_ObservableField.total_area_cultivation}"
 
                                 />
 
@@ -599,7 +599,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="Shape"
-                        android:text="@={viewmodel.formType_3b_2_ObservableField.get().shape}"
+                        android:text="@={viewmodel.formType_3b_2_ObservableField.shape}"
 
                         />
 
@@ -629,7 +629,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="Annual Budget"
-                        android:text="@={viewmodel.formType_3b_2_ObservableField.get().annual_budget}"
+                        android:text="@={viewmodel.formType_3b_2_ObservableField.annual_budget}"
                         android:inputType="number"
                         />
 
@@ -659,7 +659,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="Controller Name"
-                        android:text="@={viewmodel.formType_3b_2_ObservableField.get().controller_name}"
+                        android:text="@={viewmodel.formType_3b_2_ObservableField.controller_name}"
                         />
 
                 </LinearLayout>
@@ -687,7 +687,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="Controller Responsibility"
-                        android:text="@={viewmodel.formType_3b_2_ObservableField.get().controller_responsibility}"
+                        android:text="@={viewmodel.formType_3b_2_ObservableField.controller_responsibility}"
                         />
 
                 </LinearLayout>
@@ -715,7 +715,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="Controller Work"
-                        android:text="@={viewmodel.formType_3b_2_ObservableField.get().controller_work}"
+                        android:text="@={viewmodel.formType_3b_2_ObservableField.controller_work}"
                         />
 
                 </LinearLayout>
@@ -743,7 +743,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="Land encroachment on construction"
-                        android:text="@={viewmodel.formType_3b_2_ObservableField.get().land_encroachment_on_construction}"
+                        android:text="@={viewmodel.formType_3b_2_ObservableField.land_encroachment_on_construction}"
                         />
 
                 </LinearLayout>
@@ -780,7 +780,7 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
                             android:layout_weight="1"
-                            android:checked="@={viewmodel.formType_3b_2_ObservableField.get().is_land_surveyed}"
+                            android:checked="@={viewmodel.formType_3b_2_ObservableField.is_land_surveyed}"
                             android:onCheckedChanged="@{(view,value)->viewmodel.onSwitchCheckedChange(view,value,Constant.SWITCH_LAND_SURVEYED)}" />
                     </LinearLayout>
 
@@ -812,7 +812,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="3"
                                 android:hint="Survey Date"
-                                android:text="@={viewmodel.formType_3b_2_ObservableField.get().survey_date}"
+                                android:text="@={viewmodel.formType_3b_2_ObservableField.survey_date}"
                                 />
 
                             <ImageView
@@ -845,7 +845,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_margin="5dp"
                                 android:layout_weight="1"
-                                android:checked="@={viewmodel.formType_3b_2_ObservableField.get().is_border_fixed}" />
+                                android:checked="@={viewmodel.formType_3b_2_ObservableField.is_border_fixed}" />
                         </LinearLayout>
 
 
@@ -882,7 +882,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="Whether map received"
-                        android:text="@={viewmodel.formType_3b_2_ObservableField.get().whether_map_received}"
+                        android:text="@={viewmodel.formType_3b_2_ObservableField.whether_map_received}"
                         />
 
                 </LinearLayout>
@@ -909,7 +909,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
                         android:hint="Land Document a"
-                        android:text="@={viewmodel.formType_3b_2_ObservableField.get().land_document_a}"
+                        android:text="@={viewmodel.formType_3b_2_ObservableField.land_document_a}"
                         />
 
                     <androidx.appcompat.widget.AppCompatSpinner
@@ -945,7 +945,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
                         android:hint="Land Document b"
-                        android:text="@={viewmodel.formType_3b_2_ObservableField.get().land_document_b}"
+                        android:text="@={viewmodel.formType_3b_2_ObservableField.land_document_b}"
                         />
 
                     <androidx.appcompat.widget.AppCompatSpinner
@@ -988,7 +988,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="Planning for water Availability"
-                        android:text="@={viewmodel.formType_3b_2_ObservableField.get().planning_water_availability}"
+                        android:text="@={viewmodel.formType_3b_2_ObservableField.planning_water_availability}"
 
                         />
 
@@ -1018,7 +1018,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="What are the options to keep Land Productive"
-                        android:text="@={viewmodel.formType_3b_2_ObservableField.get().options_land_productive}"
+                        android:text="@={viewmodel.formType_3b_2_ObservableField.options_land_productive}"
 
                         />
 
@@ -1047,7 +1047,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="Whether utilisation of Land for Business and how"
-                        android:text="@={viewmodel.formType_3b_2_ObservableField.get().utilisation_land_business}"
+                        android:text="@={viewmodel.formType_3b_2_ObservableField.utilisation_land_business}"
 
                         />
 
@@ -1085,7 +1085,7 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
                             android:layout_weight="1"
-                            android:checked="@={viewmodel.formType_3b_2_ObservableField.get().is_land_used_cultivation}"
+                            android:checked="@={viewmodel.formType_3b_2_ObservableField.is_land_used_cultivation}"
                             android:onCheckedChanged="@{(view,value)->viewmodel.onSwitchCheckedChange(view,value,Constant.SWITCH_LAND_USED_CULTIVATION)}" />
                     </LinearLayout>
 
@@ -1117,7 +1117,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="4"
                                 android:hint="How is land use for Cultivation"
-                                android:text="@={viewmodel.formType_3b_2_ObservableField.get().land_cultivation_procedure}"
+                                android:text="@={viewmodel.formType_3b_2_ObservableField.land_cultivation_procedure}"
 
                                 />
 
@@ -1158,7 +1158,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="Remarks"
-                        android:text="@={viewmodel.formType_3b_2_ObservableField.get().remarks}"
+                        android:text="@={viewmodel.formType_3b_2_ObservableField.remarks}"
 
                         />
 

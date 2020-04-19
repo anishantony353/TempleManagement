@@ -13,7 +13,6 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.patloew.rxlocation.RxLocation;
 import com.saarit.temple_management.templemanagement.model.FormType_1;
-import com.saarit.temple_management.templemanagement.util.not_in_use.ThreadCurrentLocation;
 import com.saarit.temple_management.templemanagement.model.repositories.Repo_FormType_1;
 import com.saarit.temple_management.templemanagement.model.repositories.Repo_server;
 import com.saarit.temple_management.templemanagement.util.Constant;

@@ -9,7 +9,7 @@ import com.saarit.temple_management.templemanagement.util.Constant;
 import com.saarit.temple_management.templemanagement.util.Utility;
 import com.saarit.temple_management.templemanagement.view.listeners.DateSetListner;
 import com.saarit.temple_management.templemanagement.view_model.FormType3b_1_ViewModel;
-import com.saarit.temple_management.templemanagement.view_model.not_in_use.MyViewModelFactory;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -32,7 +32,7 @@ public class Form3b_1Activity extends AppCompatActivity implements DateSetListne
     private void setupBindings(Bundle savedInstanceState) {
         binding = DataBindingUtil.setContentView(this,R.layout.activity_form3b_1);
         /*viewModel = ViewModelProviders.of(this).get(FormType3b_1_ViewModel.class);*/
-        viewModel = ViewModelProviders.of(this,new MyViewModelFactory(getApplication(),"ARGUMENT")).get(FormType3b_1_ViewModel.class);
+        viewModel = ViewModelProviders.of(this).get(FormType3b_1_ViewModel.class);
 
         if(savedInstanceState == null){
             viewModel.init(getIntent().getIntExtra(Constant.KEY_EXTRA_TEMPLE_ID,0));
