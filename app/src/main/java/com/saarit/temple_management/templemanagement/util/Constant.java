@@ -96,6 +96,9 @@ public class Constant {
 
     public static final int SPINNER_TYPE_LAND_DOC_A = 1;
     public static final int SPINNER_TYPE_LAND_DOC_B = 2;
+    public static final int SPINNER_TYPE_PURPOSE_USE_GIVEN_LAND = 3;
+    public static final int SPINNER_TYPE_PURPOSE_USE_UNUSED_LAND = 4;
+    public static final int SPINNER_TYPE_LAND_UTILISATION = 5;
 
 
 

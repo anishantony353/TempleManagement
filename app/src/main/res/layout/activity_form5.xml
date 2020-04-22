@@ -1,6 +1,15 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+    
+    <data>
+        <variable
+            name="viewmodel"
+            type="com.saarit.temple_management.templemanagement.view_model.FormType5_ViewModel" />
+        <import type="com.saarit.temple_management.templemanagement.binding.Convertor" />
+        <import type="android.view.View"/>
+        <import type="com.saarit.temple_management.templemanagement.util.Constant" />
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -8,6 +17,17 @@
         android:background="@color/saffron"
         android:padding="10dp"
         tools:context=".view.ui.Form5Activity">
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:visibility="@{viewmodel.progressBar}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/save"
@@ -71,7 +91,7 @@
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="@+id/root_guideline"
             app:layout_constraintTop_toBottomOf="@+id/temple_id"
-            tools:text="125888" />
+            tools:text="@{Convertor.intToString(viewmodel.formType_5.temple_id)}" />
 
         <TextView
             android:id="@+id/local_server_value"
@@ -79,7 +99,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:padding="5dp"
-            android:text="local /server "
+            android:text="@{viewmodel.local_server_new_ObservableField}"
             android:textColor="@color/white"
             android:textSize="25sp"
             android:textStyle="bold"
@@ -141,204 +161,916 @@
             app:layout_constraintTop_toBottomOf="@+id/barrier_top_of_scrollview"
             app:layout_constraintVertical_bias="1.0">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingBottom="10dp">
 
-                <TextView
-                    android:id="@+id/temple_name"
-                    android:layout_width="0dp"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
-                    android:text="Temple Name"
-                    android:textColor="@color/white"
-                    app:layout_constrainedHeight="true"
-                    app:layout_constrainedWidth="true"
-                    app:layout_constraintBottom_toTopOf="@id/barrier_temple_name"
-                    app:layout_constraintEnd_toStartOf="@+id/scrollview_guideline"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="1.0"
-                    app:layout_constraintWidth_default="spread" />
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
 
-                <TextView
-                    android:id="@+id/temple_name_value"
-                    android:layout_width="0dp"
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="2"
+                        android:text="Temple Name"
+                        android:textColor="@color/white" />
+
+                    <TextView
+
+                        style="@style/MyEditTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:hint="मंदिराचे नाव"
+                        android:text="@{viewmodel.formType_5.temple_name}"
+
+                        />
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/background_login_feilds"
-                    android:hint="Temple Name"
-                    android:padding="2dp"
-                    android:text="Some temple nam drddkkkkkkkkkkkzzz"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    app:layout_constrainedHeight="true"
-                    app:layout_constrainedWidth="false"
-                    app:layout_constraintBottom_toTopOf="@id/barrier_temple_name"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="@+id/scrollview_guideline"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="1.0" />
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="2"
+                        android:text="Village"
+                        android:textColor="@color/white" />
+
+                    <TextView
+
+                        style="@style/MyEditTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:hint="गावचे नाव"
+                        android:text="@{viewmodel.formType_5.village_name}" />
 
 
-                <TextView
-                    android:id="@+id/village_name"
-                    android:layout_width="0dp"
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginTop="16dp"
-                    android:text="Village Name"
-                    android:textColor="@color/white"
-                    app:layout_constrainedHeight="true"
-                    app:layout_constraintBottom_toTopOf="@id/barrier_village_name"
-                    app:layout_constraintEnd_toStartOf="@+id/scrollview_guideline"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/barrier_temple_name"
-                    app:layout_constraintVertical_bias="0.96" />
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
 
-                <TextView
-                    android:id="@+id/village_name_value"
-                    android:layout_width="0dp"
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="2"
+                        android:text="Taluka"
+                        android:textColor="@color/white" />
+
+                    <TextView
+                        style="@style/MyEditTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:hint="तालुक्याचे नाव"
+                        android:text="@{viewmodel.formType_5.taluka_name}" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:background="@drawable/background_login_feilds"
-                    android:padding="2dp"
-                    android:text="Some Village abcfh kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkknnnnnnnnnnnnnnnnnnppp"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    app:layout_constrainedHeight="true"
-                    app:layout_constraintBottom_toTopOf="@id/barrier_village_name"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/scrollview_guideline"
-                    app:layout_constraintTop_toBottomOf="@id/barrier_temple_name"
-                    app:layout_constraintVertical_bias="1.0" />
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
 
-                <TextView
-                    android:id="@+id/taluka_name"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginTop="16dp"
-                    android:text="Taluka Name"
-                    android:textColor="@color/white"
-                    android:textSize="14sp"
-                    app:layout_constrainedHeight="false"
-                    app:layout_constraintBottom_toTopOf="@id/barrier_taluka_name"
-                    app:layout_constraintEnd_toStartOf="@+id/scrollview_guideline"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/barrier_village_name"
-                    app:layout_constraintVertical_bias="0.97" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="2"
+                        android:text="District"
+                        android:textColor="@color/white" />
+
+                    <TextView
+
+                        style="@style/MyEditTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:hint="जिल्हा नाव"
+                        android:text="@{viewmodel.formType_5.district_name}"
+
+                        />
 
 
-                <TextView
-                    android:id="@+id/taluka_name_value"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:background="@drawable/background_login_feilds"
-                    android:padding="2dp"
-                    android:text="Some talukadggghhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyhhhhhz"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    app:layout_constrainedHeight="true"
-                    app:layout_constraintBottom_toTopOf="@id/barrier_taluka_name"
-
-
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/scrollview_guideline"
-                    app:layout_constraintTop_toBottomOf="@id/barrier_village_name"
-                    app:layout_constraintVertical_bias="1.0" />
-
-                <TextView
-                    android:id="@+id/district_name"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginTop="16dp"
-                    android:text="District Name"
-                    android:textColor="@color/white"
-                    android:textStyle="bold"
-                    app:layout_constrainedHeight="true"
-                    app:layout_constraintBottom_toTopOf="@id/barrier_district_name"
-                    app:layout_constraintEnd_toStartOf="@+id/scrollview_guideline"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/barrier_taluka_name"
-                    app:layout_constraintVertical_bias="0.97" />
-
-                <TextView
-                    android:id="@+id/district_name_value"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:background="@drawable/background_login_feilds"
-                    android:padding="2dp"
-                    android:text="Some dist name uuyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyymmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmzzz"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    app:layout_constrainedHeight="true"
-                    app:layout_constraintBottom_toTopOf="@id/barrier_district_name"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/scrollview_guideline"
-                    app:layout_constraintTop_toBottomOf="@id/barrier_taluka_name"
-                    app:layout_constraintVertical_bias="0.95" />
-
-                <androidx.constraintlayout.widget.Barrier
-                    android:id="@+id/barrier_temple_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:barrierDirection="bottom"
-                    app:constraint_referenced_ids="temple_name,temple_name_value"
-                    tools:layout_editor_absoluteY="520dp" />
-
-                <androidx.constraintlayout.widget.Barrier
-                    android:id="@+id/barrier_village_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:barrierDirection="bottom"
-                    app:constraint_referenced_ids="village_name,village_name_value"
-                    tools:layout_editor_absoluteY="518dp" />
-
-                <androidx.constraintlayout.widget.Barrier
-                    android:id="@+id/barrier_taluka_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:barrierDirection="bottom"
-                    app:constraint_referenced_ids="taluka_name,taluka_name_value"
-                    tools:layout_editor_absoluteY="518dp" />
-
-                <androidx.constraintlayout.widget.Barrier
-                    android:id="@+id/barrier_district_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    app:barrierDirection="bottom"
-                    app:constraint_referenced_ids="district_name,district_name_value"
-                    tools:layout_editor_absoluteY="518dp"
-                    tools:visibility="visible" />
-
-                <androidx.constraintlayout.widget.Guideline
-                    android:id="@+id/scrollview_guideline"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:layout_constraintGuide_percent="0.4" />
+                </LinearLayout>
 
                 <View
-                    android:id="@+id/view"
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="2dp"
-                    android:layout_marginTop="16dp"
-                    android:background="@color/white"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/district_name_value" />
+                    android:layout_marginBottom="10dp"
+                    android:background="@color/white"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="2"
+                        android:text="Name of Devsthan"
+                        android:textColor="@color/white" />
+
+                    <EditText
+                        style="@style/MyEditTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:hint="देवस्थानाचे नाव"
+                        android:text="@{viewmodel.formType_5.devsthan_name}"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="2"
+                        android:text="Notification No"
+                        android:textColor="@color/white" />
+
+                    <EditText
+
+                        style="@style/MyEditTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:hint="अधिसूचनेतील क्रमांक"
+                        android:text="@{viewmodel.formType_5.notification_number}"
+
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="2"
+                        android:text="PTR No K.A"
+                        android:textColor="@color/white" />
+
+                    <EditText
+
+                        style="@style/MyEditTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:hint="पीटीआर नं- के.ए"
+                        android:text="@{viewmodel.formType_5.ptr_number}"
+
+                        />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@color/white"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="2"
+                        android:text="GATH No"
+                        android:textColor="@color/white" />
+
+                    <EditText
+
+                        style="@style/MyEditTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:hint="गट नं"
+                        android:text="@{viewmodel.formType_5.gath_number}"
+
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="2"
+                        android:text="S.N"
+                        android:textColor="@color/white" />
+
+                    <EditText
+
+                        style="@style/MyEditTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:hint="स.नं"
+                        android:text="@{viewmodel.formType_5.sn}"
+
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="2"
+                        android:text="C.S.N"
+                        android:textColor="@color/white" />
+
+                    <EditText
+
+                        style="@style/MyEditTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:hint="सि.स.नं"
+                        android:text="@{viewmodel.formType_5.csn}"
+
+                        />
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@color/white"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="2"
+                        android:text="Total Area"
+                        android:textColor="@color/white" />
+
+                    <EditText
+
+                        style="@style/MyEditTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:hint="एकूण क्षेत्र"
+                        android:text="@{viewmodel.formType_5.total_area}"
+
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="2"
+                        android:text="Shape"
+                        android:textColor="@color/white" />
+
+                    <EditText
+
+                        style="@style/MyEditTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:hint="आकार"
+                        android:text="@{viewmodel.formType_5.shape}"
+
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="2"
+                        android:text="Name of Land Tenants"
+                        android:textColor="@color/white" />
+
+                    <EditText
+
+                        style="@style/MyEditTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:hint="सभुईभाडेकरूंचे नाव"
+                        android:text="@{viewmodel.formType_5.land_tenants_name}"
+
+                        />
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@color/white"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="2"
+                        android:text="Address"
+                        android:textColor="@color/white" />
+
+                    <EditText
+
+                        style="@style/MyEditTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:hint="पत्ता"
+                        android:text="@{viewmodel.formType_5.address}"
+
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="2"
+                        android:text="Measurements of sanctioned Land"
+                        android:textColor="@color/white" />
+
+                    <EditText
+
+                        style="@style/MyEditTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:hint="मंजूर केलेल्या जागेचे मोजमाप"
+                        android:text="@{viewmodel.formType_5.sanctioned_land_measurements}"
+
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="2"
+                        android:text="Area of sanctioned Land"
+                        android:textColor="@color/white" />
+
+                    <EditText
+
+                        style="@style/MyEditTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:hint="मंजूर केलेल्या जागेचे क्षेत्रफ़ळ"
+                        android:text="@{viewmodel.formType_5.sanctioned_land_area}"
+
+                        />
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@color/white"/>
+
+                <!--Occupant encrochment..switch-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="5">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="4"
+                            android:text="Is occupant has done encroachment in given plot (मंजुरी पेक्षा जादा जागा घेतली आहे का)"
+                            android:textColor="@color/white"
+                            android:textSize="20sp" />
+                        <androidx.appcompat.widget.SwitchCompat
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:onCheckedChanged="@{(view,value)->viewmodel.onSwitchCheckedChange(value)}"
+                            android:checked="@={viewmodel.formType_5.has_occupant_encroached_plot}"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:orientation="horizontal"
+                        android:weightSum="6"
+                        android:visibility="@{viewmodel.formType_5.has_occupant_encroached_plot ? View.VISIBLE:View.GONE }">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
+                            android:layout_marginRight="20dp"
+                            android:layout_weight="2"
+                            android:text="Area of Encroachment"
+                            android:textColor="@color/white" />
+
+                        <EditText
+                            style="@style/MyEditTextStyle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="4"
+                            android:hint="असल्यास किती"
+                            android:text="@={viewmodel.formType_5.encroachment_area}"
+                            app:clearEditText="@{viewmodel.formType_5.has_occupant_encroached_plot}"
+                            />
 
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    </LinearLayout>
+
+
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@color/white"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="2"
+                        android:text="Shape of Open spaces"
+                        android:textColor="@color/white" />
+
+                    <EditText
+
+                        style="@style/MyEditTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:hint="मोकळी जागा स्वरूप"
+                        android:text="@{viewmodel.formType_5.shape_open_space}"
+
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="2"
+                        android:text="Shape of Temples"
+                        android:textColor="@color/white" />
+
+                    <EditText
+
+                        style="@style/MyEditTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:hint="मंदिरातील स्वरूप"
+                        android:text="@{viewmodel.formType_5.shape_temple}"
+
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="2"
+                        android:text="Shape of Dharmashala"
+                        android:textColor="@color/white" />
+
+                    <EditText
+
+                        style="@style/MyEditTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:hint="धर्मशाळा स्वरूप"
+                        android:text="@{viewmodel.formType_5.shape_dharmashala}"
+
+                        />
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@color/white"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="2"
+                        android:text="Purpose of given land"
+                        android:textColor="@color/white" />
+
+                    <EditText
+
+                        style="@style/MyEditTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:hint="दिलेल्या जागेचा हेतू"
+                        android:text="@{viewmodel.formType_5.purpose_given_land}"
+
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="2"
+                        android:text="Purpose of the use"
+                        android:textColor="@color/white" />
+
+                    <TextView
+                        style="@style/MyEditTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:hint="मंजूर केलेल्या जागा कोणत्या कारणासाठी दिली"
+                        android:text="@={viewmodel.formType_5.purpose_use_given_land}"
+                        />
+
+                    <androidx.appcompat.widget.AppCompatSpinner
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="2"
+                        android:entries="@array/land_documents_a"
+                        android:onItemSelected="@{(parent,view,position,id)->viewmodel.onItemSelected(parent,view,position,id,Constant.SPINNER_TYPE_PURPOSE_USE_GIVEN_LAND)}"
+                        />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:text="Is there a Sub-tenant in an approved place?(मंजूर जागेमध्ये पोटभाडेकरू आहे काय)"
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:checked="@={viewmodel.formType_5.is_sub_tenant_in_approved_place}"
+                        />
+
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@color/white"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="2"
+                        android:text="Area of Unused Plot"
+                        android:textColor="@color/white" />
+
+                    <EditText
+
+                        style="@style/MyEditTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:hint="दप्रत्यक्ष वापर होत नसलेल्या जागेचे मोजमाप क्षेत्रफ़ळ"
+                        android:text="@{viewmodel.formType_5.area_unused_plot}"
+
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="2"
+                        android:text="Purpose of the use"
+                        android:textColor="@color/white" />
+
+                    <TextView
+                        style="@style/MyEditTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:hint="प्रत्यक्ष वापर कोणत्या कारणासाठी होत आहे"
+                        android:text="@={viewmodel.formType_5.purpose_use_unused_plot}"
+                        />
+
+                    <androidx.appcompat.widget.AppCompatSpinner
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="2"
+                        android:entries="@array/land_documents_a"
+                        android:onItemSelected="@{(parent,view,position,id)->viewmodel.onItemSelected(parent,view,position,id,Constant.SPINNER_TYPE_PURPOSE_USE_UNUSED_LAND)}"
+                        />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="2"
+                        android:text="Utilisation of land"
+                        android:textColor="@color/white" />
+
+                    <TextView
+                        style="@style/MyEditTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:hint="जागेचे वापर होत आहे"
+                        android:text="@={viewmodel.formType_5.land_utilisation}"
+                        />
+
+                    <androidx.appcompat.widget.AppCompatSpinner
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="2"
+                        android:entries="@array/land_documents_a"
+                        android:onItemSelected="@{(parent,view,position,id)->viewmodel.onItemSelected(parent,view,position,id,Constant.SPINNER_TYPE_LAND_UTILISATION)}"
+                        />
+
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@color/white"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="2"
+                        android:text="Latitude"
+                        android:textColor="@color/white" />
+
+                    <TextView
+                        style="@style/MyEditTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:hint="अक्षांश"
+                        android:text="@{viewmodel.formType_5.latitude}"
+
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="2"
+                        android:text="Longitude"
+                        android:textColor="@color/white" />
+
+                    <EditText
+
+                        style="@style/MyEditTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:hint="रेखांश"
+                        android:text="@{viewmodel.formType_5.longitude}"
+
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="2"
+                        android:text="Remark"
+                        android:textColor="@color/white" />
+
+                    <EditText
+
+                        style="@style/MyEditTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:hint="शेरा"
+                        android:text="@{viewmodel.formType_5.remarks}"
+
+                        />
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@color/white"/>
+
+            </LinearLayout>
         </androidx.core.widget.NestedScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

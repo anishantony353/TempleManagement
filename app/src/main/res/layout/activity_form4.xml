@@ -92,7 +92,6 @@
                     android:layout_marginBottom="5dp"
                     android:background="@drawable/background_green_rectangle"
                     android:padding="5dp"
-
                     android:text="@{Convertor.intToString(viewmodel.formType_4.temple_id)}"
                     android:textColor="@color/white"
                     android:textSize="20sp"
