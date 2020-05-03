@@ -32,4 +32,20 @@
         <item>Surveyor</item>
     </string-array>
 
+    <string-array name="purpose_of_use">
+        <item>Select</item>
+        <item>Residence</item>
+        <item>Commercial</item>
+        <item>Industrial</item>
+        <item>Social</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="utilisation_of_land">
+        <item>Select</item>
+        <item>Slum</item>
+        <item>Row House</item>
+        <item>Cement Concrete</item>
+    </string-array>
+
 </resources>

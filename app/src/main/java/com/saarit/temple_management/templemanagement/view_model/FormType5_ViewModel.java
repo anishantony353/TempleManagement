@@ -1,11 +1,15 @@
 package com.saarit.temple_management.templemanagement.view_model;
 
+import android.annotation.SuppressLint;
 import android.app.Application;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Toast;
 
+import com.google.android.gms.location.LocationRequest;
+import com.patloew.rxlocation.RxLocation;
 import com.saarit.temple_management.templemanagement.R;
+import com.saarit.temple_management.templemanagement.model.FormType_3b_2;
 import com.saarit.temple_management.templemanagement.model.FormType_5;
 import com.saarit.temple_management.templemanagement.model.repositories.Repo_FormType_1;
 import com.saarit.temple_management.templemanagement.model.repositories.Repo_FormType_4;
@@ -26,6 +30,7 @@ import androidx.room.EmptyResultSetException;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 public class FormType5_ViewModel extends AndroidViewModel {
@@ -36,6 +41,7 @@ public class FormType5_ViewModel extends AndroidViewModel {
 
     public int templeId;
     public FormType_5 formType_5 = new FormType_5();
+    public ObservableField<FormType_5> formType_5_ObservableField = new ObservableField<>();
 
     public ObservableField<String> local_server_new_ObservableField = new ObservableField<>("");
     public ObservableInt progressBar = new ObservableInt(View.GONE);
@@ -46,8 +52,19 @@ public class FormType5_ViewModel extends AndroidViewModel {
 
     CompositeDisposable disposable = new CompositeDisposable();
 
+    RxLocation rxLocation = new RxLocation(getApplication());
+    LocationRequest locationRequest = LocationRequest.create()
+            .setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY)
+            .setInterval(5000);
+
+    Disposable locDisposable;
+
+    public ObservableInt markerVisibility = new ObservableInt(View.VISIBLE);
+    public ObservableInt progressVisibility = new ObservableInt(View.GONE);
+
     public void init(int id){
         templeId = id;
+        Utility.log(TAG,"Temple Id:"+templeId);
 
         setUpUI();
     }
@@ -55,6 +72,7 @@ public class FormType5_ViewModel extends AndroidViewModel {
     private void setUpUI() {
 
         getFormType_5_ByTempleId();
+
 
     }
 
@@ -66,14 +84,18 @@ public class FormType5_ViewModel extends AndroidViewModel {
                         observeOn(AndroidSchedulers.mainThread()).
                         subscribe(
                                 form -> {
+                                    Utility.log(TAG, "Details:"+form.temple_name+" Latitude:"+form.latitude);
                                     formType_5 = form;
-                                    formType_5.notifyChange();
+                                    Utility.log(TAG, "Details:"+formType_5.temple_name+" Latitude:"+formType_5.latitude);
+                                    /*formType_5.notifyChange();*/
+                                    formType_5_ObservableField.set(formType_5);
                                     local_server_new_ObservableField.set("Local");
 
                                 },
                                 throwable -> {
                                     Utility.log(TAG, throwable.getMessage());
                                     if(throwable instanceof EmptyResultSetException){
+                                        Utility.log(TAG,"form 5 not found in  Local DB");
                                         getFormType_5_ByTempleId_Server();
                                     }
                                 },
@@ -95,9 +117,10 @@ public class FormType5_ViewModel extends AndroidViewModel {
                                     if(dto.getSuccess() == 0){
                                         throw new EmptyResultSetException("Form 5 not found on server");
                                     }else{
+                                        Utility.log(TAG,"SUccess: 1");
                                         formType_5 = dto.getFormType_5();
                                         formType_5.id = 0;
-                                        return null;
+                                        return Observable.just(formType_5);
                                     }
                                 }
                         ).
@@ -105,23 +128,27 @@ public class FormType5_ViewModel extends AndroidViewModel {
                         observeOn(AndroidSchedulers.mainThread()).
                         subscribe(
                                 value -> {
+                                    Utility.log(TAG,"next...");
 
                                 },
                                 throwable -> {
                                     Utility.log(TAG, throwable.getMessage());
                                     if(throwable instanceof EmptyResultSetException){
+                                        Utility.log(TAG,"About to fetch form 1 locally");
                                         getFormType_1_ByTempleId();
                                     }
                                 },
                                 ()->{
                                     Utility.log(TAG,"Fetched form 5 from server");
-                                    formType_5.notifyChange();
+                                    /*formType_5.notifyChange();*/
+                                    formType_5_ObservableField.set(formType_5);
                                     local_server_new_ObservableField.set("Server");
 
                                     requestScreenLockMutableLiveData.setValue(false);
                                     progressBar.set(View.GONE);
                                 },
                                 dsposble->{
+                                    Utility.log(TAG,"About to fetch form 5 from server");
                                     requestScreenLockMutableLiveData.setValue(true);
                                     progressBar.set(View.VISIBLE);
 
@@ -138,29 +165,35 @@ public class FormType5_ViewModel extends AndroidViewModel {
                         subscribe(
 
                                 formType_1 ->{
+                                    Utility.log(TAG, "On Next...");
+
                                     formType_5.temple_id = formType_1.templeId;
                                     formType_5.temple_name = formType_1.temple;
                                     formType_5.village_name = formType_1.village;
                                     formType_5.taluka_name = formType_1.taluka;
                                     formType_5.district_name = formType_1.district;
 
-                                    formType_5.notifyChange();
-                                    local_server_new_ObservableField.set("New");
-                                    requestScreenLockMutableLiveData.setValue(false);
-                                    progressBar.set(View.GONE);
+                                    /*formType_5.notifyChange();*/
+                                    formType_5_ObservableField.set(formType_5);
 
+                                     progressBar.set(View.GONE);
+                                    requestScreenLockMutableLiveData.setValue(false);
+                                    local_server_new_ObservableField.set("New");
                                 },
                                 throwable -> {
+                                    Utility.log(TAG, "Throwable...");
                                     Utility.log(TAG, throwable.getMessage());
                                     if(throwable instanceof EmptyResultSetException){
+                                        Utility.log(TAG,"Cudnt find form 1 locally");
                                         getFormType_1_ByTempleId_Server();
                                     }
                                 },
                                 () -> {
+                                    Utility.log(TAG, "Oncomplete...");
 
                                 },
                                 dsposable ->{
-
+                                    Utility.log(TAG, "initializing...");
                                 }
                         )
         );
@@ -191,13 +224,15 @@ public class FormType5_ViewModel extends AndroidViewModel {
                                     formType_5.taluka_name = formType_1.taluka;
                                     formType_5.district_name = formType_1.district;
 
-                                    formType_5.notifyChange();
+                                   /* formType_5.notifyChange();*/
+                                    formType_5_ObservableField.set(formType_5);
                                     local_server_new_ObservableField.set("New");
                                     requestScreenLockMutableLiveData.setValue(false);
                                     progressBar.set(View.GONE);
 
                                 },
                                 throwable -> {
+                                    Utility.log(TAG,"Cudnt find form 1 on server");
                                     Utility.log(TAG, throwable.getMessage());
                                     Utility.showToast(throwable.getMessage(), Toast.LENGTH_LONG,getApplication());
                                     requestScreenLockMutableLiveData.setValue(false);
@@ -228,6 +263,12 @@ public class FormType5_ViewModel extends AndroidViewModel {
         save_submit_Form(Constant.REQ_SUBMIT);
     }
 
+    public void onLocationClick(View view) {
+        Utility.log(TAG, "onLocationClick()");
+        getCurrentLocation();
+
+    }
+
     private void save_submit_Form(int req_type) {
         disposable.add(
                 Repo_FormType_5.getInstance(getApplication()).insertForm(formType_5).toObservable().
@@ -236,6 +277,7 @@ public class FormType5_ViewModel extends AndroidViewModel {
                         subscribe(
                                 id->{
                                     Utility.log(TAG,"from onNext()..SAVING");
+                                    formType_5.id = id.intValue();
                                 },
                                 throwable->{
                                     Utility.log(TAG,"Error:"+throwable.getMessage());
@@ -277,7 +319,8 @@ public class FormType5_ViewModel extends AndroidViewModel {
 
                                     Utility.log(TAG,"Success:"+baseResponse.getSuccess());
                                     if(baseResponse.getSuccess() == 1){
-                                        return Observable.just(true);
+                                        Utility.log(TAG,"About to delete local");
+                                        return Repo_FormType_5.getInstance(getApplication()).deleteFormById(formType_5.id).toObservable();
                                     }else{
                                         throw new Exception(baseResponse.getMsg());
                                     }
@@ -339,6 +382,36 @@ public class FormType5_ViewModel extends AndroidViewModel {
 
     }
 
+    @SuppressLint("MissingPermission")
+    public void getCurrentLocation() {
+
+        /*threadCurrentLocation.start();*/
+
+        locDisposable = rxLocation.location().updates(locationRequest)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        location -> {
+                            Utility.log(TAG,"Thread onNext:"+Thread.currentThread().getName());
+                            Utility.log(TAG,"Loc Received:"+location.getLatitude()+" / "+location.getLongitude());
+                            locDisposable.dispose();
+                            markerVisibility.set(View.VISIBLE);
+                            progressVisibility.set(View.GONE);
+
+                            formType_5.setLatitude(""+location.getLatitude());
+                            formType_5.setLongitude(""+location.getLongitude());
+
+                        },
+                        throwable -> {},
+                        () -> {},
+                        dsposable -> {
+                            markerVisibility.set(View.GONE);
+                            progressVisibility.set(View.VISIBLE);
+                        }
+                );
+
+    }
+
     // Observed Methods//
     public LiveData shouldFinishActivity(){
         return finishActivity;
@@ -350,6 +423,9 @@ public class FormType5_ViewModel extends AndroidViewModel {
     @Override
     protected void onCleared() {
         disposable.clear();
+        if(locDisposable != null){
+            locDisposable.dispose();
+        }
         super.onCleared();
     }
 

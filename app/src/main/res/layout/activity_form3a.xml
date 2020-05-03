@@ -233,6 +233,22 @@
 
                 </LinearLayout>
 
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="60dp"
+
+                    android:layout_gravity="right"
+                    android:onClick="@{viewmodel::onLocationClick}"
+                    android:src="@drawable/location_marker"
+                    android:visibility="@{viewmodel.markerVisibility}" />
+
+                <ProgressBar
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="right"
+                    android:visibility="@{viewmodel.progressVisibility}"
+                    />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -256,7 +272,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="Latitude"
-                        android:text="@{viewmodel.formType_3aObservableField.get().latitude}"
+                        android:text="@={viewmodel.formType_3aObservableField.get().latitude}"
 
                         />
 
@@ -286,7 +302,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="Longitude"
-                        android:text="@{viewmodel.formType_3aObservableField.get().longitude}"
+                        android:text="@={viewmodel.formType_3aObservableField.get().longitude}"
 
                         />
 

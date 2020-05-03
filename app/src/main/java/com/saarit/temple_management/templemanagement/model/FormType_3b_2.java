@@ -121,6 +121,26 @@ public class FormType_3b_2 extends BaseObservable implements Serializable {
         notifyPropertyChanged(BR.land_document_b);
     }
 
+    @Bindable
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+        notifyPropertyChanged(BR.latitude);
+    }
+
+    @Bindable
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+        notifyPropertyChanged(BR.longitude);
+    }
+
     @NonNull
     @Override
     public String toString() {

@@ -8,8 +8,10 @@ import android.widget.Toast;
 import com.saarit.temple_management.templemanagement.R;
 import com.saarit.temple_management.templemanagement.model.DonatedProduct;
 import com.saarit.temple_management.templemanagement.model.FormType_4;
+import com.saarit.temple_management.templemanagement.model.FormType_5;
 import com.saarit.temple_management.templemanagement.model.repositories.Repo_FormType_1;
 import com.saarit.temple_management.templemanagement.model.repositories.Repo_FormType_4;
+import com.saarit.temple_management.templemanagement.model.repositories.Repo_FormType_5;
 import com.saarit.temple_management.templemanagement.model.repositories.Repo_server;
 import com.saarit.temple_management.templemanagement.util.Constant;
 import com.saarit.temple_management.templemanagement.util.PrefManager;
@@ -19,6 +21,8 @@ import com.saarit.temple_management.templemanagement.view.adapters.DonatedProduc
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.List;
+
 import androidx.annotation.NonNull;
 import androidx.databinding.ObservableField;
 import androidx.databinding.ObservableInt;
@@ -43,6 +47,7 @@ public class FormType4_ViewModel extends AndroidViewModel {
     }
 
     public FormType_4 formType_4 = new FormType_4();
+    public ObservableField<FormType_4> formType_4_ObservableField = new ObservableField<>();
     public ArrayList<DonatedProduct> products = new ArrayList<>();
     public DonatedProductsAdapter donatedProductsAdapter;
     public ObservableField<String> local_server_new_ObservableField = new ObservableField<>("");
@@ -57,6 +62,7 @@ public class FormType4_ViewModel extends AndroidViewModel {
 
     public void init(int id){
         templeId = id;
+        Utility.log(TAG,"Temple Id:"+templeId);
         donatedProductsAdapter = new DonatedProductsAdapter(R.layout.row_donation_product_info,this);
         donatedProductsAdapter.setDonatedProducts(products);
         productsAdapterObservableField.set(donatedProductsAdapter);
@@ -79,7 +85,8 @@ public class FormType4_ViewModel extends AndroidViewModel {
                         subscribe(
                                 form -> {
                                     formType_4 = form;
-                                    formType_4.notifyChange();
+                                    /*formType_4.notifyChange();*/
+                                    formType_4_ObservableField.set(formType_4);
                                     local_server_new_ObservableField.set("Local");
 
                                     fetchSubRecords();
@@ -137,7 +144,9 @@ public class FormType4_ViewModel extends AndroidViewModel {
                                 },
                                 ()->{
                                     Utility.log(TAG,"Fetched form 4 from server");
-                                    formType_4.notifyChange();
+                                    /*formType_4.notifyChange();*/
+                                    formType_4_ObservableField.set(formType_4);
+
                                     local_server_new_ObservableField.set("Server");
 
                                     donatedProductsAdapter.notifyDataSetChanged();
@@ -172,7 +181,8 @@ public class FormType4_ViewModel extends AndroidViewModel {
                                     formType_4.district_name = formType_1.district;
                                     formType_4.god_name = formType_1.god_name;
 
-                                    formType_4.notifyChange();
+                                    /*formType_4.notifyChange();*/
+                                    formType_4_ObservableField.set(formType_4);
                                     local_server_new_ObservableField.set("New");
                                     requestScreenLockMutableLiveData.setValue(false);
                                     progressBar.set(View.GONE);
@@ -220,7 +230,8 @@ public class FormType4_ViewModel extends AndroidViewModel {
                                     formType_4.district_name = formType_1.district;
                                     formType_4.god_name = formType_1.god_name;
 
-                                    formType_4.notifyChange();
+                                    /*formType_4.notifyChange();*/
+                                    formType_4_ObservableField.set(formType_4);
                                     local_server_new_ObservableField.set("New");
                                     requestScreenLockMutableLiveData.setValue(false);
                                     progressBar.set(View.GONE);
@@ -318,9 +329,10 @@ public class FormType4_ViewModel extends AndroidViewModel {
                 Repo_FormType_4.getInstance(getApplication()).insertForm(formType_4).toObservable().
                         flatMap(
                                 id->{
-                                    Repo_FormType_4.getInstance(getApplication()).deleteProducts(id.intValue()).toObservable();
-                                    Repo_FormType_4.getInstance(getApplication()).insertProducts(products).toObservable();
-
+                                    Utility.log(TAG, "Saved form 4: Id:"+id);
+                                    Repo_FormType_4.getInstance(getApplication()).deleteProducts(templeId).toObservable();
+                                    List<Long> nos =  Repo_FormType_4.getInstance(getApplication()).insertProducts(products);
+                                    Utility.log(TAG, "No of products inserted:"+nos.size());
                                     return Observable.just(id);
                                 }
                         ).
@@ -370,7 +382,8 @@ public class FormType4_ViewModel extends AndroidViewModel {
 
                                     Utility.log(TAG,"Success:"+baseResponse.getSuccess());
                                     if(baseResponse.getSuccess() == 1){
-                                        return Observable.just(true);
+                                         Repo_FormType_4.getInstance(getApplication()).deleteFormById(formType_4.id).toObservable();
+                                         return Repo_FormType_4.getInstance(getApplication()).deleteProducts(templeId).toObservable();
 
                                     }else{
                                         throw new Exception(baseResponse.getMsg());

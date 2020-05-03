@@ -45,6 +45,7 @@ public class Repo_FormType_1 {
     }
 
     public Single<FormType_1> getFormByTempleId(long templeId){
+        Utility.log(TAG,"About to fetch form 1 locally");
         return dao.getFormByTempleId(templeId);
     }
 

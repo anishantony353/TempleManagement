@@ -74,7 +74,7 @@ public class Repo_FormType_4 {
     }
 
     //**** Donated Products ******//
-    public Single<List<Long>> insertProducts(List<DonatedProduct> products){
+    public List<Long> insertProducts(List<DonatedProduct> products){
 
         Utility.log(TAG,"insertProducts.."+Thread.currentThread().getName());
         return dao.insertProducts(products);

@@ -11,155 +11,106 @@
         <import type="com.saarit.temple_management.templemanagement.util.Constant" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/saffron"
-        android:padding="10dp"
-        tools:context=".view.ui.Form5Activity">
+        android:padding="5dp">
 
-        <ProgressBar
-            android:id="@+id/progress_bar"
-            style="?android:attr/progressBarStyle"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:visibility="@{viewmodel.progressBar}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/save"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:id="@+id/LL"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:background="@drawable/background_black_rectangle"
-            android:text="Save Locally"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/root_guideline"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:orientation="horizontal"
+            android:weightSum="2">
 
-        <Button
-            android:id="@+id/submit"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:background="@drawable/background_black_rectangle"
-            android:text="submit to server"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/root_guideline" />
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/temple_id"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Temple Id"
-            android:textColor="@color/white"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+                <TextView
 
-        <TextView
-            android:id="@+id/form_type_value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/background_green_rectangle"
-            android:padding="5dp"
-            android:text="5"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/form_type" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Form Type"
+                    android:textColor="@color/white"
 
-        <TextView
-            android:id="@+id/temple_id_value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/background_green_rectangle"
-            android:padding="5dp"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constrainedWidth="true"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="@+id/root_guideline"
-            app:layout_constraintTop_toBottomOf="@+id/temple_id"
-            tools:text="@{Convertor.intToString(viewmodel.formType_5.temple_id)}" />
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/local_server_value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:padding="5dp"
-            android:text="@{viewmodel.local_server_new_ObservableField}"
-            android:textColor="@color/white"
-            android:textSize="25sp"
-            android:textStyle="bold"
-            app:layout_constrainedWidth="true"
-            app:layout_constraintEnd_toStartOf="@+id/root_guideline"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/form_type_value" />
-
-        <TextView
-            android:id="@+id/form_type"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Form Type"
-            android:textColor="@color/white"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/background_green_rectangle"
+                    android:padding="5dp"
+                    android:text="5"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:padding="5dp"
+                    android:text="@{viewmodel.local_server_new_ObservableField}"
+                    android:textColor="@color/white"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
 
 
-        <!--<android.support.constraint.Barrier
-            android:id="@+id/top_barrier"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:barrierDirection="bottom"
-            app:constraint_referenced_ids="textView7,textView6" />-->
+            </LinearLayout>
 
-        <androidx.constraintlayout.widget.Barrier
-            android:id="@+id/barrier_top_of_scrollview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clickable="false"
-            app:barrierDirection="bottom"
-            app:constraint_referenced_ids="temple_id_value,local_server_value"
-            tools:layout_editor_absoluteX="10dp"
-            tools:layout_editor_absoluteY="151dp" />
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:orientation="vertical">
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/root_guideline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.5" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Temple Id"
+                    android:textColor="@color/white"
+
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/background_green_rectangle"
+                    android:padding="5dp"
+
+                    android:text="@{Convertor.intToString(viewmodel.formType_5_ObservableField.temple_id)}"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
 
         <androidx.core.widget.NestedScrollView
-            android:id="@+id/nestedScrollView"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginBottom="15dp"
-            android:layout_marginTop="8dp"
-            android:fillViewport="true"
+            android:id="@+id/SV"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/actions"
+            android:layout_below="@+id/LL"
+            android:layout_marginTop="10dp"
             android:padding="5dp"
-            app:layout_constrainedHeight="true"
-            app:layout_constraintBottom_toTopOf="@+id/save"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/barrier_top_of_scrollview"
-            app:layout_constraintVertical_bias="1.0">
+            >
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -189,8 +140,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
-                        android:hint="मंदिराचे नाव"
-                        android:text="@{viewmodel.formType_5.temple_name}"
+                        android:hint="Temple Name"
+                        android:text="@{viewmodel.formType_5_ObservableField.temple_name}"
 
                         />
 
@@ -221,7 +172,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="गावचे नाव"
-                        android:text="@{viewmodel.formType_5.village_name}" />
+                        android:text="@{viewmodel.formType_5_ObservableField.village_name}" />
 
 
                 </LinearLayout>
@@ -248,7 +199,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="तालुक्याचे नाव"
-                        android:text="@{viewmodel.formType_5.taluka_name}" />
+                        android:text="@{viewmodel.formType_5_ObservableField.taluka_name}" />
 
 
                 </LinearLayout>
@@ -276,7 +227,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="जिल्हा नाव"
-                        android:text="@{viewmodel.formType_5.district_name}"
+                        android:text="@{viewmodel.formType_5_ObservableField.district_name}"
 
                         />
 
@@ -311,7 +262,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="देवस्थानाचे नाव"
-                        android:text="@{viewmodel.formType_5.devsthan_name}"
+                        android:text="@={viewmodel.formType_5_ObservableField.devsthan_name}"
                         />
                 </LinearLayout>
 
@@ -338,7 +289,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="अधिसूचनेतील क्रमांक"
-                        android:text="@{viewmodel.formType_5.notification_number}"
+                        android:text="@={viewmodel.formType_5_ObservableField.notification_number}"
 
                         />
                 </LinearLayout>
@@ -365,7 +316,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="पीटीआर नं- के.ए"
-                        android:text="@{viewmodel.formType_5.ptr_number}"
+                        android:text="@={viewmodel.formType_5_ObservableField.ptr_number}"
 
                         />
                 </LinearLayout>
@@ -399,7 +350,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="गट नं"
-                        android:text="@{viewmodel.formType_5.gath_number}"
+                        android:text="@={viewmodel.formType_5_ObservableField.gath_number}"
 
                         />
                 </LinearLayout>
@@ -426,7 +377,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="स.नं"
-                        android:text="@{viewmodel.formType_5.sn}"
+                        android:text="@={viewmodel.formType_5_ObservableField.sn}"
 
                         />
                 </LinearLayout>
@@ -453,7 +404,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="सि.स.नं"
-                        android:text="@{viewmodel.formType_5.csn}"
+                        android:text="@={viewmodel.formType_5_ObservableField.csn}"
 
                         />
                 </LinearLayout>
@@ -486,7 +437,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="एकूण क्षेत्र"
-                        android:text="@{viewmodel.formType_5.total_area}"
+                        android:text="@={viewmodel.formType_5_ObservableField.total_area}"
 
                         />
                 </LinearLayout>
@@ -513,7 +464,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="आकार"
-                        android:text="@{viewmodel.formType_5.shape}"
+                        android:text="@={viewmodel.formType_5_ObservableField.shape}"
 
                         />
                 </LinearLayout>
@@ -540,7 +491,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="सभुईभाडेकरूंचे नाव"
-                        android:text="@{viewmodel.formType_5.land_tenants_name}"
+                        android:text="@={viewmodel.formType_5_ObservableField.land_tenants_name}"
 
                         />
                 </LinearLayout>
@@ -573,7 +524,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="पत्ता"
-                        android:text="@{viewmodel.formType_5.address}"
+                        android:text="@={viewmodel.formType_5_ObservableField.address}"
 
                         />
                 </LinearLayout>
@@ -600,7 +551,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="मंजूर केलेल्या जागेचे मोजमाप"
-                        android:text="@{viewmodel.formType_5.sanctioned_land_measurements}"
+                        android:text="@={viewmodel.formType_5_ObservableField.sanctioned_land_measurements}"
 
                         />
                 </LinearLayout>
@@ -627,7 +578,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="मंजूर केलेल्या जागेचे क्षेत्रफ़ळ"
-                        android:text="@{viewmodel.formType_5.sanctioned_land_area}"
+                        android:text="@={viewmodel.formType_5_ObservableField.sanctioned_land_area}"
 
                         />
                 </LinearLayout>
@@ -663,7 +614,7 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
                             android:onCheckedChanged="@{(view,value)->viewmodel.onSwitchCheckedChange(value)}"
-                            android:checked="@={viewmodel.formType_5.has_occupant_encroached_plot}"/>
+                            android:checked="@={viewmodel.formType_5_ObservableField.has_occupant_encroached_plot}"/>
 
                     </LinearLayout>
 
@@ -673,7 +624,7 @@
                         android:layout_margin="5dp"
                         android:orientation="horizontal"
                         android:weightSum="6"
-                        android:visibility="@{viewmodel.formType_5.has_occupant_encroached_plot ? View.VISIBLE:View.GONE }">
+                        android:visibility="@{viewmodel.formType_5_ObservableField.has_occupant_encroached_plot ? View.VISIBLE:View.GONE }">
 
                         <TextView
                             android:layout_width="0dp"
@@ -690,8 +641,8 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="4"
                             android:hint="असल्यास किती"
-                            android:text="@={viewmodel.formType_5.encroachment_area}"
-                            app:clearEditText="@{viewmodel.formType_5.has_occupant_encroached_plot}"
+                            android:text="@={viewmodel.formType_5_ObservableField.encroachment_area}"
+                            app:clearEditText="@{viewmodel.formType_5_ObservableField.has_occupant_encroached_plot}"
                             />
 
 
@@ -728,7 +679,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="मोकळी जागा स्वरूप"
-                        android:text="@{viewmodel.formType_5.shape_open_space}"
+                        android:text="@={viewmodel.formType_5_ObservableField.shape_open_space}"
 
                         />
                 </LinearLayout>
@@ -755,7 +706,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="मंदिरातील स्वरूप"
-                        android:text="@{viewmodel.formType_5.shape_temple}"
+                        android:text="@={viewmodel.formType_5_ObservableField.shape_temple}"
 
                         />
                 </LinearLayout>
@@ -782,7 +733,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="धर्मशाळा स्वरूप"
-                        android:text="@{viewmodel.formType_5.shape_dharmashala}"
+                        android:text="@={viewmodel.formType_5_ObservableField.shape_dharmashala}"
 
                         />
                 </LinearLayout>
@@ -815,7 +766,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="दिलेल्या जागेचा हेतू"
-                        android:text="@{viewmodel.formType_5.purpose_given_land}"
+                        android:text="@={viewmodel.formType_5_ObservableField.purpose_given_land}"
 
                         />
                 </LinearLayout>
@@ -841,7 +792,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
                         android:hint="मंजूर केलेल्या जागा कोणत्या कारणासाठी दिली"
-                        android:text="@={viewmodel.formType_5.purpose_use_given_land}"
+                        android:text="@={viewmodel.formType_5_ObservableField.purpose_use_given_land}"
                         />
 
                     <androidx.appcompat.widget.AppCompatSpinner
@@ -849,7 +800,7 @@
                         android:layout_height="match_parent"
                         android:layout_marginLeft="10dp"
                         android:layout_weight="2"
-                        android:entries="@array/land_documents_a"
+                        android:entries="@array/purpose_of_use"
                         android:onItemSelected="@{(parent,view,position,id)->viewmodel.onItemSelected(parent,view,position,id,Constant.SPINNER_TYPE_PURPOSE_USE_GIVEN_LAND)}"
                         />
 
@@ -871,7 +822,7 @@
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
-                        android:checked="@={viewmodel.formType_5.is_sub_tenant_in_approved_place}"
+                        android:checked="@={viewmodel.formType_5_ObservableField.is_sub_tenant_in_approved_place}"
                         />
 
                 </LinearLayout>
@@ -904,7 +855,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="दप्रत्यक्ष वापर होत नसलेल्या जागेचे मोजमाप क्षेत्रफ़ळ"
-                        android:text="@{viewmodel.formType_5.area_unused_plot}"
+                        android:text="@={viewmodel.formType_5_ObservableField.area_unused_plot}"
 
                         />
                 </LinearLayout>
@@ -930,7 +881,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
                         android:hint="प्रत्यक्ष वापर कोणत्या कारणासाठी होत आहे"
-                        android:text="@={viewmodel.formType_5.purpose_use_unused_plot}"
+                        android:text="@={viewmodel.formType_5_ObservableField.purpose_use_unused_plot}"
                         />
 
                     <androidx.appcompat.widget.AppCompatSpinner
@@ -938,7 +889,7 @@
                         android:layout_height="match_parent"
                         android:layout_marginLeft="10dp"
                         android:layout_weight="2"
-                        android:entries="@array/land_documents_a"
+                        android:entries="@array/purpose_of_use"
                         android:onItemSelected="@{(parent,view,position,id)->viewmodel.onItemSelected(parent,view,position,id,Constant.SPINNER_TYPE_PURPOSE_USE_UNUSED_LAND)}"
                         />
 
@@ -965,7 +916,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
                         android:hint="जागेचे वापर होत आहे"
-                        android:text="@={viewmodel.formType_5.land_utilisation}"
+                        android:text="@={viewmodel.formType_5_ObservableField.land_utilisation}"
                         />
 
                     <androidx.appcompat.widget.AppCompatSpinner
@@ -973,7 +924,7 @@
                         android:layout_height="match_parent"
                         android:layout_marginLeft="10dp"
                         android:layout_weight="2"
-                        android:entries="@array/land_documents_a"
+                        android:entries="@array/utilisation_of_land"
                         android:onItemSelected="@{(parent,view,position,id)->viewmodel.onItemSelected(parent,view,position,id,Constant.SPINNER_TYPE_LAND_UTILISATION)}"
                         />
 
@@ -983,6 +934,22 @@
                     android:layout_height="2dp"
                     android:layout_marginBottom="10dp"
                     android:background="@color/white"/>
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="60dp"
+
+                    android:layout_gravity="right"
+                    android:onClick="@{viewmodel::onLocationClick}"
+                    android:src="@drawable/location_marker"
+                    android:visibility="@{viewmodel.markerVisibility}" />
+
+                <ProgressBar
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="right"
+                    android:visibility="@{viewmodel.progressVisibility}"
+                    />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -1006,7 +973,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="अक्षांश"
-                        android:text="@{viewmodel.formType_5.latitude}"
+                        android:text="@{viewmodel.formType_5_ObservableField.latitude}"
 
                         />
                 </LinearLayout>
@@ -1026,14 +993,14 @@
                         android:text="Longitude"
                         android:textColor="@color/white" />
 
-                    <EditText
+                    <TextView
 
                         style="@style/MyEditTextStyle"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="रेखांश"
-                        android:text="@{viewmodel.formType_5.longitude}"
+                        android:text="@{viewmodel.formType_5_ObservableField.longitude}"
 
                         />
                 </LinearLayout>
@@ -1060,7 +1027,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="शेरा"
-                        android:text="@{viewmodel.formType_5.remarks}"
+                        android:text="@={viewmodel.formType_5_ObservableField.remarks}"
 
                         />
                 </LinearLayout>
@@ -1073,7 +1040,43 @@
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <LinearLayout
+            android:id="@+id/actions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal"
+            >
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                android:background="@drawable/background_black_rectangle"
+                android:text="Save locally"
+                android:onClick="@{viewmodel::onSaveClick}"/>
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                android:background="@drawable/background_black_rectangle"
+                android:text="Submit to server"
+                android:onClick="@{viewmodel::onSubmitClick}"/>
+
+
+        </LinearLayout>
+
+        <ProgressBar
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerInParent="true"
+            android:visibility="@{viewmodel.progressBar}"
+            />
+
+    </RelativeLayout>
 
 </layout>
 

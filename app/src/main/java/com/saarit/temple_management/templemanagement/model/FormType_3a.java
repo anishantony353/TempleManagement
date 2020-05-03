@@ -154,6 +154,26 @@ public class FormType_3a extends BaseObservable implements Serializable {
         notifyPropertyChanged(BR.sub_committee_order_no_date);
     }
 
+    @Bindable
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+        notifyPropertyChanged(BR.latitude);
+    }
+
+    @Bindable
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+        notifyPropertyChanged(BR.longitude);
+    }
+
     @NonNull
     @Override
     public String toString() {

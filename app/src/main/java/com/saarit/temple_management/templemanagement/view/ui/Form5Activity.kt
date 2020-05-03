@@ -31,6 +31,7 @@ class Form5Activity : AppCompatActivity() {
         if(savedInstanceState == null){
             viewmodel.init(intent.getIntExtra(Constant.KEY_EXTRA_TEMPLE_ID, 0))
         }
+        binding.viewmodel = viewmodel
     }
 
     private fun setUpObservers() {

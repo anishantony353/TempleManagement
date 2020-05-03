@@ -1,9 +1,12 @@
 package com.saarit.temple_management.templemanagement.view_model;
 
+import android.annotation.SuppressLint;
 import android.app.Application;
 import android.view.View;
 import android.widget.Toast;
 
+import com.google.android.gms.location.LocationRequest;
+import com.patloew.rxlocation.RxLocation;
 import com.saarit.temple_management.templemanagement.model.FormType_3a;
 import com.saarit.temple_management.templemanagement.model.repositories.Repo_FormType_1;
 import com.saarit.temple_management.templemanagement.model.repositories.Repo_FormType_3a;
@@ -22,6 +25,7 @@ import androidx.room.EmptyResultSetException;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 public class FormType3a_ViewModel extends AndroidViewModel {
@@ -68,6 +72,16 @@ public class FormType3a_ViewModel extends AndroidViewModel {
     public MutableLiveData finishActivity = new MutableLiveData();
     public MutableLiveData showDatePicker = new MutableLiveData();
     public MutableLiveData<Boolean> requestScreenLockMutableLiveData = new MutableLiveData<>();
+
+    RxLocation rxLocation = new RxLocation(getApplication());
+    LocationRequest locationRequest = LocationRequest.create()
+            .setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY)
+            .setInterval(5000);
+
+    Disposable locDisposable;
+
+    public ObservableInt markerVisibility = new ObservableInt(View.VISIBLE);
+    public ObservableInt progressVisibility = new ObservableInt(View.GONE);
 
 
     ////*******METHODS******//////
@@ -279,6 +293,12 @@ public class FormType3a_ViewModel extends AndroidViewModel {
         Utility.log(TAG, "onSubmitClick()");
             formType_3a.user_id = PrefManager.getUserId(getApplication());
             save_or_submit_form3a(Constant.REQ_SUBMIT);
+
+    }
+
+    public void onLocationClick(View view) {
+        Utility.log(TAG, "onLocationClick()");
+        getCurrentLocation();
 
     }
 
@@ -528,6 +548,36 @@ public class FormType3a_ViewModel extends AndroidViewModel {
         formType_3a.setSub_committee_order_no_date(date);
     }
 
+    @SuppressLint("MissingPermission")
+    public void getCurrentLocation() {
+
+        /*threadCurrentLocation.start();*/
+
+        locDisposable = rxLocation.location().updates(locationRequest)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        location -> {
+                            Utility.log(TAG,"Thread onNext:"+Thread.currentThread().getName());
+                            Utility.log(TAG,"Loc Received:"+location.getLatitude()+" / "+location.getLongitude());
+                            locDisposable.dispose();
+                            markerVisibility.set(View.VISIBLE);
+                            progressVisibility.set(View.GONE);
+
+                            formType_3a.setLatitude(""+location.getLatitude());
+                            formType_3a.setLongitude(""+location.getLongitude());
+
+                        },
+                        throwable -> {},
+                        () -> {},
+                        dsposable -> {
+                            markerVisibility.set(View.GONE);
+                            progressVisibility.set(View.VISIBLE);
+                        }
+                );
+
+    }
+
 
     // Observed Methods//
     public LiveData shouldFinishActivity(){
@@ -548,6 +598,9 @@ public class FormType3a_ViewModel extends AndroidViewModel {
         //super.onCleared();
         Utility.log(TAG,"onCleared()");
         disposable.clear();
+        if(locDisposable != null){
+            locDisposable.dispose();
+        }
         super.onCleared();
         //getApplication().unregisterReceiver(locationBroadCastReceiver);
 

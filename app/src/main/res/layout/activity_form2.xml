@@ -1133,9 +1133,6 @@
             android:visibility="@{viewmodel.progressBar}"
             />
 
-
-
-
     </RelativeLayout>
 
 

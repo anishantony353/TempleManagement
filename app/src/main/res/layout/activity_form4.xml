@@ -92,7 +92,7 @@
                     android:layout_marginBottom="5dp"
                     android:background="@drawable/background_green_rectangle"
                     android:padding="5dp"
-                    android:text="@{Convertor.intToString(viewmodel.formType_4.temple_id)}"
+                    android:text="@{Convertor.intToString(viewmodel.formType_4_ObservableField.temple_id)}"
                     android:textColor="@color/white"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -141,7 +141,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="Temple Name"
-                        android:text="@{viewmodel.formType_4.temple_name}"
+                        android:text="@{viewmodel.formType_4_ObservableField.temple_name}"
 
                         />
 
@@ -172,7 +172,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="Village"
-                        android:text="@{viewmodel.formType_4.village_name}" />
+                        android:text="@{viewmodel.formType_4_ObservableField.village_name}" />
 
 
                 </LinearLayout>
@@ -199,7 +199,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="Taluka"
-                        android:text="@{viewmodel.formType_4.taluka_name}" />
+                        android:text="@{viewmodel.formType_4_ObservableField.taluka_name}" />
 
 
                 </LinearLayout>
@@ -227,7 +227,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="District"
-                        android:text="@{viewmodel.formType_4.district_name}"
+                        android:text="@{viewmodel.formType_4_ObservableField.district_name}"
 
                         />
 
@@ -257,7 +257,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="God name"
-                        android:text="@={viewmodel.formType_4.god_name}"
+                        android:text="@={viewmodel.formType_4_ObservableField.god_name}"
 
                         />
 
@@ -286,7 +286,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="Registration No"
-                        android:text="@={viewmodel.formType_4.registration_no}"
+                        android:text="@={viewmodel.formType_4_ObservableField.registration_no}"
 
                         />
 
@@ -361,7 +361,7 @@
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
-                        android:checked="@={viewmodel.formType_4.is_gold_valuation_done}"
+                        android:checked="@={viewmodel.formType_4_ObservableField.is_gold_valuation_done}"
                         />
                     
                 </LinearLayout>
@@ -383,7 +383,7 @@
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
-                        android:checked="@={viewmodel.formType_4.is_silver_valuation_done}"/>
+                        android:checked="@={viewmodel.formType_4_ObservableField.is_silver_valuation_done}"/>
                 </LinearLayout>
 
                 <!-- Assessment amount..EditText-->
@@ -409,7 +409,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="Assessment Amount"
-                        android:text="@={viewmodel.formType_4.assessment_amount}"
+                        android:text="@={viewmodel.formType_4_ObservableField.assessment_amount}"
 
                         />
 
@@ -448,7 +448,7 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
                             android:onCheckedChanged="@{(view,value)->viewmodel.onSwitchCheckedChange(value)}"
-                            android:checked="@={viewmodel.formType_4.is_donation_box_available}"/>
+                            android:checked="@={viewmodel.formType_4_ObservableField.is_donation_box_available}"/>
 
                     </LinearLayout>
 
@@ -458,7 +458,7 @@
                         android:layout_margin="5dp"
                         android:orientation="horizontal"
                         android:weightSum="6"
-                        android:visibility="@{viewmodel.formType_4.is_donation_box_available ? View.VISIBLE:View.GONE }">
+                        android:visibility="@{viewmodel.formType_4_ObservableField.is_donation_box_available ? View.VISIBLE:View.GONE }">
 
                         <TextView
                             android:layout_width="0dp"
@@ -475,8 +475,8 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="4"
                             android:hint="Utilisation of Donation Box"
-                            android:text="@={viewmodel.formType_4.donation_box_utilisation}"
-                            app:clearEditText="@{viewmodel.formType_4.is_donation_box_available}"
+                            android:text="@={viewmodel.formType_4_ObservableField.donation_box_utilisation}"
+                            app:clearEditText="@{viewmodel.formType_4_ObservableField.is_donation_box_available}"
                             />
 
 

@@ -55,7 +55,7 @@ public abstract class FormType_4_Dao {
     public abstract Single<Integer> deleteProducts(int templeId);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    public abstract Single<List<Long>> insertProducts(List<DonatedProduct> products);
+    public abstract List<Long> insertProducts(List<DonatedProduct> products);
 
 
     @Query("SELECT * FROM DonatedProduct WHERE temple_id = :templeId")

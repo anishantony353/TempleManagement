@@ -97,7 +97,6 @@ public interface ApiService {
     Observable<BaseResponse> addForm4(@Part("form_4_data") FormType_4 formType4,
                                       @Part("form_4_data_products[]") List<DonatedProduct> products
                                       );
-
     @Multipart
     @POST("temple/addForm_5")
     Observable<BaseResponse> addForm5(@Part("form_5_data") FormType_5 formType5);

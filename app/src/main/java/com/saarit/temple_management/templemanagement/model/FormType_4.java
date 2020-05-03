@@ -14,7 +14,7 @@ import androidx.room.PrimaryKey;
 
 @Entity
 public class FormType_4 extends BaseObservable {
-    public String TAG = FormType_4.class.getSimpleName();
+    /*public String TAG = FormType_4.class.getSimpleName();*/
 
     @PrimaryKey(autoGenerate = true)
     public int id;
@@ -25,11 +25,23 @@ public class FormType_4 extends BaseObservable {
     public String taluka_name = "ttt";
     public String district_name = "ddd";
     public String god_name = "ggnn";
+
+    @SerializedName("register_no")
     public String registration_no = "rrnn";
-    public boolean is_gold_valuation_done = true;
+
+    @SerializedName("valuation_of_gold_done")
+    public boolean is_gold_valuation_done = false;
+
+    @SerializedName("valuation_of_silver_done")
     public boolean is_silver_valuation_done = false;
+
+    @SerializedName("assessment_amount")
     public String assessment_amount = "";
-    public boolean is_donation_box_available = true;
+
+    @SerializedName("donation_box_available")
+    public boolean is_donation_box_available = false;
+
+    @SerializedName("utilisation_of_donation_box")
     public String donation_box_utilisation = "";
 
     @SerializedName("last_updated_by")
@@ -37,12 +49,12 @@ public class FormType_4 extends BaseObservable {
 
     @Bindable
     public boolean isIs_donation_box_available() {
-        Utility.log(TAG,"getIsDonationBoxAvailable()");
+        /*Utility.log(TAG,"getIsDonationBoxAvailable()");*/
         return is_donation_box_available;
     }
 
     public void setIs_donation_box_available(boolean is_donation_box_available) {
-        Utility.log(TAG,"setIsDonationBoxAvailable()...value:"+is_donation_box_available);
+        /*Utility.log(TAG,"setIsDonationBoxAvailable()...value:"+is_donation_box_available);*/
         this.is_donation_box_available = is_donation_box_available;
         notifyPropertyChanged(BR.is_donation_box_available);
     }
