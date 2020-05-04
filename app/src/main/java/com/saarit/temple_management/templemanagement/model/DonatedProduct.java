@@ -41,5 +41,13 @@ public class DonatedProduct extends BaseObservable {
 
     public String remarks;
 
+    @Bindable
+    public String getProduct_type() {
+        return product_type;
+    }
 
+    public void setProduct_type(String product_type) {
+        this.product_type = product_type;
+        notifyPropertyChanged(BR.product_type);
+    }
 }

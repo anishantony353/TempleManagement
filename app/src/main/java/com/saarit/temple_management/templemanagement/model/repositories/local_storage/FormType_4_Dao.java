@@ -30,7 +30,7 @@ public abstract class FormType_4_Dao {
     public abstract Single<List<Long>> insertForms(List<FormType_4> forms);
 
     @Query("SELECT count(id) FROM FormType_4")
-    public abstract Single<Long> getCount();
+    public abstract Integer getCount();
 
 
     @Query("SELECT * FROM FormType_4 WHERE id = :id")

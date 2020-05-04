@@ -57,9 +57,7 @@ public class Repo_FormType_4 {
         return dao.getFormByTempleId(templeId);
     }
 
-
-
-    public Single<Long> getCount(){
+    public Integer getCount(){
         return dao.getCount();
     }
 

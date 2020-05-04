@@ -123,7 +123,7 @@ public class FormType4_ViewModel extends AndroidViewModel {
 
                                         products.addAll(dto.getProducts());
 
-                                        return null;
+                                        return Observable.just(formType_4);
                                     }
                                 }
                         ).
@@ -289,13 +289,14 @@ public class FormType4_ViewModel extends AndroidViewModel {
             return;
         }
         Utility.log(TAG,"Selected:"+parent.getItemAtPosition(position));
-        products.get(product_list_position).product_type = parent.getItemAtPosition(position).toString();
+        products.get(product_list_position).setProduct_type(parent.getItemAtPosition(position).toString());
     }
 
     public void onAddClick(View view){
         DonatedProduct donatedProduct = new DonatedProduct();
         donatedProduct.temple_id = templeId;
-        products.add(products.size()==0?0:products.size() - 1,donatedProduct);
+       /* products.add(products.size()==0?0:products.size() - 1,donatedProduct);*/
+        products.add(donatedProduct);
         donatedProductsAdapter.notifyItemInserted(products.size() - 1);
 
     }
@@ -330,9 +331,14 @@ public class FormType4_ViewModel extends AndroidViewModel {
                         flatMap(
                                 id->{
                                     Utility.log(TAG, "Saved form 4: Id:"+id);
-                                    Repo_FormType_4.getInstance(getApplication()).deleteProducts(templeId).toObservable();
+                                    formType_4.id = id.intValue();
+                                    Repo_FormType_4.getInstance(getApplication()).deleteProducts(templeId).toObservable().
+                                            subscribe(no->{
+                                                Utility.log(TAG, "No of products deleted:"+no);
+                                            });
                                     List<Long> nos =  Repo_FormType_4.getInstance(getApplication()).insertProducts(products);
                                     Utility.log(TAG, "No of products inserted:"+nos.size());
+                                    Utility.log(TAG, "No of products in Table:"+Repo_FormType_4.getInstance(getApplication()).getCount());
                                     return Observable.just(id);
                                 }
                         ).
@@ -382,7 +388,13 @@ public class FormType4_ViewModel extends AndroidViewModel {
 
                                     Utility.log(TAG,"Success:"+baseResponse.getSuccess());
                                     if(baseResponse.getSuccess() == 1){
-                                         Repo_FormType_4.getInstance(getApplication()).deleteFormById(formType_4.id).toObservable();
+                                        Utility.log(TAG,"Success:"+baseResponse.getSuccess());
+                                        Utility.log(TAG,"About to delete form 4 and its products from local db");
+                                        Utility.log(TAG, "Form about to be deleted: Id:"+formType_4.id);
+
+                                         Repo_FormType_4.getInstance(getApplication()).deleteFormById(formType_4.id).toObservable().subscribe(
+                                                 no->{Utility.log(TAG, "No of deleted form:"+no);}
+                                         );
                                          return Repo_FormType_4.getInstance(getApplication()).deleteProducts(templeId).toObservable();
 
                                     }else{
