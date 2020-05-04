@@ -137,10 +137,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
-                    android:layout_marginBottom="30dp"
+                    android:layout_marginBottom="10dp"
                     android:background="@color/grey"
                     android:onClick="@{viewmodel::onLoginClick}"
                     android:text="Login"
+                    android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:text="Version: 1.4"
+                    android:textColor="@color/white"
                     android:textStyle="bold" />
 
 

@@ -139,7 +139,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
-                        android:hint="Temple Name"
+                        android:hint="मंदिराचे नाव"
                         android:text="@{viewmodel.formType_2ObservableField.temple_name}"
 
                         />
@@ -170,7 +170,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
-                        android:hint="Village"
+                        android:hint="गावचे नाव"
                         android:text="@{viewmodel.formType_2ObservableField.village_name}" />
 
 
@@ -197,7 +197,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
-                        android:hint="Taluka"
+                        android:hint="तालुक्याचे नाव"
                         android:text="@{viewmodel.formType_2ObservableField.taluka_name}" />
 
 
@@ -225,7 +225,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
-                        android:hint="District"
+                        android:hint="जिल्ह्याचे नाव"
                         android:text="@{viewmodel.formType_2ObservableField.district_name}"
 
                         />
@@ -255,7 +255,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
-                        android:hint="Devasthan Survey Report Notification No"
+                        android:hint="देवस्थान सर्व्ह रिपोर्ट आधिसूचना क्रमांक"
                         android:text="@={viewmodel.formType_2ObservableField.survey_report_notification_no}"
 
                         />
@@ -284,7 +284,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
-                        android:hint="Registration No"
+                        android:hint="नोंदणी क्रमांक"
                         android:text="@={viewmodel.formType_2ObservableField.registration_no}"
 
                         />
@@ -314,7 +314,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
-                        android:hint="Origin/Establishment/History"
+                        android:hint="देवस्थान थोडक्यात इतिहास (उगम/स्थापना वैगरे )"
                         android:text="@={viewmodel.formType_2ObservableField.origin_establishment_history}"
 
                         />
@@ -351,7 +351,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
-                        android:hint="Custom/Tradition/Festival"
+                        android:hint="प्रथा /परंपरा /सणवार उत्सव/इ.इ.इ"
                         android:text="@={viewmodel.formType_2ObservableField.custom_tradition_festival}"
 
                         />
@@ -435,7 +435,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
-                        android:hint="Village Population"
+                        android:hint="गावाची लोकसंख्या"
                         android:text="@={viewmodel.formType_2ObservableField.village_population}"
 
                         />
@@ -463,7 +463,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:text="Festival Of Devasthan"
+                        android:text="Festival Of Devasthan(वर्षभरात साजरे होणारे सण/उत्सव)"
                         android:textColor="@color/white"
                         android:textSize="20sp" />
 
@@ -511,7 +511,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
-                        android:hint="Poojari Name"
+                        android:hint="पुजाऱ्याचे नाव"
                         android:text="@={viewmodel.formType_2ObservableField.poojari_name}"
 
                         />
@@ -540,7 +540,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
-                        android:hint="Poojari Address"
+                        android:hint="पत्ता"
                         android:text="@={viewmodel.formType_2ObservableField.poojari_address}"
 
                         />
@@ -569,7 +569,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
-                        android:hint="Poojari Contact No"
+                        android:hint="संपर्क क्रमांक"
                         android:text="@={viewmodel.formType_2ObservableField.poojari_contact_no}"
 
                         />
@@ -599,7 +599,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="4"
-                            android:text="Is worship done by different houses"
+                            android:text="Is worship done by different houses(पुजा अर्चा वेगवेगळ्या घराकडून होत असलेस पाळीपत्रक आहे काय(असल्यास प्रत घेणे ))"
                             android:textColor="@color/white"
                             android:textSize="20sp" />
                         <androidx.appcompat.widget.SwitchCompat
@@ -654,7 +654,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:text="Work of Poojari"
+                        android:text="Work of Poojari(पुजाऱ्यांची कामे)"
                         android:textColor="@color/white"
                         android:textSize="20sp" />
 
@@ -701,7 +701,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
-                        android:hint="Poojari's Income"
+                        android:hint="पुजाऱ्यास मिळणारे उत्पन्न"
                         android:inputType="numberDecimal"
                         android:text="@={Convertor.doubleToString(viewmodel.formType_2ObservableField.poojari_income)}"
                         />
@@ -724,7 +724,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
-                        android:text="Is Officer Available"
+                        android:text="Is Officer Available(ऑफिसर उपलब्ध आहे?)"
                         android:textColor="@color/white"
                         android:textSize="20sp" />
                     <androidx.appcompat.widget.SwitchCompat
@@ -759,7 +759,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="4"
-                            android:text="Respected person Available"
+                            android:text="Respected person Available(मानकरी असलेस त्यांची नावे व मान?)"
                             android:textColor="@color/white"
                             android:textSize="20sp" />
                         <androidx.appcompat.widget.SwitchCompat
@@ -818,7 +818,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="4"
-                            android:text="Is act of worshiping on a regular basis"
+                            android:text="Is act of worshiping on a regular basis(पुजा नेहमी होते किंवा कसे)"
                             android:textColor="@color/white"
                             android:textSize="20sp" />
                         <androidx.appcompat.widget.SwitchCompat
@@ -854,7 +854,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="4"
-                            android:hint="How the woship is done"
+                            android:hint="पूजा कशी केली जाते"
                             android:text="@={viewmodel.formType_2ObservableField.worshiping_procedure}"
 
                             />
@@ -887,7 +887,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="4"
-                            android:text="Type of worshiping"
+                            android:text="Type of worshiping(पुजा कोणत्या प्रकारात होते)"
                             android:textColor="@color/white"
                             android:textSize="20sp" />
                         <androidx.appcompat.widget.SwitchCompat
@@ -940,7 +940,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
-                        android:text="Both gender allowed to worship"
+                        android:text="Both gender allowed to worship(स्त्री पुरूष समानता पूजेमध्ये आहे)"
                         android:textColor="@color/white"
                         android:textSize="20sp" />
                     <androidx.appcompat.widget.SwitchCompat
@@ -961,7 +961,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
-                        android:text="Both gender allowed in premises"
+                        android:text="Both gender allowed in premises(दर्शनासाठी गाभाऱ्यामध्ये जाण्यास सर्वाना प्रवेश आहे किंवा कसे)"
                         android:textColor="@color/white"
                         android:textSize="20sp" />
                     <androidx.appcompat.widget.SwitchCompat
@@ -995,7 +995,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="4"
-                            android:text="Is other servicemen available"
+                            android:text="Is other servicemen available(इतर सेवेकरी आहेत काय?)"
                             android:textColor="@color/white"
                             android:textSize="20sp" />
                         <androidx.appcompat.widget.SwitchCompat
@@ -1031,7 +1031,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="4"
-                            android:hint="Type of work done"
+                            android:hint="कोणते कामासाठी"
                             android:text="@={viewmodel.formType_2ObservableField.servicemen_work}"
 
                             />
@@ -1057,7 +1057,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
-                        android:text="Is land allocated to them"
+                        android:text="Is land allocated to them(त्यांना सुटलेली जमीन)"
                         android:textColor="@color/white"
                         android:textSize="20sp" />
                     <androidx.appcompat.widget.SwitchCompat
@@ -1078,7 +1078,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
-                        android:text="Is allocated land utilised"
+                        android:text="Is allocated land utilised(ती सेवा केली जाते काय)?"
                         android:textColor="@color/white"
                         android:textSize="20sp" />
                     <androidx.appcompat.widget.SwitchCompat

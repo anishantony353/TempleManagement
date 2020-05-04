@@ -84,22 +84,21 @@
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:background="@drawable/background_green_rectangle"
-                    android:padding="5dp"
-
-                    android:text="@{Convertor.intToString(viewmodel.formType_3b_2_ObservableField.temple_id)}"
-                    android:textColor="@color/white"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
 
             </LinearLayout>
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/background_green_rectangle"
+                android:padding="5dp"
+
+                android:text="@{Convertor.intToString(viewmodel.formType_3b_2_ObservableField.temple_id)}"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
         </LinearLayout>
 
@@ -140,7 +139,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
-                        android:hint="Temple Name"
+                        android:hint="मंदिराचे नाव"
                         android:text="@{viewmodel.formType_3b_2_ObservableField.temple_name}"
 
                         />
@@ -169,7 +168,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
-                        android:hint="God Name"
+                        android:hint="देवाचे नाव"
                         android:text="@{viewmodel.formType_3b_2_ObservableField.god_name}"
 
                         />
@@ -198,7 +197,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
-                        android:hint="Village"
+                        android:hint="गावचे नाव"
                         android:text="@{viewmodel.formType_3b_2_ObservableField.village_name}" />
 
 
@@ -225,7 +224,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
-                        android:hint="Taluka"
+                        android:hint="तालुक्याचे नाव"
                         android:text="@{viewmodel.formType_3b_2_ObservableField.taluka_name}" />
 
 
@@ -253,7 +252,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
-                        android:hint="District"
+                        android:hint="जिल्ह्याचे नाव"
                         android:text="@{viewmodel.formType_3b_2_ObservableField.district_name}"
 
                         />
@@ -298,11 +297,10 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
-                        android:hint="Latitude"
+                        android:hint="जागेचा अक्षांश"
                         android:text="@={viewmodel.formType_3b_2_ObservableField.latitude}"
 
                         />
-
 
                 </LinearLayout>
 
@@ -328,7 +326,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
-                        android:hint="Longitude"
+                        android:hint="जागेचा रेखांश"
                         android:text="@={viewmodel.formType_3b_2_ObservableField.longitude}"
 
                         />
@@ -357,7 +355,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
-                        android:hint="Group No"
+                        android:hint="गट नं"
                         android:text="@={viewmodel.formType_3b_2_ObservableField.group_no}"
 
                         />
@@ -387,7 +385,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
-                        android:hint="Notification No"
+                        android:hint="आधिसूचना नं"
                         android:text="@={viewmodel.formType_3b_2_ObservableField.notification_no}"
 
                         />
@@ -416,7 +414,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
-                        android:hint="Register No"
+                        android:hint="रजि. नं"
                         android:text="@={viewmodel.formType_3b_2_ObservableField.register_no}"
 
                         />
@@ -446,7 +444,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
-                        android:hint="Area in ha(Hectare)"
+                        android:hint="क्षेत्र हे. आर"
                         android:text="@={viewmodel.formType_3b_2_ObservableField.area_hectare}"
 
                         />
@@ -477,7 +475,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="4"
-                            android:text="Is there any land under cultivation"
+                            android:text="Is there any land under cultivation (तेथे शेती अंतर्गत आहे)"
                             android:textColor="@color/white"
                             android:textSize="20sp" />
 
@@ -517,7 +515,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="4"
-                                android:hint="Area of Agricultural Land"
+                                android:hint="लागवडी खालील माप"
                                 android:text="@={viewmodel.formType_3b_2_ObservableField.area_agriculture_land}"
 
                                 />
@@ -546,7 +544,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="4"
-                                android:hint="Area of Non Agricultural Land"
+                                android:hint="पोटखराब माप"
                                 android:text="@={viewmodel.formType_3b_2_ObservableField.area_non_agriculture_land}"
 
                                 />
@@ -574,7 +572,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="4"
-                                android:hint="Total area under cultivation"
+                                android:hint="एकूण"
                                 android:text="@={viewmodel.formType_3b_2_ObservableField.total_area_cultivation}"
 
                                 />
@@ -613,7 +611,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
-                        android:hint="Shape"
+                        android:hint="आकार"
                         android:text="@={viewmodel.formType_3b_2_ObservableField.shape}"
 
                         />
@@ -643,7 +641,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
-                        android:hint="Annual Budget"
+                        android:hint="वार्षिक लागण रक्क्म"
                         android:text="@={viewmodel.formType_3b_2_ObservableField.annual_budget}"
                         android:inputType="number"
                         />
@@ -673,7 +671,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
-                        android:hint="Controller Name"
+                        android:hint="लागणदाराचे नाव"
                         android:text="@={viewmodel.formType_3b_2_ObservableField.controller_name}"
                         />
 
@@ -701,7 +699,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
-                        android:hint="Controller Responsibility"
+                        android:hint="लागणदाराचे जबाबदारी"
                         android:text="@={viewmodel.formType_3b_2_ObservableField.controller_responsibility}"
                         />
 
@@ -729,7 +727,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
-                        android:hint="Controller Work"
+                        android:hint="लागणदाराचे काम"
                         android:text="@={viewmodel.formType_3b_2_ObservableField.controller_work}"
                         />
 
@@ -757,7 +755,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
-                        android:hint="Land encroachment on construction"
+                        android:hint="बांधकामांवर जमीन अतिक्रमण"
                         android:text="@={viewmodel.formType_3b_2_ObservableField.land_encroachment_on_construction}"
                         />
 
@@ -786,7 +784,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="4"
-                            android:text="Is land surveyed"
+                            android:text="Is land surveyed (जमीनींची मोजणी झाली आहे काय)"
                             android:textColor="@color/white"
                             android:textSize="20sp" />
 
@@ -826,7 +824,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="3"
-                                android:hint="Survey Date"
+                                android:hint="असल्यास कधी"
                                 android:text="@={viewmodel.formType_3b_2_ObservableField.survey_date}"
                                 />
 
@@ -852,7 +850,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="4"
-                                android:text="Is border fixed"
+                                android:text="Is border fixed (हददी निश्चीत आहेत काय)?"
                                 android:textColor="@color/white" />
 
                             <androidx.appcompat.widget.SwitchCompat
@@ -896,7 +894,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
-                        android:hint="Whether map received"
+                        android:hint="नकाशा प्रत"
                         android:text="@={viewmodel.formType_3b_2_ObservableField.whether_map_received}"
                         />
 
@@ -923,7 +921,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
-                        android:hint="Land Document a"
+                        android:hint="जमीनीची प्रत"
                         android:text="@={viewmodel.formType_3b_2_ObservableField.land_document_a}"
                         />
 
@@ -959,7 +957,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
-                        android:hint="Land Document b"
+                        android:hint="जमीनीची प्रत"
                         android:text="@={viewmodel.formType_3b_2_ObservableField.land_document_b}"
                         />
 
@@ -1002,7 +1000,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
-                        android:hint="Planning for water Availability"
+                        android:hint="जमिनीसाठी बारमाही पाण्याचे नियोजन"
                         android:text="@={viewmodel.formType_3b_2_ObservableField.planning_water_availability}"
 
                         />
@@ -1032,7 +1030,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
-                        android:hint="What are the options to keep Land Productive"
+                        android:hint="असल्यास कशप्रकारे आहे"
                         android:text="@={viewmodel.formType_3b_2_ObservableField.options_land_productive}"
 
                         />
@@ -1061,7 +1059,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
-                        android:hint="Whether utilisation of Land for Business and how"
+                        android:hint="जमिनीचे व्यापारी प्रयोजन करता येईल किंवा कसे"
                         android:text="@={viewmodel.formType_3b_2_ObservableField.utilisation_land_business}"
 
                         />
@@ -1091,7 +1089,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="4"
-                            android:text="Is land use for Cultivation"
+                            android:text="Is land use for Cultivation (जमीन उत्पादक करणे/सुपीक करण्यासाठी पर्याय काढता येईल काय)"
                             android:textColor="@color/white"
                             android:textSize="20sp" />
 
@@ -1131,7 +1129,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="4"
-                                android:hint="How is land use for Cultivation"
+                                android:hint="कोणता पर्याय"
                                 android:text="@={viewmodel.formType_3b_2_ObservableField.land_cultivation_procedure}"
 
                                 />
@@ -1172,7 +1170,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
-                        android:hint="Remarks"
+                        android:hint="शेरा"
                         android:text="@={viewmodel.formType_3b_2_ObservableField.remarks}"
 
                         />

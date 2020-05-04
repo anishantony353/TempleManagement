@@ -55,7 +55,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="4"
-                    android:hint="Preaching"
+                    android:hint="हवन"
                     android:text="@={viewmodel.worshipingTypes.get(pos).worshiping_type_preaching}" />
             </LinearLayout>
 
@@ -80,7 +80,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="4"
-                    android:hint="Steps"
+                    android:hint="विधी"
                     android:text="@={viewmodel.worshipingTypes.get(pos).worshiping_type_steps}" />
             </LinearLayout>
 
@@ -105,7 +105,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="4"
-                    android:hint="Ritual"
+                    android:hint="पठण कोणते प्रकार"
                     android:text="@={viewmodel.worshipingTypes.get(pos).worshiping_type_ritual}" />
             </LinearLayout>
 

@@ -53,7 +53,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
-                    android:hint="product type"
+                    android:hint="वस्तूचे प्रकार"
                     android:text="@{viewmodel.products.get(pos).product_type}"
                     />
 
@@ -62,7 +62,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
                     android:layout_weight="2"
-                    android:entries="@array/land_documents_a"
+                    android:entries="@array/product_type"
                     android:onItemSelected="@{(parent,view,position,id)->viewmodel.onItemSelected(parent,position,pos)}"
                     />
 
@@ -90,7 +90,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="4"
-                    android:hint="Product Detail"
+                    android:hint="वस्तूचे वर्णन"
                     android:text="@={viewmodel.products.get(pos).product_details}" />
             </LinearLayout>
 
@@ -115,7 +115,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="4"
-                    android:hint="S.R.No in Book"
+                    android:hint="जाबता बुकातील अ.नं"
                     android:text="@={viewmodel.products.get(pos).s_r_no}" />
             </LinearLayout>
 
@@ -140,7 +140,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="4"
-                    android:hint="Received from"
+                    android:hint="वस्तू कोणाकडून प्राप्त झाली"
                     android:text="@={viewmodel.products.get(pos).received_from}" />
             </LinearLayout>
             <LinearLayout
@@ -164,7 +164,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="4"
-                    android:hint="Weight approx"
+                    android:hint="अंदाजे वजन"
                     android:text="@={viewmodel.products.get(pos).weight_approx}" />
             </LinearLayout>
             <LinearLayout
@@ -188,7 +188,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="4"
-                    android:hint="Value of asset"
+                    android:hint="वस्तूचे मूल्य"
                     android:text="@={viewmodel.products.get(pos).value_of_asset}" />
             </LinearLayout>
 
@@ -202,7 +202,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="4"
-                    android:text="Is Valuation of Gold Done ?"
+                    android:text="Is Valuation of Gold Done?(अंदाजे किंमत मुल्याकंन झाले आहे का)"
                     android:textColor="@color/white"
                     android:textSize="15sp" />
                 <androidx.appcompat.widget.SwitchCompat
@@ -235,7 +235,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="4"
-                    android:hint="Details if valuation done"
+                    android:hint="किती मुल्याकंन झाले आहे"
                     android:text="@={viewmodel.products.get(pos).valuation_details}" />
             </LinearLayout>
 
@@ -260,7 +260,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="4"
-                    android:hint="Present Authority"
+                    android:hint="सध्य कोणाच्या ताबेत आहे"
                     android:text="@={viewmodel.products.get(pos).present_authority}" />
             </LinearLayout>
 
@@ -285,7 +285,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="4"
-                    android:hint="Authority Post"
+                    android:hint="ताबिनदाराची पोच"
                     android:text="@={viewmodel.products.get(pos).authority_post}" />
             </LinearLayout>
 
@@ -310,7 +310,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="4"
-                    android:hint="Remarks"
+                    android:hint="शेरा"
                     android:text="@={viewmodel.products.get(pos).remarks}" />
             </LinearLayout>
 

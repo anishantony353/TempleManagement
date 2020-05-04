@@ -55,7 +55,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="4"
-                    android:hint="Name of Respected Person"
+                    android:hint="नाव"
                     android:text="@={viewmodel.respectedPersons.get(pos).respected_person_name}" />
             </LinearLayout>
 
@@ -80,7 +80,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="4"
-                    android:hint="Role of Respected Person"
+                    android:hint="कामगिरी"
                     android:text="@={viewmodel.respectedPersons.get(pos).respected_person_role}" />
             </LinearLayout>
 

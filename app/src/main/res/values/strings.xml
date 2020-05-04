@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">tm_demo1.2</string>
+    <string name="app_name">tm_1.4</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -46,6 +46,18 @@
         <item>Slum</item>
         <item>Row House</item>
         <item>Cement Concrete</item>
+    </string-array>
+
+    <string-array name="product_type">
+        <item>Select</item>
+        <item>Gold</item>
+        <item>Silver</item>
+        <item>Cloth</item>
+        <item>Placing</item>
+        <item>Copper</item>
+        <item>Brass</item>
+        <item>Bell</item>
+        <item>Other important things</item>
     </string-array>
 
 </resources>

@@ -140,7 +140,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
-                        android:hint="Temple Name"
+                        android:hint="मंदिराचे नाव"
                         android:text="@{viewmodel.formType_4_ObservableField.temple_name}"
 
                         />
@@ -171,7 +171,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
-                        android:hint="Village"
+                        android:hint="गावचे नाव"
                         android:text="@{viewmodel.formType_4_ObservableField.village_name}" />
 
 
@@ -198,7 +198,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
-                        android:hint="Taluka"
+                        android:hint="तालुक्याचे नाव"
                         android:text="@{viewmodel.formType_4_ObservableField.taluka_name}" />
 
 
@@ -226,7 +226,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
-                        android:hint="District"
+                        android:hint="जिल्हा नाव"
                         android:text="@{viewmodel.formType_4_ObservableField.district_name}"
 
                         />
@@ -256,7 +256,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
-                        android:hint="God name"
+                        android:hint="देव नाव"
                         android:text="@={viewmodel.formType_4_ObservableField.god_name}"
 
                         />
@@ -285,7 +285,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
-                        android:hint="Registration No"
+                        android:hint="रजिस्टर क्र"
                         android:text="@={viewmodel.formType_4_ObservableField.registration_no}"
 
                         />
@@ -353,7 +353,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
-                        android:text="Is Valuation of Gold Done ?"
+                        android:text="Is Valuation of Gold Done?(सोने मूल्यांकन झाले आहे का)"
                         android:textColor="@color/white"
                         android:textSize="20sp" />
                     <androidx.appcompat.widget.SwitchCompat
@@ -375,7 +375,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
-                        android:text="Is Valuation of Silver Done ?"
+                        android:text="Is Valuation of Silver Done?(चांदी मूल्यांकन झाले आहे का)"
                         android:textColor="@color/white"
                         android:textSize="20sp" />
                     <androidx.appcompat.widget.SwitchCompat
@@ -408,7 +408,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
-                        android:hint="Assessment Amount"
+                        android:hint="मूल्यांकन किंमत"
                         android:text="@={viewmodel.formType_4_ObservableField.assessment_amount}"
 
                         />
@@ -439,7 +439,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="4"
-                            android:text="Is donation box available"
+                            android:text="Is donation box available(मंदिरात दान पेटी आहे का)"
                             android:textColor="@color/white"
                             android:textSize="20sp" />
                         <androidx.appcompat.widget.SwitchCompat
@@ -474,7 +474,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="4"
-                            android:hint="Utilisation of Donation Box"
+                            android:hint="त्याचा वापर कशासाठी होतो"
                             android:text="@={viewmodel.formType_4_ObservableField.donation_box_utilisation}"
                             app:clearEditText="@{viewmodel.formType_4_ObservableField.is_donation_box_available}"
                             />

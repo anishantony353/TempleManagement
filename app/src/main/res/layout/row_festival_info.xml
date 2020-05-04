@@ -55,7 +55,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="4"
-                    android:hint="Name of festival"
+                    android:hint="उत्सवाचे नाव"
                     android:text="@={viewmodel.festivals.get(pos).festival_name}" />
             </LinearLayout>
 
@@ -80,7 +80,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="4"
-                    android:hint="Festival Duration"
+                    android:hint="महोत्सवची कालावधी"
                     android:text="@={viewmodel.festivals.get(pos).festival_duration}" />
             </LinearLayout>
 
@@ -105,7 +105,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="4"
-                    android:hint="Month"
+                    android:hint="कोणत्या महिन्यात"
                     android:text="@={viewmodel.festivals.get(pos).festival_month}" />
             </LinearLayout>
 

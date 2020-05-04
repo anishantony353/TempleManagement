@@ -55,7 +55,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="4"
-                    android:hint="Name of worshiping house"
+                    android:hint="नाव"
                     android:text="@={viewmodel.worshipingHouses.get(pos).worshiping_house_name}" />
             </LinearLayout>
 
@@ -80,7 +80,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="4"
-                    android:hint="Role of worshiping house"
+                    android:hint="कामगिरी"
                     android:text="@={viewmodel.worshipingHouses.get(pos).worshiping_house_role}" />
             </LinearLayout>
 
