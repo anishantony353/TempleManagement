@@ -94,7 +94,7 @@
                     android:layout_marginBottom="5dp"
                     android:background="@drawable/background_green_rectangle"
                     android:padding="5dp"
-                    android:text="@={Convertor.intToString(((FormType_1)(viewmodel.formType_1ObservableField.get())).templeId)}"
+                    android:text="@={Convertor.intToString(viewmodel.formType_1ObservableField.templeId)}"
                     android:textColor="@color/white"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -167,7 +167,7 @@
                     <!--android:layout_width="0dp"-->
                     <!--android:layout_height="wrap_content"-->
                     <!--android:layout_weight="4"-->
-                    <!--android:text="@={((FormType_1)(viewmodel.formType_1ObservableField.get())).temple}"-->
+                    <!--android:text="@={viewmodel.formType_1ObservableField.temple}"-->
                     <!--android:hint="Search"-->
                     <!--style="@style/MyEditTextStyle"-->
                     <!--/>-->
@@ -198,14 +198,14 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="मंदिराचे नाव"
-                        android:text="@={((FormType_1)(viewmodel.formType_1ObservableField.get())).temple}" />
+                        android:text="@={viewmodel.formType_1ObservableField.temple}" />
 
                     <!--<TextView-->
 
                     <!--android:layout_width="0dp"-->
                     <!--android:layout_height="wrap_content"-->
                     <!--android:layout_weight="4"-->
-                    <!--android:text="@={((FormType_1)(viewmodel.formType_1ObservableField.get())).village}"-->
+                    <!--android:text="@={viewmodel.formType_1ObservableField.village}"-->
                     <!--android:hint="Village"-->
                     <!--style="@style/MyEditTextStyle"-->
                     <!--/>-->
@@ -237,14 +237,14 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="गावचे नाव"
-                        android:text="@={((FormType_1)(viewmodel.formType_1ObservableField.get())).village}" />
+                        android:text="@={viewmodel.formType_1ObservableField.village}" />
 
                     <!--<TextView-->
 
                     <!--android:layout_width="0dp"-->
                     <!--android:layout_height="wrap_content"-->
                     <!--android:layout_weight="4"-->
-                    <!--android:text="@={((FormType_1)(viewmodel.formType_1ObservableField.get())).village}"-->
+                    <!--android:text="@={viewmodel.formType_1ObservableField.village}"-->
                     <!--android:hint="Village"-->
                     <!--style="@style/MyEditTextStyle"-->
                     <!--/>-->
@@ -275,14 +275,14 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="तालुक्याचे नाव"
-                        android:text="@={((FormType_1)(viewmodel.formType_1ObservableField.get())).taluka}" />
+                        android:text="@={viewmodel.formType_1ObservableField.taluka}" />
 
                     <!--<TextView-->
 
                     <!--android:layout_width="0dp"-->
                     <!--android:layout_height="wrap_content"-->
                     <!--android:layout_weight="4"-->
-                    <!--android:text="@={((FormType_1)(viewmodel.formType_1ObservableField.get())).taluka}"-->
+                    <!--android:text="@={viewmodel.formType_1ObservableField.taluka}"-->
                     <!--android:hint="Taluka"-->
                     <!--style="@style/MyEditTextStyle"-->
                     <!--/>-->
@@ -313,14 +313,14 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="जिल्ह्याचे नाव"
-                        android:text="@={((FormType_1)(viewmodel.formType_1ObservableField.get())).district}" />
+                        android:text="@={viewmodel.formType_1ObservableField.district}" />
 
                     <!--<TextView-->
 
                     <!--android:layout_width="0dp"-->
                     <!--android:layout_height="wrap_content"-->
                     <!--android:layout_weight="4"-->
-                    <!--android:text="@={((FormType_1)(viewmodel.formType_1ObservableField.get())).district}"-->
+                    <!--android:text="@={viewmodel.formType_1ObservableField.district}"-->
                     <!--android:hint="District"-->
                     <!--style="@style/MyEditTextStyle"-->
 
@@ -352,7 +352,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="देवा नाव"
-                        android:text="@={((FormType_1)(viewmodel.formType_1ObservableField.get())).god_name}" />
+                        android:text="@={viewmodel.formType_1ObservableField.god_name}" />
 
 
                 </LinearLayout>
@@ -380,7 +380,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="रजिस्टर क्र"
-                        android:text="@={((FormType_1)(viewmodel.formType_1ObservableField.get())).registration_no}"
+                        android:text="@={viewmodel.formType_1ObservableField.registration_no}"
 
                         />
 
@@ -410,7 +410,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="अधिसूचना क्र"
-                        android:text="@={((FormType_1)(viewmodel.formType_1ObservableField.get())).notification_no}"
+                        android:text="@={viewmodel.formType_1ObservableField.notification_no}"
 
                         />
 
@@ -458,7 +458,7 @@
                         android:enabled="false"
                         android:hint="अक्षांश"
                         android:inputType="numberDecimal"
-                        android:text="@={Convertor.doubleToString(((FormType_1)(viewmodel.formType_1ObservableField.get())).latitude)}"
+                        android:text="@={Convertor.doubleToString(viewmodel.formType_1ObservableField.latitude)}"
                         app:invalid="@{viewmodel.error_msg_latitude}" />
 
 
@@ -489,7 +489,7 @@
                         android:enabled="false"
                         android:hint="रेखांश"
                         android:inputType="numberDecimal"
-                        android:text="@={Convertor.doubleToString(((FormType_1)(viewmodel.formType_1ObservableField.get())).longitude)}"
+                        android:text="@={Convertor.doubleToString(viewmodel.formType_1ObservableField.longitude)}"
                         app:invalid="@{viewmodel.error_msg_longitude}" />
 
                 </LinearLayout>
@@ -517,7 +517,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="पुजारीचे नाव"
-                        android:text="@={((FormType_1)(viewmodel.formType_1ObservableField.get())).priest_name}"
+                        android:text="@={viewmodel.formType_1ObservableField.priest_name}"
 
                         />
 
@@ -547,7 +547,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="जमिन असल्यास गट नं"
-                        android:text="@={((FormType_1)(viewmodel.formType_1ObservableField.get())).land_gat_no}"
+                        android:text="@={viewmodel.formType_1ObservableField.land_gat_no}"
 
                         />
 
@@ -577,7 +577,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="लागणदार जमिन"
-                        android:text="@={((FormType_1)(viewmodel.formType_1ObservableField.get())).taxation_of_land}"
+                        android:text="@={viewmodel.formType_1ObservableField.taxation_of_land}"
 
                         />
 
@@ -607,7 +607,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="वहिवाटदार जमिन"
-                        android:text="@={((FormType_1)(viewmodel.formType_1ObservableField.get())).occupant_land}"
+                        android:text="@={viewmodel.formType_1ObservableField.occupant_land}"
 
                         />
 
@@ -638,7 +638,7 @@
                         android:layout_weight="4"
                         android:hint="सोने (असल्यास) रु"
                         android:inputType="numberDecimal"
-                        android:text="@={Convertor.doubleToString(((FormType_1)(viewmodel.formType_1ObservableField.get())).gold_rupees)}"
+                        android:text="@={Convertor.doubleToString(viewmodel.formType_1ObservableField.gold_rupees)}"
 
                         />
 
@@ -669,7 +669,7 @@
                         android:layout_weight="4"
                         android:hint="मूल्यांकना प्रमाणे"
                         android:inputType="numberDecimal"
-                        android:text="@={Convertor.doubleToString(((FormType_1)(viewmodel.formType_1ObservableField.get())).gold_evaluation)}"
+                        android:text="@={Convertor.doubleToString(viewmodel.formType_1ObservableField.gold_evaluation)}"
 
                         />
 
@@ -700,7 +700,7 @@
                         android:layout_weight="4"
                         android:hint="चांदी (असल्यास) रु"
                         android:inputType="numberDecimal"
-                        android:text="@={Convertor.doubleToString(((FormType_1)(viewmodel.formType_1ObservableField.get())).silver_rupees)}"
+                        android:text="@={Convertor.doubleToString(viewmodel.formType_1ObservableField.silver_rupees)}"
 
                         />
 
@@ -730,7 +730,7 @@
                         android:layout_weight="4"
                         android:hint="मूल्यांकना प्रमाणे"
                         android:inputType="numberDecimal"
-                        android:text="@={Convertor.doubleToString(((FormType_1)(viewmodel.formType_1ObservableField.get())).silver_evaluation)}" />
+                        android:text="@={Convertor.doubleToString(viewmodel.formType_1ObservableField.silver_evaluation)}" />
 
 
                 </LinearLayout>

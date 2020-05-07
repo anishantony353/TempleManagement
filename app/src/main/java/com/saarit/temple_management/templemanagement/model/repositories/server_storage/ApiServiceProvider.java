@@ -31,11 +31,11 @@ public class ApiServiceProvider {
             interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
             OkHttpClient client = new OkHttpClient.Builder()
-                    .addInterceptor(interceptor)
                     .connectTimeout(180, TimeUnit.SECONDS)
                     .readTimeout(180,TimeUnit.SECONDS)
                     .writeTimeout(180,TimeUnit.SECONDS)
                     .build();
+            /*.addInterceptor(interceptor)*/
 
 
 

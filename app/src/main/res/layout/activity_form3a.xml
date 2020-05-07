@@ -92,7 +92,7 @@
                     android:background="@drawable/background_green_rectangle"
                     android:padding="5dp"
 
-                    android:text="@{Convertor.intToString(viewmodel.formType_3aObservableField.get().temple_id)}"
+                    android:text="@{Convertor.intToString(viewmodel.formType_3aObservableField.temple_id)}"
                     android:textColor="@color/white"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -141,7 +141,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="मंदिराचे नाव"
-                        android:text="@{viewmodel.formType_3aObservableField.get().temple_name}"
+                        android:text="@{viewmodel.formType_3aObservableField.temple_name}"
 
                         />
 
@@ -171,7 +171,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="गावचे नाव"
-                        android:text="@{viewmodel.formType_3aObservableField.get().village_name}" />
+                        android:text="@{viewmodel.formType_3aObservableField.village_name}" />
 
 
                 </LinearLayout>
@@ -198,7 +198,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="तालुक्याचे नाव"
-                        android:text="@{viewmodel.formType_3aObservableField.get().taluka_name}" />
+                        android:text="@{viewmodel.formType_3aObservableField.taluka_name}" />
 
 
                 </LinearLayout>
@@ -226,7 +226,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="जिल्ह्याचे नाव"
-                        android:text="@{viewmodel.formType_3aObservableField.get().district_name}"
+                        android:text="@{viewmodel.formType_3aObservableField.district_name}"
 
                         />
 
@@ -272,7 +272,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="अक्षांश"
-                        android:text="@={viewmodel.formType_3aObservableField.get().latitude}"
+                        android:text="@={viewmodel.formType_3aObservableField.latitude}"
 
                         />
 
@@ -302,7 +302,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="रेखांश"
-                        android:text="@={viewmodel.formType_3aObservableField.get().longitude}"
+                        android:text="@={viewmodel.formType_3aObservableField.longitude}"
 
                         />
 
@@ -331,7 +331,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="ग्रामपंचायत"
-                        android:text="@={viewmodel.formType_3aObservableField.get().gram_panchayat}"
+                        android:text="@={viewmodel.formType_3aObservableField.gram_panchayat}"
 
                         />
 
@@ -361,7 +361,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="नगरपालिका"
-                        android:text="@={viewmodel.formType_3aObservableField.get().nagar_palika_milkat_no}"
+                        android:text="@={viewmodel.formType_3aObservableField.nagar_palika_milkat_no}"
 
                         />
 
@@ -390,7 +390,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="सी.स.नं"
-                        android:text="@={viewmodel.formType_3aObservableField.get().csn_of_temple}"
+                        android:text="@={viewmodel.formType_3aObservableField.csn_of_temple}"
 
                         />
 
@@ -420,7 +420,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="मंदिराची मोजमापे"
-                        android:text="@={viewmodel.formType_3aObservableField.get().measurement_of_temple}"
+                        android:text="@={viewmodel.formType_3aObservableField.measurement_of_temple}"
 
                         />
 
@@ -450,7 +450,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="मंदिराची बांधकाम(सुमारे किती वर्षा पूर्वीचे)"
-                        android:text="@={viewmodel.formType_3aObservableField.get().temple_construction_details}"
+                        android:text="@={viewmodel.formType_3aObservableField.temple_construction_details}"
 
                         />
 
@@ -480,7 +480,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="मंदिराचे भोवतीलची खुली जागा"
-                        android:text="@={viewmodel.formType_3aObservableField.get().open_space_around}" />
+                        android:text="@={viewmodel.formType_3aObservableField.open_space_around}" />
 
 
                 </LinearLayout>
@@ -508,7 +508,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="मंदिराचे बांधकाम कोणत्या स्वरूपाचे आहे.(रचना वैगरे)"
-                        android:text="@={viewmodel.formType_3aObservableField.get().temple_composition}" />
+                        android:text="@={viewmodel.formType_3aObservableField.temple_composition}" />
 
 
                 </LinearLayout>
@@ -536,7 +536,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="किती वर्ष जुनी (प्रकार)"
-                        android:text="@={viewmodel.formType_3aObservableField.get().statue_age}" />
+                        android:text="@={viewmodel.formType_3aObservableField.statue_age}" />
 
 
                 </LinearLayout>
@@ -564,7 +564,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="मूर्तीचा प्रकार"
-                        android:text="@={viewmodel.formType_3aObservableField.get().statue_type}" />
+                        android:text="@={viewmodel.formType_3aObservableField.statue_type}" />
 
 
                 </LinearLayout>
@@ -595,7 +595,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
                         android:layout_weight="1"
-                        android:checked="@={viewmodel.formType_3aObservableField.get().is_compound_present}"
+                        android:checked="@={viewmodel.formType_3aObservableField.is_compound_present}"
                         />
                 </LinearLayout>
 
@@ -631,7 +631,7 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
                             android:layout_weight="1"
-                            android:checked="@={viewmodel.formType_3aObservableField.get().is_dharmshala_present_near_temple}"
+                            android:checked="@={viewmodel.formType_3aObservableField.is_dharmshala_present_near_temple}"
                             android:onCheckedChanged="@{(view,value)->viewmodel.onSwitchCheckedChange(view,value,Constant.SWITCH_DHARMSHALA_PRESENT)}" />
                     </LinearLayout>
 
@@ -663,7 +663,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="4"
                                 android:hint="धर्मशाळेचा तपशील"
-                                android:text="@={viewmodel.formType_3aObservableField.get().dharmshala_details}"
+                                android:text="@={viewmodel.formType_3aObservableField.dharmshala_details}"
 
                                 />
 
@@ -692,7 +692,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="4"
                                 android:hint="धर्मशाळेचे माप"
-                                android:text="@={viewmodel.formType_3aObservableField.get().dharmshala_area}"
+                                android:text="@={viewmodel.formType_3aObservableField.dharmshala_area}"
 
                                 />
 
@@ -734,7 +734,7 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
                             android:layout_weight="1"
-                            android:checked="@={viewmodel.formType_3aObservableField.get().is_open_plot_available_under_dharmshala}"
+                            android:checked="@={viewmodel.formType_3aObservableField.is_open_plot_available_under_dharmshala}"
                             android:onCheckedChanged="@{(view,value)->viewmodel.onSwitchCheckedChange(view,value,Constant.SWITCH_OPEN_PLOT_DHARMSHALA)}" />
                     </LinearLayout>
 
@@ -762,7 +762,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="4"
                             android:hint="खुल्या भूखंडाचे क्षेत्र"
-                            android:text="@={viewmodel.formType_3aObservableField.get().area_open_plot}"
+                            android:text="@={viewmodel.formType_3aObservableField.area_open_plot}"
 
                             />
 
@@ -804,7 +804,7 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
                             android:layout_weight="1"
-                            android:checked="@={viewmodel.formType_3aObservableField.get().is_office_available_under_temple}"
+                            android:checked="@={viewmodel.formType_3aObservableField.is_office_available_under_temple}"
                             android:onCheckedChanged="@{(view,value)->viewmodel.onSwitchCheckedChange(view,value,Constant.SWITCH_OFFICE_AVAILABLE)}" />
                     </LinearLayout>
 
@@ -836,7 +836,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="4"
                                 android:hint="कार्यालयाचे माप"
-                                android:text="@={viewmodel.formType_3aObservableField.get().office_area}"
+                                android:text="@={viewmodel.formType_3aObservableField.office_area}"
 
                                 />
 
@@ -866,7 +866,7 @@
                                 android:layout_weight="4"
                                 android:hint="खोल्यांची संख्या"
                                 android:inputType="number"
-                                android:text="@={viewmodel.formType_3aObservableField.get().office_no_rooms}"
+                                android:text="@={viewmodel.formType_3aObservableField.office_no_rooms}"
 
                                 />
 
@@ -895,7 +895,7 @@
                                 android:layout_weight="4"
                                 android:hint="जागा संख्या"
                                 android:inputType="number"
-                                android:text="@={viewmodel.formType_3aObservableField.get().office_no_seats}"
+                                android:text="@={viewmodel.formType_3aObservableField.office_no_seats}"
 
                                 />
 
@@ -923,7 +923,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="4"
                                 android:hint="काळजी घेणार्‍याचा तपशील"
-                                android:text="@={viewmodel.formType_3aObservableField.get().office_caretaker_details}"
+                                android:text="@={viewmodel.formType_3aObservableField.office_caretaker_details}"
 
                                 />
 
@@ -965,7 +965,7 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
                             android:layout_weight="1"
-                            android:checked="@={viewmodel.formType_3aObservableField.get().is_school_available_under_temple}"
+                            android:checked="@={viewmodel.formType_3aObservableField.is_school_available_under_temple}"
                             android:onCheckedChanged="@{(view,value)->viewmodel.onSwitchCheckedChange(view,value,Constant.SWITCH_SCHOOL_AVAILABLE)}" />
                     </LinearLayout>
 
@@ -997,7 +997,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="4"
                                 android:hint="शाळेचे माप"
-                                android:text="@={viewmodel.formType_3aObservableField.get().school_area}"
+                                android:text="@={viewmodel.formType_3aObservableField.school_area}"
 
                                 />
 
@@ -1027,7 +1027,7 @@
                                 android:layout_weight="4"
                                 android:hint="खोल्यांची संख्या"
                                 android:inputType="number"
-                                android:text="@={viewmodel.formType_3aObservableField.get().school_no_rooms}"
+                                android:text="@={viewmodel.formType_3aObservableField.school_no_rooms}"
 
                                 />
 
@@ -1056,7 +1056,7 @@
                                 android:layout_weight="4"
                                 android:hint="जागा संख्या"
                                 android:inputType="number"
-                                android:text="@={viewmodel.formType_3aObservableField.get().school_no_seats}"
+                                android:text="@={viewmodel.formType_3aObservableField.school_no_seats}"
 
                                 />
 
@@ -1084,7 +1084,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="4"
                                 android:hint="काळजी घेणार्‍याचा तपशील"
-                                android:text="@={viewmodel.formType_3aObservableField.get().school_caretaker_details}"
+                                android:text="@={viewmodel.formType_3aObservableField.school_caretaker_details}"
 
                                 />
 
@@ -1126,7 +1126,7 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
                             android:layout_weight="1"
-                            android:checked="@={viewmodel.formType_3aObservableField.get().is_organisation_available_under_temple}"
+                            android:checked="@={viewmodel.formType_3aObservableField.is_organisation_available_under_temple}"
                             android:onCheckedChanged="@{(view,value)->viewmodel.onSwitchCheckedChange(view,value,Constant.SWITCH_ORGANISATION_AVAILABLE)}" />
                     </LinearLayout>
 
@@ -1158,7 +1158,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="4"
                                 android:hint="संस्थेचे माप"
-                                android:text="@={viewmodel.formType_3aObservableField.get().organisation_area}"
+                                android:text="@={viewmodel.formType_3aObservableField.organisation_area}"
 
                                 />
 
@@ -1188,7 +1188,7 @@
                                 android:layout_weight="4"
                                 android:hint="खोल्यांची संख्या"
                                 android:inputType="number"
-                                android:text="@={viewmodel.formType_3aObservableField.get().organisation_no_rooms}"
+                                android:text="@={viewmodel.formType_3aObservableField.organisation_no_rooms}"
 
                                 />
 
@@ -1217,7 +1217,7 @@
                                 android:layout_weight="4"
                                 android:hint="जागा संख्या"
                                 android:inputType="number"
-                                android:text="@={viewmodel.formType_3aObservableField.get().organisation_no_seats}"
+                                android:text="@={viewmodel.formType_3aObservableField.organisation_no_seats}"
 
                                 />
 
@@ -1245,7 +1245,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="4"
                                 android:hint="काळजी घेणार्‍याचा तपशील"
-                                android:text="@={viewmodel.formType_3aObservableField.get().organisation_caretaker_details}"
+                                android:text="@={viewmodel.formType_3aObservableField.organisation_caretaker_details}"
 
                                 />
 
@@ -1287,7 +1287,7 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
                             android:layout_weight="1"
-                            android:checked="@={viewmodel.formType_3aObservableField.get().is_property_rent_given}"
+                            android:checked="@={viewmodel.formType_3aObservableField.is_property_rent_given}"
                             android:onCheckedChanged="@{(view,value)->viewmodel.onSwitchCheckedChange(view,value,Constant.SWITCH_PROPERTY_RENT)}" />
                     </LinearLayout>
 
@@ -1319,7 +1319,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="4"
                                 android:hint="जमा करीत आहे"
-                                android:text="@={viewmodel.formType_3aObservableField.get().rent_deposited_to}"
+                                android:text="@={viewmodel.formType_3aObservableField.rent_deposited_to}"
 
                                 />
 
@@ -1349,7 +1349,7 @@
                                 android:layout_weight="4"
                                 android:hint="मालमत्तेसाठी दरमहा भाडे"
                                 android:inputType="number"
-                                android:text="@={viewmodel.formType_3aObservableField.get().rent_per_month}"
+                                android:text="@={viewmodel.formType_3aObservableField.rent_per_month}"
 
                                 />
 
@@ -1391,7 +1391,7 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
                             android:layout_weight="1"
-                            android:checked="@={viewmodel.formType_3aObservableField.get().is_electricity_meter_available}"
+                            android:checked="@={viewmodel.formType_3aObservableField.is_electricity_meter_available}"
                             android:onCheckedChanged="@{(view,value)->viewmodel.onSwitchCheckedChange(view,value,Constant.SWITCH_ELECTRICITY_METER)}" />
                     </LinearLayout>
 
@@ -1423,7 +1423,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="4"
                                 android:hint="मालकाचे नाव आणि तपशील प्रदान करा"
-                                android:text="@={viewmodel.formType_3aObservableField.get().electricity_owner_details}"
+                                android:text="@={viewmodel.formType_3aObservableField.electricity_owner_details}"
 
                                 />
 
@@ -1452,7 +1452,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="4"
                                 android:hint="वीज बिल कोण भरते"
-                                android:text="@={viewmodel.formType_3aObservableField.get().electricity_payable_by}"
+                                android:text="@={viewmodel.formType_3aObservableField.electricity_payable_by}"
 
                                 />
 
@@ -1494,7 +1494,7 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
                             android:layout_weight="1"
-                            android:checked="@={viewmodel.formType_3aObservableField.get().is_enrochment_premises}"
+                            android:checked="@={viewmodel.formType_3aObservableField.is_enrochment_premises}"
                             android:onCheckedChanged="@{(view,value)->viewmodel.onSwitchCheckedChange(view,value,Constant.SWITCH_ENROCHMENT)}" />
                     </LinearLayout>
 
@@ -1523,7 +1523,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_margin="5dp"
                                 android:layout_weight="1"
-                                android:checked="@={viewmodel.formType_3aObservableField.get().is_enrochment_authorized}" />
+                                android:checked="@={viewmodel.formType_3aObservableField.is_enrochment_authorized}" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -1548,7 +1548,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="4"
                                 android:hint="शॉप हाऊस इ"
-                                android:text="@={viewmodel.formType_3aObservableField.get().enrochment_shop_house_other}"
+                                android:text="@={viewmodel.formType_3aObservableField.enrochment_shop_house_other}"
 
                                 />
 
@@ -1577,7 +1577,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="4"
                                 android:hint="असलेस करणाऱ्या व्यक्तीचे नाव व अतिक्रमणामध्ये बाधीत क्षेत्राचे मापे"
-                                android:text="@={viewmodel.formType_3aObservableField.get().enrochment_details_person_area}"
+                                android:text="@={viewmodel.formType_3aObservableField.enrochment_details_person_area}"
 
                                 />
 
@@ -1619,7 +1619,7 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
                             android:layout_weight="1"
-                            android:checked="@={viewmodel.formType_3aObservableField.get().is_sub_committee_present}"
+                            android:checked="@={viewmodel.formType_3aObservableField.is_sub_committee_present}"
                             android:onCheckedChanged="@{(view,value)->viewmodel.onSwitchCheckedChange(view,value,Constant.SWITCH_SUB_COMMITTEE)}" />
                     </LinearLayout>
 
@@ -1652,7 +1652,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="4"
                                 android:hint="उपसमितीचा आदेश"
-                                android:text="@={viewmodel.formType_3aObservableField.get().sub_committee_name}"
+                                android:text="@={viewmodel.formType_3aObservableField.sub_committee_name}"
 
                                 />
 
@@ -1681,7 +1681,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="4"
                                 android:hint="उपसमितीचा क्रमांक"
-                                android:text="@={viewmodel.formType_3aObservableField.get().sub_committee_order_no}"
+                                android:text="@={viewmodel.formType_3aObservableField.sub_committee_order_no}"
 
                                 />
 
@@ -1709,7 +1709,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="3"
                                 android:hint="उपसमितीचा दिनांक"
-                                android:text="@={viewmodel.formType_3aObservableField.get().sub_committee_order_no_date}"
+                                android:text="@={viewmodel.formType_3aObservableField.sub_committee_order_no_date}"
                                 />
 
                             <ImageView
@@ -1744,7 +1744,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="4"
                                 android:hint="असलेस अध्यक्ष"
-                                android:text="@={viewmodel.formType_3aObservableField.get().sub_committee_president}"
+                                android:text="@={viewmodel.formType_3aObservableField.sub_committee_president}"
 
                                 />
 
@@ -1772,7 +1772,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="4"
                                 android:hint="इतर सदस्य यांची यादी व त्याची मुदत"
-                                android:text="@={viewmodel.formType_3aObservableField.get().sub_committee_members_details}"
+                                android:text="@={viewmodel.formType_3aObservableField.sub_committee_members_details}"
 
                                 />
 
@@ -1797,7 +1797,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_margin="5dp"
                                 android:layout_weight="1"
-                                android:checked="@={viewmodel.formType_3aObservableField.get().is_audit_details_present}" />
+                                android:checked="@={viewmodel.formType_3aObservableField.is_audit_details_present}" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -1822,7 +1822,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="4"
                                 android:hint="ऑडीट झाले असलेस त्याची प्रत"
-                                android:text="@={viewmodel.formType_3aObservableField.get().audit_details}"
+                                android:text="@={viewmodel.formType_3aObservableField.audit_details}"
 
                                 />
 
@@ -1865,7 +1865,7 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
                             android:layout_weight="1"
-                            android:checked="@={viewmodel.formType_3aObservableField.get().is_renovation_going_on}"
+                            android:checked="@={viewmodel.formType_3aObservableField.is_renovation_going_on}"
                             android:onCheckedChanged="@{(view,value)->viewmodel.onSwitchCheckedChange(view,value,Constant.SWITCH_RENOVATION)}" />
                     </LinearLayout>
 
@@ -1897,7 +1897,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="4"
                                 android:hint="देवस्थान समितीने परवानगी कधी दिली"
-                                android:text="@={viewmodel.formType_3aObservableField.get().renovation_permission}"
+                                android:text="@={viewmodel.formType_3aObservableField.renovation_permission}"
 
                                 />
 
@@ -1922,7 +1922,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_margin="5dp"
                                 android:layout_weight="1"
-                                android:checked="@={viewmodel.formType_3aObservableField.get().is_renovation_necessary}" />
+                                android:checked="@={viewmodel.formType_3aObservableField.is_renovation_necessary}" />
                         </LinearLayout>
 
 
@@ -1958,7 +1958,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:hint="शेरा"
-                        android:text="@={viewmodel.formType_3aObservableField.get().remarks}"
+                        android:text="@={viewmodel.formType_3aObservableField.remarks}"
 
                         />
 
