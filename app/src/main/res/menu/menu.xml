@@ -48,6 +48,11 @@
         app:showAsAction="never"
         ></item>
     <item
+        android:id="@+id/action_listLocalForms"
+        android:title="List Local forms"
+        app:showAsAction="never"
+        ></item>
+    <item
         android:id="@+id/action_createUser"
         android:title="Create User"
         app:showAsAction="never"
