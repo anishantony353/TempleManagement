@@ -13,6 +13,16 @@
         <item>Form 5</item>
     </string-array>
 
+    <string-array name="all_form_types">
+        <item>Form 1</item>
+        <item>Form 2</item>
+        <item>Form 3a</item>
+        <item>Form 3b(1)</item>
+        <item>Form 3b(2)</item>
+        <item>Form 4</item>
+        <item>Form 5</item>
+    </string-array>
+
     <string-array name="land_documents_a">
         <item>Select</item>
         <item>Mountain</item>

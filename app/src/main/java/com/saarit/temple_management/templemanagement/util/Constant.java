@@ -41,6 +41,7 @@ public class Constant {
     public static final String IMAGE_TYPE_CUSTOM_TRADITION_FESTIVAL_IMG_1 = "custom_tradition_festival_img_1";
     public static final String IMAGE_TYPE_CUSTOM_TRADITION_FESTIVAL_IMG_2 = "custom_tradition_festival_img_2";
 
+    public static final String FORM_TYPE_1 = "Form 1";
     public static final String FORM_TYPE_2 = "Form 2";
     public static final String FORM_TYPE_3a = "Form 3a";
     public static final String FORM_TYPE_3b_1 = "Form 3b(1)";

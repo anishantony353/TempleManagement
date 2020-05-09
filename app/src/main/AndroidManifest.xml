@@ -9,10 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.ui.Form5Activity"
-            android:screenOrientation="portrait"/>
-
-        <activity android:name=".view.ui.LoginActivity"
+        <activity android:name=".view.ui.ActivityListForms_2"></activity>
+        <activity android:name=".view.ui.ActivityListForms" />
+        <activity
+            android:name=".view.ui.Form5Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.ui.LoginActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,35 +23,40 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".view.ui.ActivityMap"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".view.ui.ActivityMap"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".view.ui.Form1Activity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".view.ui.Form2Activity"
             android:screenOrientation="portrait" />
-        <activity android:name=".view.ui.Form3aActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".view.ui.Form3b_1Activity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".view.ui.Form3b_2Activity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".view.ui.Form4Activity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".view.ui.Form3aActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.ui.Form3b_1Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.ui.Form3b_2Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.ui.Form4Activity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".view.ui.FormTypesActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".view.ui.Activity_CreateUser" />
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAgOMiwFEmnwXMxqXvb3hTckF7vYghoiA0" />
     </application>
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
 </manifest>

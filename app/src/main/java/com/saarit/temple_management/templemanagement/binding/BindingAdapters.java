@@ -122,11 +122,17 @@ public class BindingAdapters {
     }
 
     @BindingAdapter("listview.onItemClicklistner")
-    public static void setListner(ListView view, AdapterView.OnItemClickListener listner){
+    public static void setListner(ListView view,AdapterView.OnItemClickListener listner){
 
         Utility.log(TAG,"setListner()");
-
         view.setOnItemClickListener(listner);
+
+    }
+
+    @BindingAdapter("listview.adapter")
+    public static void setLvAdapter(ListView view, ArrayAdapter<Integer> adapter){
+
+        view.setAdapter(adapter);
 
     }
 
