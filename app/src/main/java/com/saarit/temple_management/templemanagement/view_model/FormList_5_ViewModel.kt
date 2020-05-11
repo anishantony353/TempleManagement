@@ -9,13 +9,13 @@ import androidx.databinding.ObservableField
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.saarit.temple_management.templemanagement.model.repositories.Repo_FormType_2
+import com.saarit.temple_management.templemanagement.model.repositories.*
 import com.saarit.temple_management.templemanagement.util.Utility
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class FormList_2_ViewModel(application: Application) : AndroidViewModel(application) {
-    private val TAG = FormList_2_ViewModel::class.java.simpleName
+class FormList_5_ViewModel(application: Application) : AndroidViewModel(application) {
+    private val TAG = FormList_5_ViewModel::class.java.simpleName
     var listner: AdapterView.OnItemClickListener? = null
     var observableListner = ObservableField<AdapterView.OnItemClickListener>()
     var observableAdapter = ObservableField<ArrayAdapter<Int>>()
@@ -44,7 +44,7 @@ class FormList_2_ViewModel(application: Application) : AndroidViewModel(applicat
     }
 
     public fun fetchTempleIDs() {
-        Repo_FormType_2.getInstance(getApplication()).getAllTempleIds().
+        Repo_FormType_5.getInstance(getApplication()).getAllTempleIds().
                 subscribeOn(Schedulers.io()).
                 observeOn(AndroidSchedulers.mainThread()).
                 subscribe(

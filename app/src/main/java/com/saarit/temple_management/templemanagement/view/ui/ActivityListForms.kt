@@ -41,21 +41,14 @@ class ActivityListForms : AppCompatActivity() {
                 this,
                 Observer<String> { formType: String? ->
                     when (formType) {
-                        Constant.FORM_TYPE_1 -> Utility.showToast(Constant.FORM_TYPE_1, Toast.LENGTH_SHORT,baseContext)
+                        Constant.FORM_TYPE_1 -> startActivity(Intent(baseContext,ActivityListForms_1::class.java))
                         Constant.FORM_TYPE_2 -> startActivity(Intent(baseContext,ActivityListForms_2::class.java))
-                        Constant.FORM_TYPE_3a -> Utility.showToast(Constant.FORM_TYPE_3a, Toast.LENGTH_SHORT,baseContext)
-                        Constant.FORM_TYPE_3b_1 -> Utility.showToast(Constant.FORM_TYPE_3b_1, Toast.LENGTH_SHORT,baseContext)
-                        Constant.FORM_TYPE_3b_2 -> Utility.showToast(Constant.FORM_TYPE_3b_2, Toast.LENGTH_SHORT,baseContext)
-                        Constant.FORM_TYPE_4 -> Utility.showToast(Constant.FORM_TYPE_4, Toast.LENGTH_SHORT,baseContext)
-                        Constant.FORM_TYPE_5 -> Utility.showToast(Constant.FORM_TYPE_5, Toast.LENGTH_SHORT,baseContext)
+                        Constant.FORM_TYPE_3a -> startActivity(Intent(baseContext,ActivityListForms_3a::class.java))
+                        Constant.FORM_TYPE_3b_1 -> startActivity(Intent(baseContext,ActivityListForms_3b_1::class.java))
+                        Constant.FORM_TYPE_3b_2 -> startActivity(Intent(baseContext,ActivityListForms_3b_2::class.java))
+                        Constant.FORM_TYPE_4 -> startActivity(Intent(baseContext,ActivityListForms_4::class.java))
+                        Constant.FORM_TYPE_5 -> startActivity(Intent(baseContext,ActivityListForms_5::class.java))
 
-                        /*Constant.FORM_TYPE_1 -> startActivity(Intent(baseContext,Form2Activity::class.java))
-                        Constant.FORM_TYPE_2 -> startActivity(Intent(baseContext,Form2Activity::class.java))
-                        Constant.FORM_TYPE_3a -> startActivity(Intent(baseContext,Form2Activity::class.java))
-                        Constant.FORM_TYPE_3b_1 -> startActivity(Intent(baseContext,Form2Activity::class.java))
-                        Constant.FORM_TYPE_3b_2 -> startActivity(Intent(baseContext,Form2Activity::class.java))
-                        Constant.FORM_TYPE_4 -> startActivity(Intent(baseContext,Form2Activity::class.java))
-                        Constant.FORM_TYPE_5 -> startActivity(Intent(baseContext,Form2Activity::class.java))*/
                     }
                 }
         )

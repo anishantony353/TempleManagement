@@ -196,7 +196,7 @@ class ActivityMap : AppCompatActivity(), OnMapReadyCallback, OnMarkerDragListene
             R.id.action_getLocalTemples -> viewModel.getLocalTemples()
             R.id.action_clearLocalTemples -> viewModel.clearLocalTemplesFromMap()
             R.id.action_createUser -> startActivity(Intent(baseContext, Activity_CreateUser::class.java))
-            R.id.action_listLocalForms -> startActivity(Intent(baseContext,ActivityListForms::class.java))
+            R.id.action_listLocalForms -> startActivityForResult(Intent(baseContext,ActivityListForms::class.java),Constant.REQUEST_CODE_OPEN_LOCAL_LIST)
         }
         invalidateOptionsMenu()
         return super.onOptionsItemSelected(item)
@@ -222,7 +222,7 @@ class ActivityMap : AppCompatActivity(), OnMapReadyCallback, OnMarkerDragListene
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         when (requestCode) {
-            Constant.REQUEST_CODE_NEW_TEMPLE, Constant.REQUEST_CODE_CLICK_SERVER_TREES -> when (resultCode) {
+            Constant.REQUEST_CODE_NEW_TEMPLE, Constant.REQUEST_CODE_CLICK_SERVER_TEMPLE -> when (resultCode) {
                 Activity.RESULT_OK -> {
                     val formType1 = data!!.getSerializableExtra(Constant.KEY_ADDED_TEMPLE) as FormType_1
                     Utility.log(TAG, "onActivityResult()..id:" + formType1.id)
@@ -238,7 +238,7 @@ class ActivityMap : AppCompatActivity(), OnMapReadyCallback, OnMarkerDragListene
                 else -> {
                 }
             }
-            Constant.REQUEST_CODE_CLICK_LOCAL_TREES -> when (resultCode) {
+            Constant.REQUEST_CODE_CLICK_LOCAL_TEMPLE -> when (resultCode) {
                 Activity.RESULT_OK -> {
                     val formType1 = data!!.getSerializableExtra(Constant.KEY_ADDED_TEMPLE) as FormType_1
                     Utility.log(TAG, "onActivityResult()..id:" + formType1.templeId)
@@ -254,6 +254,7 @@ class ActivityMap : AppCompatActivity(), OnMapReadyCallback, OnMarkerDragListene
                 else -> {
                 }
             }
+            Constant.REQUEST_CODE_OPEN_LOCAL_LIST -> viewModel.clearLocalTemplesFromMap()
         }
     }
 
@@ -296,14 +297,14 @@ class ActivityMap : AppCompatActivity(), OnMapReadyCallback, OnMarkerDragListene
         if (viewModel!!.hashmapServerTemples[marker] != null) {
             val i = Intent(this, Form1Activity::class.java)
             i.putExtra("temple_id", viewModel!!.hashmapServerTemples[marker]!!.templeId)
-            i.putExtra("req_code", Constant.REQUEST_CODE_CLICK_SERVER_TREES)
-            startActivityForResult(i, Constant.REQUEST_CODE_CLICK_SERVER_TREES)
+            i.putExtra("req_code", Constant.REQUEST_CODE_CLICK_SERVER_TEMPLE)
+            startActivityForResult(i, Constant.REQUEST_CODE_CLICK_SERVER_TEMPLE)
         } else if (viewModel!!.hashmapLocalTemples[marker] != null) {
             val i = Intent(this, Form1Activity::class.java)
             i.putExtra("id", viewModel!!.hashmapLocalTemples[marker]!!.id)
             i.putExtra("temple_id", viewModel!!.hashmapLocalTemples[marker]!!.templeId)
-            i.putExtra("req_code", Constant.REQUEST_CODE_CLICK_LOCAL_TREES)
-            startActivityForResult(i, Constant.REQUEST_CODE_CLICK_LOCAL_TREES)
+            i.putExtra("req_code", Constant.REQUEST_CODE_CLICK_LOCAL_TEMPLE)
+            startActivityForResult(i, Constant.REQUEST_CODE_CLICK_LOCAL_TEMPLE)
         }
     }
 

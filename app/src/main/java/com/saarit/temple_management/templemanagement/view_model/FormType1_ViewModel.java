@@ -181,14 +181,15 @@ public class FormType1_ViewModel extends AndroidViewModel {
                             listner.set(onItemClickListener);
 
                             switch(req_type){
-                                case Constant.REQUEST_CODE_CLICK_LOCAL_TREES:
+                                case Constant.REQUEST_CODE_CLICK_LOCAL_TEMPLE:
+                                case Constant.REQUEST_CODE_CLICK_FORM_FROM_LIST:
                                     markerVisibility.set(View.GONE);
                                     progressVisibility.set(View.GONE);
 
                                     getFormType_1_ById(id);
 
                                     break;
-                                case Constant.REQUEST_CODE_CLICK_SERVER_TREES:
+                                case Constant.REQUEST_CODE_CLICK_SERVER_TEMPLE:
                                     markerVisibility.set(View.GONE);
                                     progressVisibility.set(View.GONE);
                                     Utility.log(TAG,"about to fetch server form");
@@ -503,7 +504,8 @@ public class FormType1_ViewModel extends AndroidViewModel {
                 repo_formType_1.getCountByTempleId(formType_1.templeId).
                         flatMap(
                                 count ->{
-                                    if(reqType.get() == Constant.REQUEST_CODE_CLICK_LOCAL_TREES){
+                                    if(reqType.get() == Constant.REQUEST_CODE_CLICK_LOCAL_TEMPLE ||
+                                            reqType.get() == Constant.REQUEST_CODE_CLICK_FORM_FROM_LIST){
                                         return repo_formType_1.insertForm(formType_1);
                                     }else{
                                         if(count > 0){

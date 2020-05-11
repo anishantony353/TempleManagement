@@ -31,6 +31,9 @@ public abstract class FormType_3a_Dao {
     @Query("SELECT count(id) FROM FormType_3a")
     public abstract Single<Long> getCount();
 
+    @Query("SELECT temple_id FROM FormType_3a")
+    public abstract Single<List<Integer>> getAllTempleIds();
+
 
     @Query("SELECT * FROM FormType_3a WHERE id = :id")
     public abstract Single<FormType_3a> getFormById(long id);

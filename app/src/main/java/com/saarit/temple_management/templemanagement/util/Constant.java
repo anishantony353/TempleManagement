@@ -5,14 +5,16 @@ public class Constant {
 
     public static final int REQUEST_CODE_NEW_TEMPLE = 1;
     public static final int REQUEST_CODE_REQUEST_LOCATION_PERMISSION = 2;
-    public static final int REQUEST_CODE_CLICK_LOCAL_TREES = 3;
-    public static final int REQUEST_CODE_CLICK_SERVER_TREES = 4;
+    public static final int REQUEST_CODE_CLICK_LOCAL_TEMPLE = 3;
+    public static final int REQUEST_CODE_CLICK_SERVER_TEMPLE = 4;
     public static final int REQUEST_CODE_TAKE_FRONT_IMAGE = 5;
     public static final int REQUEST_CODE_TAKE_LEFT_IMAGE = 6;
     public static final int REQUEST_CODE_TAKE_RIGHT_IMAGE = 7;
     public static final int REQUEST_CODE_TAKE_ENTRY_IMAGE = 8;
     public static final int REQUEST_CODE_TAKE_CUSTOM_1_IMAGE = 9;
     public static final int REQUEST_CODE_TAKE_CUSTOM_2_IMAGE = 10;
+    public static final int REQUEST_CODE_CLICK_FORM_FROM_LIST = 11;
+    public static final int REQUEST_CODE_OPEN_LOCAL_LIST = 12;
 
 
     public static final String KEY_ADDED_TEMPLE = "added_temple";
@@ -22,9 +24,9 @@ public class Constant {
     public static final String BROADCAST_INTENT_MAP_ACTIVITY = "received_location_map_activity";
     public static final String BROADCAST_INTENT_FORM_TYPE_1_ACTIVITY = "received_location_form_type_1_activity";
 
-    public static final String APP_URL = "http://103.233.79.142:90/temple_management3.0/portal/tm/index.php/api/";
-    public static final String IMG_URL_FORM_1 = "http://103.233.79.142:90/temple_images/form1/";
-    public static final String IMG_URL_FORM_2 = "http://103.233.79.142:90/temple_images/form2/";
+    public static final String APP_URL = "http://103.233.79.142:90/temple_management3.0_test/portal/tm/index.php/api/";
+    public static final String IMG_URL_FORM_1 = "http://103.233.79.142:90/temple_images_test/form1/";
+    public static final String IMG_URL_FORM_2 = "http://103.233.79.142:90/temple_images_test/form2/";
 
     /*public static final String APP_URL = "http://172.17.47.166/temple_management1.0/portal/tm/index.php/api/";
     public static final String IMG_URL_FORM_1 = "http://172.17.47.166/temple_images/form1/";

@@ -66,6 +66,10 @@ public class Repo_FormType_1 {
         return dao.getCount();
     }
 
+    public Single<List<Integer>> getAllTempleIds(){
+        return dao.getAllTempleIds();
+    }
+
     public Single<Integer> getCountByTempleId(long templeId){
         return dao.getCountByTempleId(templeId);
     }

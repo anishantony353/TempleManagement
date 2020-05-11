@@ -25,6 +25,9 @@ public abstract class FormType_5_Dao {
     @Query("SELECT count(id) FROM FormType_5")
     public abstract Single<Long> getCount();
 
+    @Query("SELECT temple_id FROM FormType_5")
+    public abstract Single<List<Integer>> getAllTempleIds();
+
 
     @Query("SELECT * FROM FormType_5 WHERE id = :id")
     public abstract Single<FormType_5> getFormById(long id);

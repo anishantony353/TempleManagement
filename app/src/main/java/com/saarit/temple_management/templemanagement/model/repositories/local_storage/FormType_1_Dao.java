@@ -26,6 +26,9 @@ public interface FormType_1_Dao {
     @Query("SELECT count(temple_id) FROM FormType_1")
     Single<Long> getCount();
 
+    @Query("SELECT temple_id FROM FormType_1")
+    public abstract Single<List<Integer>> getAllTempleIds();
+
 
     @Query("SELECT * FROM FormType_1 WHERE id = :id")
     Single<FormType_1> getFormById(long id);

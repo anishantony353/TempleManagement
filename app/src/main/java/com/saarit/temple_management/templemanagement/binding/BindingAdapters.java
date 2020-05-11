@@ -92,6 +92,7 @@ public class BindingAdapters {
 
         switch(reqType){
             case Constant.REQUEST_CODE_NEW_TEMPLE:
+            case Constant.REQUEST_CODE_CLICK_FORM_FROM_LIST:
                 view.setVisibility(View.GONE);
                 break;
 

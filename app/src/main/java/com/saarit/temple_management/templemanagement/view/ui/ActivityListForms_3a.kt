@@ -8,15 +8,17 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.saarit.temple_management.templemanagement.R
 import com.saarit.temple_management.templemanagement.databinding.ActivityListForms2Binding
+import com.saarit.temple_management.templemanagement.databinding.ActivityListForms3aBinding
 import com.saarit.temple_management.templemanagement.util.Constant
 import com.saarit.temple_management.templemanagement.view_model.FormList_2_ViewModel
+import com.saarit.temple_management.templemanagement.view_model.FormList_3a_ViewModel
 
-class ActivityListForms_2 : AppCompatActivity() {
+class ActivityListForms_3a : AppCompatActivity() {
 
-    val TAG = ActivityListForms_2::class.java.simpleName
+    val TAG = ActivityListForms_3a::class.java.simpleName
 
-    lateinit var binding : ActivityListForms2Binding
-    lateinit var viewModel : FormList_2_ViewModel
+    lateinit var binding : ActivityListForms3aBinding
+    lateinit var viewModel : FormList_3a_ViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,8 +27,8 @@ class ActivityListForms_2 : AppCompatActivity() {
     }
 
     private fun setupBindings(savedInstanceState: Bundle?) {
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_list_forms_2)
-        viewModel = ViewModelProviders.of(this).get(FormList_2_ViewModel::class.java)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_list_forms_3a)
+        viewModel = ViewModelProviders.of(this).get(FormList_3a_ViewModel::class.java)
         if (savedInstanceState == null) {
             viewModel.init()
         }
@@ -38,7 +40,7 @@ class ActivityListForms_2 : AppCompatActivity() {
                 this,
                 Observer<Int> { templeId: Int? ->
 
-                    var intent = Intent(this, Form2Activity::class.java)
+                    var intent = Intent(this, Form3aActivity::class.java)
                     intent.putExtra(Constant.KEY_EXTRA_TEMPLE_ID, templeId)
                     startActivityForResult(intent,1)
 

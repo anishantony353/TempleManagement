@@ -6,8 +6,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.WindowManager;
 import android.widget.Toast;
-
-
 import com.saarit.temple_management.templemanagement.R;
 import com.saarit.temple_management.templemanagement.databinding.ActivityForm2Binding;
 import com.saarit.temple_management.templemanagement.util.Constant;
@@ -48,7 +46,6 @@ public class Form2Activity extends AppCompatActivity {
         viewModel.shouldFinishActivity().observe(
                 this,
                 value-> finish()
-
 
         );
 

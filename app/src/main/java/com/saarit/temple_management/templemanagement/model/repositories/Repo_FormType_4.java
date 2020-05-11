@@ -61,6 +61,10 @@ public class Repo_FormType_4 {
         return dao.getCount();
     }
 
+    public Single<List<Integer>> getAllTempleIds(){
+        return dao.getAllTempleIds();
+    }
+
     public Single<Integer> deleteFormByObject(FormType_4 form){
         Utility.log(TAG,"About to Delete Form by object");
         return dao.deleteFormByObject(form);

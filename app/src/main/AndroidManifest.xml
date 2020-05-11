@@ -9,8 +9,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.ui.ActivityListForms_2"></activity>
-        <activity android:name=".view.ui.ActivityListForms" />
+        <activity android:name=".view.ui.ActivityListForms_1"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".view.ui.ActivityListForms_2"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".view.ui.ActivityListForms_3a"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".view.ui.ActivityListForms_3b_1"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".view.ui.ActivityListForms_3b_2"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".view.ui.ActivityListForms_4"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".view.ui.ActivityListForms_5"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".view.ui.ActivityListForms"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".view.ui.Form5Activity"
             android:screenOrientation="portrait" />

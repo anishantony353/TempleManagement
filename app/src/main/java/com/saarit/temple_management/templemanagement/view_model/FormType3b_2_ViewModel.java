@@ -200,8 +200,8 @@ public class FormType3b_2_ViewModel extends AndroidViewModel {
                                     formType_3b_2.village_name = formType_1.village;
                                     formType_3b_2.taluka_name = formType_1.taluka;
                                     formType_3b_2.district_name = formType_1.district;
-                                    formType_3b_2.latitude = ""+formType_1.latitude;
-                                    formType_3b_2.longitude = ""+formType_1.longitude;
+                                    /*formType_3b_2.latitude = ""+formType_1.latitude;
+                                    formType_3b_2.longitude = ""+formType_1.longitude;*/
 
                                     formType_3b_2_ObservableField.set(formType_3b_2);
                                     local_server_new_ObservableField.set("New");
@@ -251,8 +251,8 @@ public class FormType3b_2_ViewModel extends AndroidViewModel {
                                     formType_3b_2.village_name = formType_1.village;
                                     formType_3b_2.taluka_name = formType_1.taluka;
                                     formType_3b_2.district_name = formType_1.district;
-                                    formType_3b_2.latitude = ""+formType_1.latitude;
-                                    formType_3b_2.longitude = ""+formType_1.longitude;
+                                    /*formType_3b_2.latitude = ""+formType_1.latitude;
+                                    formType_3b_2.longitude = ""+formType_1.longitude;*/
 
                                     formType_3b_2_ObservableField.set(formType_3b_2);
                                     local_server_new_ObservableField.set("New");

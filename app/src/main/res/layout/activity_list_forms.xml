@@ -15,11 +15,22 @@
         android:background="@color/colorAccent"
         android:padding="20dp">
 
+        <TextView
+            android:id="@+id/tv_forms"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="Locally Saved forms"
+            android:textSize="24sp"
+            android:textStyle="bold|italic"
+            android:textColor="@color/white"/>
+
         <ListView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:entries="@array/all_form_types"
             app:listview.onItemClicklistner ="@{viewmodel.observableListner}"
+            android:layout_below="@+id/tv_forms"
             />
 
     </RelativeLayout>

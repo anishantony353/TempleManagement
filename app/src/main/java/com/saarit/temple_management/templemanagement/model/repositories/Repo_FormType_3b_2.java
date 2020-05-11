@@ -8,6 +8,8 @@ import com.saarit.temple_management.templemanagement.model.repositories.local_st
 
 import com.saarit.temple_management.templemanagement.util.Utility;
 
+import java.util.List;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import io.reactivex.Single;
@@ -52,6 +54,10 @@ public class Repo_FormType_3b_2 {
 
     public Single<Long> getCount(){
         return dao.getCount();
+    }
+
+    public Single<List<Integer>> getAllTempleIds(){
+        return dao.getAllTempleIds();
     }
 
     public Single<Integer> deleteFormByObject(FormType_3b_2 form){

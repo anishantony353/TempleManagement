@@ -5,7 +5,7 @@
 
         <variable
             name="viewmodel"
-            type="com.saarit.temple_management.templemanagement.view_model.FormList_2_ViewModel" />
+            type="com.saarit.temple_management.templemanagement.view_model.FormList_4_ViewModel" />
 
     </data>
 
@@ -20,7 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:text="Form 2 Temple IDs"
+            android:text="Form 4 Temple IDs"
             android:textSize="24sp"
             android:textStyle="bold|italic"
             android:textColor="@color/white"/>
